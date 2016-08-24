@@ -1,20 +1,32 @@
-# ElmOrlando
+# Elm Orlando
 
-To start your Phoenix app:
+Elm meetups and hack nights in Orlando! No previous Elm experience required.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `npm install`
-  * Start Phoenix endpoint with `mix phoenix.server`
+This repository contains the source code for the
+[Elm Orlando](https://elmorlando.herokuapp.com) site, which is intended as a
+central location for presentations, demos, resources, etc.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+## Requirements
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+- Elm 0.17.1
+- Phoenix 1.2
+- Elixir 1.3.2
 
-## Learn more
+## Setup Instructions
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+1. `git clone https://github.com/ElmOrlando/ElmOrlando.git`
+2. `mix deps.get` to install Phoenix dependencies.
+3. `config/dev.exs` and `config/test.exs` to configure local database.
+4. `mix ecto.setup` to create, migrate, and seed the database.
+5. `npm install` to install Node dependencies.
+6. `mix phoenix.server` to start Phoenix server.
+7. `localhost:4000` to see application!
+
+## Deployment
+
+This app is deployed to Heroku at https://elmorlando.herokuapp.com.
+
+## Contributing
+
+Check out the [GitHub Issues](https://github.com/ElmOrlando/ElmOrlando/issues)
+to see what is currently on deck.
