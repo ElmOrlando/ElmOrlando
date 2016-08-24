@@ -7,19 +7,24 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello ElmOrlando!</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900,700,400italic,700italic,900italic">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+
+    <title>Elm Orlando</title>
   </head>
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
       <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
+        <%= link "Elm Orlando", to: page_path(@conn, :index), class: "header-text" %>
+        <nav>
+          <ul class="nav nav-pills">
+            <li><a href="https://www.meetup.com/Elm-Orlando"><img src="/images/meetup.png" /></a></li>
+            <li><a href="https://github.com/ElmOrlando"><img src="/images/github.png" /></a></li>
+            <li><a href="https://twitter.com/ElmOrlandoGroup"><img src="/images/twitter.png" /></a></li>
           </ul>
         </nav>
-        <span class="logo"></span>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
