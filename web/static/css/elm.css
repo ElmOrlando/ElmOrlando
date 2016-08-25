@@ -1,0 +1,13 @@
+#elm-main {
+  width: 580px;
+  margin: 0 auto;
+  display: block;
+}
+
+svg text {
+  font-family: 'Baumans', cursive;
+  font-weight: bold;
+  font-size: 38px;
+  letter-spacing: 3.4px;
+  fill: #2a2828;
+}
