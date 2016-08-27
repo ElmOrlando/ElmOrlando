@@ -4,13 +4,20 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 
 
+-- VIEW
+
+
 view : Html a
 view =
     div [ class "demo-list" ]
-        [ h2 [] [ text "Demos" ]
-        , ul []
-            [ li [] [ text "Demo 1" ]
-            , li [] [ text "Demo 2" ]
-            , li [] [ text "Demo 3" ]
-            ]
+        [ h2 [] [ text "Demo List" ]
+        , ul [] renderDemos
         ]
+
+
+renderDemos : List (Html a)
+renderDemos =
+    [ li [] [ text "Demo 1" ]
+    , li [] [ text "Demo 2" ]
+    , li [] [ text "Demo 3" ]
+    ]
