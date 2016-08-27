@@ -8891,6 +8891,12 @@ var _user$project$Main$update = F2(
 			_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
 		};
 	});
+var _user$project$Main$demoListView = function (model) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Main$DemoListMsg,
+		_user$project$Components_DemoList$view(model.demoListModel));
+};
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -8900,10 +8906,7 @@ var _user$project$Main$view = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$html$Html_App$map,
-				_user$project$Main$DemoListMsg,
-				_user$project$Components_DemoList$view(model.demoListModel))
+				_user$project$Main$demoListView(model)
 			]));
 };
 var _user$project$Main$main = {

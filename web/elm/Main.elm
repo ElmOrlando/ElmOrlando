@@ -63,7 +63,12 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "elm-app" ]
-        [ App.map DemoListMsg (DemoList.view model.demoListModel) ]
+        [ demoListView model ]
+
+
+demoListView : Model -> Html Msg
+demoListView model =
+    App.map DemoListMsg (DemoList.view model.demoListModel)
 
 
 
