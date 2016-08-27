@@ -5,6 +5,10 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import List
 import Demo
+import Http
+import Task
+import Json.Decode as Json exposing ((:=))
+import Debug
 
 
 -- MODEL
@@ -36,6 +40,8 @@ initialModel =
 type Msg
     = NoOp
     | Fetch
+    | FetchSucceed (List Demo.Model)
+    | FetchFail Http.Error
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -46,6 +52,18 @@ update msg model =
 
         Fetch ->
             ( demos, Cmd.none )
+
+        FetchSucceed demoList ->
+            ( Model demoList, Cmd.none )
+
+        FetchFail error ->
+            case error of
+                Http.UnexpectedPayload errorMessage ->
+                    Debug.log errorMessage
+                        ( model, Cmd.none )
+
+                _ ->
+                    ( model, Cmd.none )
 
 
 
