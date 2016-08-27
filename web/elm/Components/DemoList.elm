@@ -4,7 +4,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import List
-import Demo
+import Components.Demo as Demo
 import Http
 import Task
 import Json.Decode as Json exposing ((:=))
@@ -16,6 +16,11 @@ import Debug
 
 type alias Model =
     { demos : List Demo.Model }
+
+
+type SubPage
+    = ListView
+    | ShowView Demo.Model
 
 
 demos : Model
@@ -42,6 +47,7 @@ type Msg
     | Fetch
     | FetchSucceed (List Demo.Model)
     | FetchFail Http.Error
+    | RouteToNewPage SubPage
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -66,6 +72,9 @@ update msg model =
 
                 _ ->
                     ( model, Cmd.none )
+
+        _ ->
+            ( model, Cmd.none )
 
 
 fetchDemos : Cmd Msg
@@ -109,11 +118,20 @@ view model =
         ]
 
 
-renderDemos : Model -> List (Html a)
+renderDemos : Model -> List (Html Msg)
 renderDemos model =
     List.map renderDemo model.demos
 
 
-renderDemo : Demo.Model -> Html a
+renderDemo : Demo.Model -> Html Msg
 renderDemo demo =
-    li [] [ Demo.view demo ]
+    li [] [ div [] [ Demo.view demo, demoLink demo ] ]
+
+
+demoLink : Demo.Model -> Html Msg
+demoLink demo =
+    a
+        [ href ("#demo/" ++ demo.name ++ "/show")
+        , onClick (RouteToNewPage (ShowView demo))
+        ]
+        [ text " (Show)" ]

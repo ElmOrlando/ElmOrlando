@@ -5,6 +5,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
+import Components.DemoShow as DemoShow
+import Components.Demo as Demo
 
 
 -- MAIN
@@ -33,6 +35,7 @@ type alias Model =
 type Page
     = RootView
     | DemoListView
+    | DemoShowView Demo.Model
 
 
 init : ( Model, Cmd Msg )
@@ -54,25 +57,39 @@ initialModel =
 type Msg
     = DemoListMsg DemoList.Msg
     | UpdateView Page
+    | DemoShowMsg DemoShow.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         DemoListMsg demoMsg ->
-            let
-                ( updatedModel, cmd ) =
-                    DemoList.update demoMsg model.demoListModel
-            in
-                ( { model | demoListModel = updatedModel }, Cmd.map DemoListMsg cmd )
+            case demoMsg of
+                DemoList.RouteToNewPage page ->
+                    case page of
+                        DemoList.ShowView demo ->
+                            ( { model | currentView = (DemoShowView demo) }, Cmd.none )
+
+                        _ ->
+                            ( model, Cmd.none )
+
+                _ ->
+                    let
+                        ( updatedModel, cmd ) =
+                            DemoList.update demoMsg model.demoListModel
+                    in
+                        ( { model | demoListModel = updatedModel }, Cmd.map DemoListMsg cmd )
 
         UpdateView page ->
             case page of
                 -- TODO: Implement when Phoenix Demo API is ready.
                 -- DemoListView ->
-                --  ( { model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos )
+                -- ({ model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos)
                 _ ->
                     ( { model | currentView = page }, Cmd.none )
+
+        DemoShowMsg demoMsg ->
+            ( model, Cmd.none )
 
 
 
@@ -105,6 +122,9 @@ pageView model =
         DemoListView ->
             demoListView model
 
+        DemoShowView demo ->
+            demoShowView demo
+
 
 welcomeView : Html Msg
 welcomeView =
@@ -114,6 +134,11 @@ welcomeView =
 demoListView : Model -> Html Msg
 demoListView model =
     App.map DemoListMsg (DemoList.view model.demoListModel)
+
+
+demoShowView : Demo.Model -> Html Msg
+demoShowView demo =
+    App.map DemoShowMsg (DemoShow.view demo)
 
 
 

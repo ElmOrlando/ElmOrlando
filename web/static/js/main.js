@@ -8704,7 +8704,7 @@ var _evancz$elm_http$Http$post = F3(
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
 
-var _user$project$Demo$view = function (model) {
+var _user$project$Components_Demo$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$span,
 		_elm_lang$core$Native_List.fromArray(
@@ -8720,50 +8720,17 @@ var _user$project$Demo$view = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html$text(model.name)
-					])),
-				A2(
-				_elm_lang$html$Html$a,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Live Demo')
-					])),
-				A2(
-				_elm_lang$html$Html$a,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Source Code')
 					]))
 			]));
 };
-var _user$project$Demo$Model = F3(
+var _user$project$Components_Demo$Model = F3(
 	function (a, b, c) {
 		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
 	});
 
-var _user$project$Components_DemoList$renderDemo = function (demo) {
-	return A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Demo$view(demo)
-			]));
-};
-var _user$project$Components_DemoList$renderDemos = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
-};
 var _user$project$Components_DemoList$decodeDemoData = A4(
 	_elm_lang$core$Json_Decode$object3,
-	_user$project$Demo$Model,
+	_user$project$Components_Demo$Model,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
@@ -8802,7 +8769,7 @@ var _user$project$Components_DemoList$update = F2(
 					_0: _user$project$Components_DemoList$Model(_p0._0),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'FetchFail':
 				var _p1 = _p0._0;
 				if (_p1.ctor === 'UnexpectedPayload') {
 					return A2(
@@ -8812,8 +8779,57 @@ var _user$project$Components_DemoList$update = F2(
 				} else {
 					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 				}
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
+var _user$project$Components_DemoList$ShowView = function (a) {
+	return {ctor: 'ShowView', _0: a};
+};
+var _user$project$Components_DemoList$ListView = {ctor: 'ListView'};
+var _user$project$Components_DemoList$RouteToNewPage = function (a) {
+	return {ctor: 'RouteToNewPage', _0: a};
+};
+var _user$project$Components_DemoList$demoLink = function (demo) {
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'#demo/',
+					A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
+				_elm_lang$html$Html_Events$onClick(
+				_user$project$Components_DemoList$RouteToNewPage(
+					_user$project$Components_DemoList$ShowView(demo)))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(' (Show)')
+			]));
+};
+var _user$project$Components_DemoList$renderDemo = function (demo) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_user$project$Components_Demo$view(demo),
+						_user$project$Components_DemoList$demoLink(demo)
+					]))
+			]));
+};
+var _user$project$Components_DemoList$renderDemos = function (model) {
+	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
+};
 var _user$project$Components_DemoList$FetchFail = function (a) {
 	return {ctor: 'FetchFail', _0: a};
 };
@@ -8866,6 +8882,66 @@ var _user$project$Components_DemoList$view = function (model) {
 };
 var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
 
+var _user$project$Components_DemoShow$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h3,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.name)
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$a,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Live Demo')
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$a,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Source Code')
+									]))
+							]))
+					]))
+			]));
+};
+var _user$project$Components_DemoShow$NoOp = {ctor: 'NoOp'};
+
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
@@ -8881,10 +8957,22 @@ var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {demoListModel: a, currentView: b};
 	});
+var _user$project$Main$DemoShowView = function (a) {
+	return {ctor: 'DemoShowView', _0: a};
+};
 var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
 var _user$project$Main$RootView = {ctor: 'RootView'};
 var _user$project$Main$initialModel = {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView};
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$DemoShowMsg = function (a) {
+	return {ctor: 'DemoShowMsg', _0: a};
+};
+var _user$project$Main$demoShowView = function (demo) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Main$DemoShowMsg,
+		_user$project$Components_DemoShow$view(demo));
+};
 var _user$project$Main$UpdateView = function (a) {
 	return {ctor: 'UpdateView', _0: a};
 };
@@ -8954,27 +9042,49 @@ var _user$project$Main$DemoListMsg = function (a) {
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		if (_p0.ctor === 'DemoListMsg') {
-			var _p1 = A2(_user$project$Components_DemoList$update, _p0._0, model.demoListModel);
-			var updatedModel = _p1._0;
-			var cmd = _p1._1;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{demoListModel: updatedModel}),
-				_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-			};
-		} else {
-			var _p3 = _p0._0;
-			var _p2 = _p3;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{currentView: _p3}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
+		switch (_p0.ctor) {
+			case 'DemoListMsg':
+				var _p4 = _p0._0;
+				var _p1 = _p4;
+				if (_p1.ctor === 'RouteToNewPage') {
+					var _p2 = _p1._0;
+					if (_p2.ctor === 'ShowView') {
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									currentView: _user$project$Main$DemoShowView(_p2._0)
+								}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					}
+				} else {
+					var _p3 = A2(_user$project$Components_DemoList$update, _p4, model.demoListModel);
+					var updatedModel = _p3._0;
+					var cmd = _p3._1;
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{demoListModel: updatedModel}),
+						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
+					};
+				}
+			case 'UpdateView':
+				var _p6 = _p0._0;
+				var _p5 = _p6;
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{currentView: _p6}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
 var _user$project$Main$demoListView = function (model) {
@@ -8984,11 +9094,14 @@ var _user$project$Main$demoListView = function (model) {
 		_user$project$Components_DemoList$view(model.demoListModel));
 };
 var _user$project$Main$pageView = function (model) {
-	var _p4 = model.currentView;
-	if (_p4.ctor === 'RootView') {
-		return _user$project$Main$welcomeView;
-	} else {
-		return _user$project$Main$demoListView(model);
+	var _p7 = model.currentView;
+	switch (_p7.ctor) {
+		case 'RootView':
+			return _user$project$Main$welcomeView;
+		case 'DemoListView':
+			return _user$project$Main$demoListView(model);
+		default:
+			return _user$project$Main$demoShowView(_p7._0);
 	}
 };
 var _user$project$Main$view = function (model) {
