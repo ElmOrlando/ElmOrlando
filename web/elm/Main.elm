@@ -82,9 +82,9 @@ update msg model =
 
         UpdateView page ->
             case page of
-                -- TODO: Implement when Phoenix Demo API is ready.
-                -- DemoListView ->
-                -- ({ model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos)
+                DemoListView ->
+                    ( { model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos )
+
                 _ ->
                     ( { model | currentView = page }, Cmd.none )
 

@@ -23,16 +23,6 @@ type SubPage
     | ShowView Demo.Model
 
 
-demos : Model
-demos =
-    { demos =
-        [ { name = "Hello World", liveDemoUrl = "#", sourceCodeUrl = "#" }
-        , { name = "Counter", liveDemoUrl = "#", sourceCodeUrl = "#" }
-        , { name = "Mario", liveDemoUrl = "#", sourceCodeUrl = "#" }
-        ]
-    }
-
-
 initialModel : Model
 initialModel =
     { demos = [] }
@@ -56,10 +46,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        -- TODO: Implement when Phoenix Demo API is ready.
-        -- ( model, fetchDemos )
         Fetch ->
-            ( demos, Cmd.none )
+            ( model, fetchDemos )
 
         FetchSucceed demoList ->
             ( Model demoList, Cmd.none )
@@ -112,8 +100,6 @@ view : Model -> Html Msg
 view model =
     div [ class "demo-list" ]
         [ h2 [] [ text "Demos" ]
-          -- TODO: Remove button when Phoenix Demo API is ready.
-        , button [ onClick Fetch, class "btn btn-primary" ] [ text "Fetch Demos" ]
         , ul [] (renderDemos model)
         ]
 

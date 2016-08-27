@@ -8744,45 +8744,9 @@ var _user$project$Components_DemoList$initialModel = {
 	demos: _elm_lang$core$Native_List.fromArray(
 		[])
 };
-var _user$project$Components_DemoList$demos = {
-	demos: _elm_lang$core$Native_List.fromArray(
-		[
-			{name: 'Hello World', liveDemoUrl: '#', sourceCodeUrl: '#'},
-			{name: 'Counter', liveDemoUrl: '#', sourceCodeUrl: '#'},
-			{name: 'Mario', liveDemoUrl: '#', sourceCodeUrl: '#'}
-		])
-};
 var _user$project$Components_DemoList$Model = function (a) {
 	return {demos: a};
 };
-var _user$project$Components_DemoList$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'Fetch':
-				return {ctor: '_Tuple2', _0: _user$project$Components_DemoList$demos, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'FetchSucceed':
-				return {
-					ctor: '_Tuple2',
-					_0: _user$project$Components_DemoList$Model(_p0._0),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'FetchFail':
-				var _p1 = _p0._0;
-				if (_p1.ctor === 'UnexpectedPayload') {
-					return A2(
-						_elm_lang$core$Debug$log,
-						_p1._0,
-						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
-				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
 var _user$project$Components_DemoList$ShowView = function (a) {
 	return {ctor: 'ShowView', _0: a};
 };
@@ -8830,21 +8794,6 @@ var _user$project$Components_DemoList$renderDemo = function (demo) {
 var _user$project$Components_DemoList$renderDemos = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
 };
-var _user$project$Components_DemoList$FetchFail = function (a) {
-	return {ctor: 'FetchFail', _0: a};
-};
-var _user$project$Components_DemoList$FetchSucceed = function (a) {
-	return {ctor: 'FetchSucceed', _0: a};
-};
-var _user$project$Components_DemoList$fetchDemos = function () {
-	var url = '/api/demos';
-	return A3(
-		_elm_lang$core$Task$perform,
-		_user$project$Components_DemoList$FetchFail,
-		_user$project$Components_DemoList$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
-}();
-var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
 var _user$project$Components_DemoList$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -8863,23 +8812,55 @@ var _user$project$Components_DemoList$view = function (model) {
 						_elm_lang$html$Html$text('Demos')
 					])),
 				A2(
-				_elm_lang$html$Html$button,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Events$onClick(_user$project$Components_DemoList$Fetch),
-						_elm_lang$html$Html_Attributes$class('btn btn-primary')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Fetch Demos')
-					])),
-				A2(
 				_elm_lang$html$Html$ul,
 				_elm_lang$core$Native_List.fromArray(
 					[]),
 				_user$project$Components_DemoList$renderDemos(model))
 			]));
 };
+var _user$project$Components_DemoList$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
+};
+var _user$project$Components_DemoList$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
+};
+var _user$project$Components_DemoList$fetchDemos = function () {
+	var url = '/api/demos';
+	return A3(
+		_elm_lang$core$Task$perform,
+		_user$project$Components_DemoList$FetchFail,
+		_user$project$Components_DemoList$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
+}();
+var _user$project$Components_DemoList$update = F2(
+	function (msg, model) {
+		var _p0 = msg;
+		switch (_p0.ctor) {
+			case 'NoOp':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'Fetch':
+				return {ctor: '_Tuple2', _0: model, _1: _user$project$Components_DemoList$fetchDemos};
+			case 'FetchSucceed':
+				return {
+					ctor: '_Tuple2',
+					_0: _user$project$Components_DemoList$Model(_p0._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'FetchFail':
+				var _p1 = _p0._0;
+				if (_p1.ctor === 'UnexpectedPayload') {
+					return A2(
+						_elm_lang$core$Debug$log,
+						_p1._0,
+						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+				} else {
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				}
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
 var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
 
 var _user$project$Components_DemoShow$view = function (model) {
@@ -9076,13 +9057,23 @@ var _user$project$Main$update = F2(
 			case 'UpdateView':
 				var _p6 = _p0._0;
 				var _p5 = _p6;
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{currentView: _p6}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				if (_p5.ctor === 'DemoListView') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{currentView: _p6}),
+						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{currentView: _p6}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
