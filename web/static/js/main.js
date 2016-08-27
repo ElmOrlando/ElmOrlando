@@ -8966,11 +8966,13 @@ var _user$project$Main$update = F2(
 				_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
 			};
 		} else {
+			var _p3 = _p0._0;
+			var _p2 = _p3;
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					model,
-					{currentView: _p0._0}),
+					{currentView: _p3}),
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		}
@@ -8982,8 +8984,8 @@ var _user$project$Main$demoListView = function (model) {
 		_user$project$Components_DemoList$view(model.demoListModel));
 };
 var _user$project$Main$pageView = function (model) {
-	var _p2 = model.currentView;
-	if (_p2.ctor === 'RootView') {
+	var _p4 = model.currentView;
+	if (_p4.ctor === 'RootView') {
 		return _user$project$Main$welcomeView;
 	} else {
 		return _user$project$Main$demoListView(model);

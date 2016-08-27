@@ -50,6 +50,8 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        -- TODO: Implement when Phoenix Demo API is ready.
+        -- ( model, fetchDemos )
         Fetch ->
             ( demos, Cmd.none )
 
@@ -101,6 +103,7 @@ view : Model -> Html Msg
 view model =
     div [ class "demo-list" ]
         [ h2 [] [ text "Demos" ]
+          -- TODO: Remove button when Phoenix Demo API is ready.
         , button [ onClick Fetch, class "btn btn-primary" ] [ text "Fetch Demos" ]
         , ul [] (renderDemos model)
         ]
