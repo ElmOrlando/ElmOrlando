@@ -2,6 +2,20 @@ module Components.DemoList exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import List
+import Demo
+
+
+-- MODEL
+
+
+demos : List Demo.Model
+demos =
+    [ { name = "Hello World", liveDemoUrl = "#", sourceCodeUrl = "#" }
+    , { name = "Counter", liveDemoUrl = "#", sourceCodeUrl = "#" }
+    , { name = "Mario", liveDemoUrl = "#", sourceCodeUrl = "#" }
+    ]
+
 
 
 -- VIEW
@@ -17,7 +31,9 @@ view =
 
 renderDemos : List (Html a)
 renderDemos =
-    [ li [] [ text "Demo 1" ]
-    , li [] [ text "Demo 2" ]
-    , li [] [ text "Demo 3" ]
-    ]
+    List.map renderDemo demos
+
+
+renderDemo : Demo.Model -> Html a
+renderDemo demo =
+    li [] [ Demo.view demo ]

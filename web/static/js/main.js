@@ -7758,33 +7758,67 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _user$project$Components_DemoList$renderDemos = _elm_lang$core$Native_List.fromArray(
+var _user$project$Demo$view = function (model) {
+	return A2(
+		_elm_lang$html$Html$span,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('demo')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$strong,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.name)
+					])),
+				A2(
+				_elm_lang$html$Html$a,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Live Demo')
+					])),
+				A2(
+				_elm_lang$html$Html$a,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Source Code')
+					]))
+			]));
+};
+var _user$project$Demo$Model = F3(
+	function (a, b, c) {
+		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
+	});
+
+var _user$project$Components_DemoList$renderDemo = function (demo) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Demo$view(demo)
+			]));
+};
+var _user$project$Components_DemoList$demos = _elm_lang$core$Native_List.fromArray(
 	[
-		A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Demo 1')
-			])),
-		A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Demo 2')
-			])),
-		A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text('Demo 3')
-			]))
+		{name: 'Hello World', liveDemoUrl: '#', sourceCodeUrl: '#'},
+		{name: 'Counter', liveDemoUrl: '#', sourceCodeUrl: '#'},
+		{name: 'Mario', liveDemoUrl: '#', sourceCodeUrl: '#'}
 	]);
+var _user$project$Components_DemoList$renderDemos = A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, _user$project$Components_DemoList$demos);
 var _user$project$Components_DemoList$view = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
