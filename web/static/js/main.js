@@ -8869,33 +8869,125 @@ var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$initialModel = {demoListModel: _user$project$Components_DemoList$initialModel};
+var _user$project$Main$welcomeView = A2(
+	_elm_lang$html$Html$h2,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Home')
+		]));
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {demoListModel: a, currentView: b};
+	});
+var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
+var _user$project$Main$RootView = {ctor: 'RootView'};
+var _user$project$Main$initialModel = {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView};
 var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$Model = function (a) {
-	return {demoListModel: a};
+var _user$project$Main$UpdateView = function (a) {
+	return {ctor: 'UpdateView', _0: a};
 };
+var _user$project$Main$header = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$h1,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Elm Orlando')
+				])),
+			A2(
+			_elm_lang$html$Html$ul,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('#'),
+									_elm_lang$html$Html_Events$onClick(
+									_user$project$Main$UpdateView(_user$project$Main$RootView))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Home')
+								]))
+						])),
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('#demos'),
+									_elm_lang$html$Html_Events$onClick(
+									_user$project$Main$UpdateView(_user$project$Main$DemoListView))
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Demos')
+								]))
+						]))
+				]))
+		]));
 var _user$project$Main$DemoListMsg = function (a) {
 	return {ctor: 'DemoListMsg', _0: a};
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
-		var _p1 = A2(_user$project$Components_DemoList$update, _p0._0, model.demoListModel);
-		var updatedModel = _p1._0;
-		var cmd = _p1._1;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{demoListModel: updatedModel}),
-			_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-		};
+		if (_p0.ctor === 'DemoListMsg') {
+			var _p1 = A2(_user$project$Components_DemoList$update, _p0._0, model.demoListModel);
+			var updatedModel = _p1._0;
+			var cmd = _p1._1;
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{demoListModel: updatedModel}),
+				_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
+			};
+		} else {
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{currentView: _p0._0}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
 	});
 var _user$project$Main$demoListView = function (model) {
 	return A2(
 		_elm_lang$html$Html_App$map,
 		_user$project$Main$DemoListMsg,
 		_user$project$Components_DemoList$view(model.demoListModel));
+};
+var _user$project$Main$pageView = function (model) {
+	var _p2 = model.currentView;
+	if (_p2.ctor === 'RootView') {
+		return _user$project$Main$welcomeView;
+	} else {
+		return _user$project$Main$demoListView(model);
+	}
 };
 var _user$project$Main$view = function (model) {
 	return A2(
@@ -8906,7 +8998,8 @@ var _user$project$Main$view = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Main$demoListView(model)
+				_user$project$Main$header,
+				_user$project$Main$pageView(model)
 			]));
 };
 var _user$project$Main$main = {

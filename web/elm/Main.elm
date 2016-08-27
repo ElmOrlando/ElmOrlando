@@ -3,6 +3,7 @@ module Main exposing (..)
 import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
 
 
@@ -24,7 +25,14 @@ main =
 
 
 type alias Model =
-    { demoListModel : DemoList.Model }
+    { demoListModel : DemoList.Model
+    , currentView : Page
+    }
+
+
+type Page
+    = RootView
+    | DemoListView
 
 
 init : ( Model, Cmd Msg )
@@ -34,7 +42,9 @@ init =
 
 initialModel : Model
 initialModel =
-    { demoListModel = DemoList.initialModel }
+    { demoListModel = DemoList.initialModel
+    , currentView = RootView
+    }
 
 
 
@@ -43,6 +53,7 @@ initialModel =
 
 type Msg
     = DemoListMsg DemoList.Msg
+    | UpdateView Page
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -55,6 +66,9 @@ update msg model =
             in
                 ( { model | demoListModel = updatedModel }, Cmd.map DemoListMsg cmd )
 
+        UpdateView page ->
+            ( { model | currentView = page }, Cmd.none )
+
 
 
 -- VIEW
@@ -63,7 +77,33 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div [ class "elm-app" ]
-        [ demoListView model ]
+        [ header, pageView model ]
+
+
+header : Html Msg
+header =
+    div []
+        [ h1 [] [ text "Elm Orlando" ]
+        , ul []
+            [ li [] [ a [ href "#", onClick (UpdateView RootView) ] [ text "Home" ] ]
+            , li [] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
+            ]
+        ]
+
+
+pageView : Model -> Html Msg
+pageView model =
+    case model.currentView of
+        RootView ->
+            welcomeView
+
+        DemoListView ->
+            demoListView model
+
+
+welcomeView : Html Msg
+welcomeView =
+    h2 [] [ text "Home" ]
 
 
 demoListView : Model -> Html Msg
