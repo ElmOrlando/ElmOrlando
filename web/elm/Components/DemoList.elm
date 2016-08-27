@@ -66,6 +66,33 @@ update msg model =
                     ( model, Cmd.none )
 
 
+fetchDemos : Cmd Msg
+fetchDemos =
+    let
+        url =
+            "/api/demos"
+    in
+        Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch url)
+
+
+decodeDemoFetch : Json.Decoder (List Demo.Model)
+decodeDemoFetch =
+    Json.at [ "data" ] decodeDemoList
+
+
+decodeDemoList : Json.Decoder (List Demo.Model)
+decodeDemoList =
+    Json.list decodeDemoData
+
+
+decodeDemoData : Json.Decoder Demo.Model
+decodeDemoData =
+    Json.object3 Demo.Model
+        ("name" := Json.string)
+        ("liveDemoUrl" := Json.string)
+        ("sourceCodeUrl" := Json.string)
+
+
 
 -- VIEW
 

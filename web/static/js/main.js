@@ -8761,6 +8761,18 @@ var _user$project$Components_DemoList$renderDemo = function (demo) {
 var _user$project$Components_DemoList$renderDemos = function (model) {
 	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
 };
+var _user$project$Components_DemoList$decodeDemoData = A4(
+	_elm_lang$core$Json_Decode$object3,
+	_user$project$Demo$Model,
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
+	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
+var _user$project$Components_DemoList$decodeDemoList = _elm_lang$core$Json_Decode$list(_user$project$Components_DemoList$decodeDemoData);
+var _user$project$Components_DemoList$decodeDemoFetch = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['data']),
+	_user$project$Components_DemoList$decodeDemoList);
 var _user$project$Components_DemoList$initialModel = {
 	demos: _elm_lang$core$Native_List.fromArray(
 		[])
@@ -8808,6 +8820,14 @@ var _user$project$Components_DemoList$FetchFail = function (a) {
 var _user$project$Components_DemoList$FetchSucceed = function (a) {
 	return {ctor: 'FetchSucceed', _0: a};
 };
+var _user$project$Components_DemoList$fetchDemos = function () {
+	var url = '/api/demos';
+	return A3(
+		_elm_lang$core$Task$perform,
+		_user$project$Components_DemoList$FetchFail,
+		_user$project$Components_DemoList$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
+}();
 var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
 var _user$project$Components_DemoList$view = function (model) {
 	return A2(
