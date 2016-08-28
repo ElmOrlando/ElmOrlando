@@ -20,7 +20,7 @@ view : Demo.Model -> Html Msg
 view model =
     div []
         [ h3 [] [ text model.name ]
-        , ul []
+        , ul [ class "demo-list-item" ]
             [ li []
                 [ a [ href model.liveDemoUrl ] [ text "Live Demo" ]
                 ]

@@ -131,9 +131,7 @@ header =
 
 welcomeView : Html Msg
 welcomeView =
-    ul []
-        [ li [] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
-        ]
+    h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
 
 
 demoListView : Model -> Html Msg

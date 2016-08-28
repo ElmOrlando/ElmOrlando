@@ -8754,40 +8754,31 @@ var _user$project$Components_DemoList$ListView = {ctor: 'ListView'};
 var _user$project$Components_DemoList$RouteToNewPage = function (a) {
 	return {ctor: 'RouteToNewPage', _0: a};
 };
-var _user$project$Components_DemoList$demoLink = function (demo) {
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'#demo/',
-					A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
-				_elm_lang$html$Html_Events$onClick(
-				_user$project$Components_DemoList$RouteToNewPage(
-					_user$project$Components_DemoList$ShowView(demo)))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(' (Show)')
-			]));
-};
 var _user$project$Components_DemoList$renderDemo = function (demo) {
 	return A2(
 		_elm_lang$html$Html$li,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_elm_lang$html$Html_Attributes$class('demo-list-item')
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$div,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
+				_elm_lang$html$Html$a,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_user$project$Components_Demo$view(demo),
-						_user$project$Components_DemoList$demoLink(demo)
+						_elm_lang$html$Html_Attributes$href(
+						A2(
+							_elm_lang$core$Basics_ops['++'],
+							'#demo/',
+							A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
+						_elm_lang$html$Html_Events$onClick(
+						_user$project$Components_DemoList$RouteToNewPage(
+							_user$project$Components_DemoList$ShowView(demo)))
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(demo.name)
 					]))
 			]));
 };
@@ -8881,7 +8872,9 @@ var _user$project$Components_DemoShow$view = function (model) {
 				A2(
 				_elm_lang$html$Html$ul,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html_Attributes$class('demo-list-item')
+					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
 						A2(
@@ -9068,29 +9061,24 @@ var _user$project$Main$header = A2(
 				]))
 		]));
 var _user$project$Main$welcomeView = A2(
-	_elm_lang$html$Html$ul,
+	_elm_lang$html$Html$h2,
 	_elm_lang$core$Native_List.fromArray(
-		[]),
+		[
+			_elm_lang$html$Html_Attributes$class('page-link')
+		]),
 	_elm_lang$core$Native_List.fromArray(
 		[
 			A2(
-			_elm_lang$html$Html$li,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
+			_elm_lang$html$Html$a,
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#demos'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$DemoListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Demos')
-						]))
+					_elm_lang$html$Html_Attributes$href('#demos'),
+					_elm_lang$html$Html_Events$onClick(
+					_user$project$Main$UpdateView(_user$project$Main$DemoListView))
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Demos')
 				]))
 		]));
 var _user$project$Main$DemoListMsg = function (a) {

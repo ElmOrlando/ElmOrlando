@@ -15,6 +15,9 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
+li {
+  margin: 5px 0px;
+}
 /* Phoenix flash messages */
 .alert:empty { display: none; }
 
@@ -42,6 +45,14 @@ form.link, form.button {
 .nav-pills img {
   height: 60px;
   border-radius: 15px;
+}
+
+.page-link {
+  font-size: 2.15em;
+}
+
+.demo-list-item {
+  font-size: 1.5em;
 }
 
 #elm-main {

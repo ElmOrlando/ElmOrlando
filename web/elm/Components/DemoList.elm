@@ -111,13 +111,10 @@ renderDemos model =
 
 renderDemo : Demo.Model -> Html Msg
 renderDemo demo =
-    li [] [ div [] [ Demo.view demo, demoLink demo ] ]
-
-
-demoLink : Demo.Model -> Html Msg
-demoLink demo =
-    a
-        [ href ("#demo/" ++ demo.name ++ "/show")
-        , onClick (RouteToNewPage (ShowView demo))
+    li [ class "demo-list-item" ]
+        [ a
+            [ href ("#demo/" ++ demo.name ++ "/show")
+            , onClick (RouteToNewPage (ShowView demo))
+            ]
+            [ text demo.name ]
         ]
-        [ text " (Show)" ]
