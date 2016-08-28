@@ -44,6 +44,12 @@ form.link, form.button {
   border-radius: 15px;
 }
 
+#elm-main {
+  width: 580px;
+  margin: 0 auto;
+  display: block;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container {
