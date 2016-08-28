@@ -9,6 +9,5 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Hello World", liveDemoUrl: "#", sourceCodeUrl: "#"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Counter", liveDemoUrl: "#", sourceCodeUrl: "#"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Mario", liveDemoUrl: "#", sourceCodeUrl: "#"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmOrlando", liveDemoUrl: "/demos/ElmOrlando.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmOrlando.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GuessingGame", liveDemoUrl: "/demos/GuessingGame.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GuessingGame.elm"})
