@@ -102,17 +102,6 @@ view model =
         [ header, pageView model ]
 
 
-header : Html Msg
-header =
-    div []
-        [ h1 [] [ text "Elm Orlando" ]
-        , ul []
-            [ li [] [ a [ href "#", onClick (UpdateView RootView) ] [ text "Home" ] ]
-            , li [] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
-            ]
-        ]
-
-
 pageView : Model -> Html Msg
 pageView model =
     case model.currentView of
@@ -126,9 +115,25 @@ pageView model =
             demoShowView demo
 
 
+header : Html Msg
+header =
+    Html.header [ class "header" ]
+        [ a [ href "#", onClick (UpdateView RootView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+        , nav []
+            [ ul [ class "nav nav-pills" ]
+                [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+                , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+                , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+                ]
+            ]
+        ]
+
+
 welcomeView : Html Msg
 welcomeView =
-    h2 [] [ text "Home" ]
+    ul []
+        [ li [] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
+        ]
 
 
 demoListView : Model -> Html Msg

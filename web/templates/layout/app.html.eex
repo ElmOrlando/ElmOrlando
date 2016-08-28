@@ -17,17 +17,6 @@
 
   <body>
     <div class="container-fluid">
-      <header class="header">
-        <%= link "Elm Orlando", to: page_path(@conn, :index), class: "header-text" %>
-        <nav>
-          <ul class="nav nav-pills">
-            <li><a href="https://www.meetup.com/Elm-Orlando"><img src="/images/meetup.png" /></a></li>
-            <li><a href="https://github.com/ElmOrlando"><img src="/images/github.png" /></a></li>
-            <li><a href="https://twitter.com/ElmOrlandoGroup"><img src="/images/twitter.png" /></a></li>
-          </ul>
-        </nav>
-      </header>
-
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
