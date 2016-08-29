@@ -8916,6 +8916,54 @@ var _user$project$Components_DemoShow$view = function (model) {
 };
 var _user$project$Components_DemoShow$NoOp = {ctor: 'NoOp'};
 
+var _user$project$Components_PresentationList$view = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$class('presentations')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$h2,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Presentations')
+				])),
+			A2(
+			_elm_lang$html$Html$h3,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('September 2016')
+				])),
+			A2(
+			_elm_lang$html$Html$ul,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$i,
+							_elm_lang$core$Native_List.fromArray(
+								[]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Coming Soon')
+								]))
+						]))
+				]))
+		]));
+
 var _user$project$Components_ResourceList$view = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9133,11 +9181,13 @@ var _user$project$Components_ResourceList$view = A2(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
+var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
 var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
 var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {demoListModel: a, currentView: b};
 	});
+var _user$project$Main$PresentationListView = {ctor: 'PresentationListView'};
 var _user$project$Main$ResourceListView = {ctor: 'ResourceListView'};
 var _user$project$Main$DemoShowView = function (a) {
 	return {ctor: 'DemoShowView', _0: a};
@@ -9390,6 +9440,27 @@ var _user$project$Main$welcomeView = A2(
 						[
 							_elm_lang$html$Html$text('Resources')
 						]))
+				])),
+			A2(
+			_elm_lang$html$Html$h2,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('page-link')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href('#presentations'),
+							_elm_lang$html$Html_Events$onClick(
+							_user$project$Main$UpdateView(_user$project$Main$PresentationListView))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Presentations')
+						]))
 				]))
 		]));
 var _user$project$Main$pageView = function (model) {
@@ -9401,8 +9472,10 @@ var _user$project$Main$pageView = function (model) {
 			return _user$project$Main$demoListView(model);
 		case 'DemoShowView':
 			return _user$project$Main$demoShowView(_p7._0);
-		default:
+		case 'ResourceListView':
 			return _user$project$Main$resourceListView;
+		default:
+			return _user$project$Main$presentationListView;
 	}
 };
 var _user$project$Main$view = function (model) {

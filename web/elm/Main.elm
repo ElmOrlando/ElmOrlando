@@ -8,6 +8,7 @@ import Components.DemoList as DemoList
 import Components.DemoShow as DemoShow
 import Components.Demo as Demo
 import Components.ResourceList as ResourceList
+import Components.PresentationList as PresentationList
 
 
 -- MAIN
@@ -38,6 +39,7 @@ type Page
     | DemoListView
     | DemoShowView Demo.Model
     | ResourceListView
+    | PresentationListView
 
 
 init : ( Model, Cmd Msg )
@@ -119,6 +121,9 @@ pageView model =
         ResourceListView ->
             resourceListView
 
+        PresentationListView ->
+            presentationListView
+
 
 header : Html Msg
 header =
@@ -139,6 +144,7 @@ welcomeView =
     div []
         [ h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
         , h2 [ class "page-link" ] [ a [ href "#resources", onClick (UpdateView ResourceListView) ] [ text "Resources" ] ]
+        , h2 [ class "page-link" ] [ a [ href "#presentations", onClick (UpdateView PresentationListView) ] [ text "Presentations" ] ]
         ]
 
 
@@ -155,6 +161,11 @@ demoShowView demo =
 resourceListView : Html a
 resourceListView =
     ResourceList.view
+
+
+presentationListView : Html a
+presentationListView =
+    PresentationList.view
 
 
 
