@@ -2,10 +2,11 @@ module Main exposing (..)
 
 import Html.App as App
 import Html exposing (..)
-import Svg exposing (..)
-import Svg.Attributes exposing (..)
-import Keyboard exposing (KeyCode)
-import Key exposing (..)
+import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
+import Components.DemoList as DemoList
+import Components.DemoShow as DemoShow
+import Components.Demo as Demo
 
 
 -- MAIN
@@ -26,12 +27,27 @@ main =
 
 
 type alias Model =
-    Int
+    { demoListModel : DemoList.Model
+    , currentView : Page
+    }
+
+
+type Page
+    = RootView
+    | DemoListView
+    | DemoShowView Demo.Model
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( 50, Cmd.none )
+    ( initialModel, Cmd.none )
+
+
+initialModel : Model
+initialModel =
+    { demoListModel = DemoList.initialModel
+    , currentView = RootView
+    }
 
 
 
@@ -39,43 +55,40 @@ init =
 
 
 type Msg
-    = KeyDown KeyCode
-    | KeyUp KeyCode
+    = DemoListMsg DemoList.Msg
+    | UpdateView Page
+    | DemoShowMsg DemoShow.Msg
 
 
-update : Msg -> Model -> ( Int, Cmd Msg )
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        KeyDown keyCode ->
-            (keyDown keyCode model)
+        DemoListMsg demoMsg ->
+            case demoMsg of
+                DemoList.RouteToNewPage page ->
+                    case page of
+                        DemoList.ShowView demo ->
+                            ( { model | currentView = (DemoShowView demo) }, Cmd.none )
 
-        KeyUp keyCode ->
-            (keyUp keyCode model)
+                        _ ->
+                            ( model, Cmd.none )
 
+                _ ->
+                    let
+                        ( updatedModel, cmd ) =
+                            DemoList.update demoMsg model.demoListModel
+                    in
+                        ( { model | demoListModel = updatedModel }, Cmd.map DemoListMsg cmd )
 
-keyDown : KeyCode -> Model -> ( Int, Cmd Msg )
-keyDown keyCode model =
-    case Key.fromCode keyCode of
-        ArrowLeft ->
-            ( model - 10, Cmd.none )
+        UpdateView page ->
+            case page of
+                DemoListView ->
+                    ( { model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos )
 
-        ArrowRight ->
-            ( model + 10, Cmd.none )
+                _ ->
+                    ( { model | currentView = page }, Cmd.none )
 
-        _ ->
-            ( model, Cmd.none )
-
-
-keyUp : KeyCode -> Model -> ( Int, Cmd Msg )
-keyUp keyCode model =
-    case Key.fromCode keyCode of
-        ArrowLeft ->
-            ( model + 0, Cmd.none )
-
-        ArrowRight ->
-            ( model + 0, Cmd.none )
-
-        _ ->
+        DemoShowMsg demoMsg ->
             ( model, Cmd.none )
 
 
@@ -85,44 +98,50 @@ keyUp keyCode model =
 
 view : Model -> Html Msg
 view model =
-    let
-        position =
-            toString model
+    div [ class "elm-app" ]
+        [ header, pageView model ]
 
-        message =
-            if position == (toString 260) then
-                "CITY of ElmLANDO"
-            else
-                "CITY of ORLANDO"
-    in
-        Svg.svg
-            [ Svg.Attributes.version "1.1"
-            , Svg.Attributes.width "580"
-            , Svg.Attributes.height "360"
-            , Svg.Attributes.viewBox ("0 0 580 360")
+
+pageView : Model -> Html Msg
+pageView model =
+    case model.currentView of
+        RootView ->
+            welcomeView
+
+        DemoListView ->
+            demoListView model
+
+        DemoShowView demo ->
+            demoShowView demo
+
+
+header : Html Msg
+header =
+    Html.header [ class "header" ]
+        [ a [ href "#", onClick (UpdateView RootView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+        , nav []
+            [ ul [ class "nav nav-pills" ]
+                [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+                , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+                , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+                ]
             ]
-            [ Svg.image
-                [ Svg.Attributes.xlinkHref "images/city_of_orlando.png"
-                , Svg.Attributes.x "0"
-                , Svg.Attributes.y "0"
-                , Svg.Attributes.width "580"
-                , Svg.Attributes.height "360"
-                ]
-                []
-            , Svg.image
-                [ Svg.Attributes.xlinkHref "images/elm.png"
-                , Svg.Attributes.x position
-                , Svg.Attributes.y "0"
-                , Svg.Attributes.width "50"
-                , Svg.Attributes.height "50"
-                ]
-                []
-            , Svg.text'
-                [ Svg.Attributes.x "115"
-                , Svg.Attributes.y "295"
-                ]
-                [ Svg.text message ]
-            ]
+        ]
+
+
+welcomeView : Html Msg
+welcomeView =
+    h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
+
+
+demoListView : Model -> Html Msg
+demoListView model =
+    App.map DemoListMsg (DemoList.view model.demoListModel)
+
+
+demoShowView : Demo.Model -> Html Msg
+demoShowView demo =
+    App.map DemoShowMsg (DemoShow.view demo)
 
 
 
@@ -131,7 +150,4 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch
-        [ Keyboard.downs KeyDown
-        , Keyboard.ups KeyUp
-        ]
+    Sub.none

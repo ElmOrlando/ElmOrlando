@@ -14,13 +14,14 @@ defmodule ElmOrlando.Router do
   end
 
   scope "/", ElmOrlando do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ElmOrlando do
-  #   pipe_through :api
-  # end
+  scope "/api", ElmOrlando do
+    pipe_through :api
+
+    resources "/demos", DemoController, except: [:new, :edit]
+  end
 end
