@@ -7,6 +7,8 @@ import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
 import Components.DemoShow as DemoShow
 import Components.Demo as Demo
+import Components.ResourceList as ResourceList
+import Components.PresentationList as PresentationList
 
 
 -- MAIN
@@ -36,6 +38,8 @@ type Page
     = RootView
     | DemoListView
     | DemoShowView Demo.Model
+    | ResourceListView
+    | PresentationListView
 
 
 init : ( Model, Cmd Msg )
@@ -55,8 +59,8 @@ initialModel =
 
 
 type Msg
-    = DemoListMsg DemoList.Msg
-    | UpdateView Page
+    = UpdateView Page
+    | DemoListMsg DemoList.Msg
     | DemoShowMsg DemoShow.Msg
 
 
@@ -114,6 +118,12 @@ pageView model =
         DemoShowView demo ->
             demoShowView demo
 
+        ResourceListView ->
+            resourceListView
+
+        PresentationListView ->
+            presentationListView
+
 
 header : Html Msg
 header =
@@ -131,7 +141,11 @@ header =
 
 welcomeView : Html Msg
 welcomeView =
-    h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
+    div []
+        [ h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
+        , h2 [ class "page-link" ] [ a [ href "#resources", onClick (UpdateView ResourceListView) ] [ text "Resources" ] ]
+        , h2 [ class "page-link" ] [ a [ href "#presentations", onClick (UpdateView PresentationListView) ] [ text "Presentations" ] ]
+        ]
 
 
 demoListView : Model -> Html Msg
@@ -142,6 +156,16 @@ demoListView model =
 demoShowView : Demo.Model -> Html Msg
 demoShowView demo =
     App.map DemoShowMsg (DemoShow.view demo)
+
+
+resourceListView : Html a
+resourceListView =
+    ResourceList.view
+
+
+presentationListView : Html a
+presentationListView =
+    PresentationList.view
 
 
 
