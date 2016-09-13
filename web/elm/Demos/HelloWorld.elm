@@ -74,7 +74,7 @@ view model =
             , ( "margin-left", "40px" )
             ]
         ]
-        [ p [] [ text ("Hello  " ++ model.content) ]
+        [ h1 [] [ text ("Hello  " ++ model.content) ]
         , input [ type' "text", placeholder "Enter value...", onInput Change ] []
         , button [ onClick Reset ] [ text "Reset" ]
         ]
