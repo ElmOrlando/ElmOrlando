@@ -7888,9 +7888,25 @@ var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[]),
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-family', _1: 'Helvetica'},
+						{ctor: '_Tuple2', _0: 'font-size', _1: '40px'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+					]))
+			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
+				A2(
+				_elm_lang$html$Html$h1,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Counter')
+					])),
 				A2(
 				_elm_lang$html$Html$h1,
 				_elm_lang$core$Native_List.fromArray(
@@ -7904,29 +7920,24 @@ var _user$project$Main$view = function (model) {
 				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$style(
-						_elm_lang$core$Native_List.fromArray(
-							[
-								{ctor: '_Tuple2', _0: 'font-size', _1: '80px'}
-							])),
 						_elm_lang$html$Html_Events$onClick(_user$project$Main$Decrement)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('-')
+						_elm_lang$html$Html$text('Decrement')
 					])),
 				A2(
-				_elm_lang$html$Html$h1,
+				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Events$onClick(_user$project$Main$Increment)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('+')
+						_elm_lang$html$Html$text('Increment')
 					])),
 				A2(
-				_elm_lang$html$Html$h1,
+				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
 						_elm_lang$html$Html_Events$onClick(_user$project$Main$Reset)
