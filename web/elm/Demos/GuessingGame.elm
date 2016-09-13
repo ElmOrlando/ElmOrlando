@@ -1,6 +1,10 @@
--- Guessing Game
--- The user selects a number in a specified range, and then the game makes
--- guesses until the user's number is found.
+{-
+   **Guessing Game Demo**
+
+   Example of a binary search algorithm using a guessing game where the user
+   selects a number between 1 and 100. The game makes guesses and the user can
+   indicate whether the number is higher or lower until the result is found.
+-}
 
 
 module Main exposing (..)
@@ -96,14 +100,21 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "guessing-game" ]
+    div
+        [ style
+            [ ( "font-family", "Helvetica" )
+            , ( "font-size", "40px" )
+            , ( "margin-left", "40px" )
+            ]
+        ]
         [ h1 [] [ text "Guessing Game" ]
-        , p [] [ text ("Think of a number (but don't tell me what it is yet!) between " ++ (toString model.lower) ++ " and " ++ (toString model.upper) ++ ".") ]
+        , p [] [ text "Think of a number between 1 and 100." ]
+        , p [] [ text ("I currently know it's between " ++ (toString model.lower) ++ " and " ++ (toString model.upper) ++ ".") ]
         , p [] [ text ("Is it " ++ (toString model.guess) ++ "?") ]
-        , button [ onClick Guess ] [ text "Guess" ]
-        , button [ onClick Higher ] [ text "Higher" ]
-        , button [ onClick Lower ] [ text "Lower" ]
-        , button [ onClick Reset ] [ text "Reset" ]
+        , button [ onClick Higher ] [ text "It's Higher" ]
+        , button [ onClick Lower ] [ text "It's Lower" ]
+        , button [ onClick Guess ] [ text "Make a Guess" ]
+        , button [ onClick Reset ] [ text "Restart" ]
         ]
 
 

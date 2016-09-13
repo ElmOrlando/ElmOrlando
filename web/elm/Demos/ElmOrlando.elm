@@ -1,3 +1,12 @@
+{-
+   **Elm Orlando Demo**
+
+   Example of using inline styles, fonts, and assets with SVG to create a small
+   "game" where the user triggers movement with the keyboard and finds a success
+   condition.
+-}
+
+
 module Main exposing (..)
 
 import Html.App as App
