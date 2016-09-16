@@ -18,6 +18,7 @@ import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Keyboard exposing (KeyCode)
 import Key exposing (..)
+import Time exposing (..)
 
 
 main : Program Never
@@ -63,6 +64,7 @@ type Msg
     | ResetScore
     | KeyDown KeyCode
     | KeyUp KeyCode
+    | Tick Time
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -77,14 +79,24 @@ update msg model =
                 ( { model | score = model.score + 1 }, Cmd.none )
 
         ResetScore ->
-            ( { model | score = 0 }, Cmd.none )
+            Debug.log "Debug"
+                ( { model | score = 0 }, Cmd.none )
 
         KeyDown keyCode ->
             Debug.log "Debug"
                 (keyDown keyCode model)
 
         KeyUp keyCode ->
-            (keyUp keyCode model)
+            Debug.log "Debug"
+                (keyUp keyCode model)
+
+        Tick newTime ->
+            if model.flagPosition < 40 then
+                ( { model | flagPosition = 40 }, Cmd.none )
+            else if (model.name /= "") && (model.score >= 1) && (model.characterPosition >= 400) then
+                ( { model | flagPosition = model.flagPosition - 1 }, Cmd.none )
+            else
+                ( { model | flagPosition = 275 }, Cmd.none )
 
 
 keyDown : KeyCode -> Model -> ( Model, Cmd Msg )
@@ -136,8 +148,8 @@ view model =
                 , ( "font-family", "Helvetica" )
                 ]
             ]
-            [ --viewDivHeader
-              viewDivName name
+            [ viewDivHeader
+            , viewDivName name
             , viewDivScore score
             , viewDivNameInput
             , viewDivResetButton
@@ -332,6 +344,8 @@ viewSuccess model =
         span
             [ Html.Attributes.style
                 [ ( "font-size", "40px" )
+                , ( "font-weight", "bold" )
+                , ( "margin-left", "250px" )
                 , ( "color", "#fc9434" )
                 ]
             ]
@@ -347,4 +361,5 @@ subscriptions model =
     Sub.batch
         [ Keyboard.downs KeyDown
         , Keyboard.ups KeyUp
+        , Time.every millisecond Tick
         ]

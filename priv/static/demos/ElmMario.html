@@ -9035,6 +9035,8 @@ var _user$project$Main$viewSuccess = function (model) {
 				_elm_lang$core$Native_List.fromArray(
 					[
 						{ctor: '_Tuple2', _0: 'font-size', _1: '40px'},
+						{ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '250px'},
 						{ctor: '_Tuple2', _0: 'color', _1: '#fc9434'}
 					]))
 			]),
@@ -9263,20 +9265,46 @@ var _user$project$Main$update = F2(
 						_1: _elm_lang$core$Platform_Cmd$none
 					});
 			case 'ResetScore':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{score: 0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{score: 0}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					});
 			case 'KeyDown':
 				return A2(
 					_elm_lang$core$Debug$log,
 					'Debug',
 					A2(_user$project$Main$keyDown, _p2._0, model));
+			case 'KeyUp':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					A2(_user$project$Main$keyUp, _p2._0, model));
 			default:
-				return A2(_user$project$Main$keyUp, _p2._0, model);
+				return (_elm_lang$core$Native_Utils.cmp(model.flagPosition, 40) < 0) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: 40}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : (((!_elm_lang$core$Native_Utils.eq(model.name, '')) && ((_elm_lang$core$Native_Utils.cmp(model.score, 1) > -1) && (_elm_lang$core$Native_Utils.cmp(model.characterPosition, 400) > -1))) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: model.flagPosition - 1}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: 275}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				});
 		}
 	});
 var _user$project$Main$init = {
@@ -9288,6 +9316,9 @@ var _user$project$Main$Model = F4(
 	function (a, b, c, d) {
 		return {name: a, score: b, characterPosition: c, flagPosition: d};
 	});
+var _user$project$Main$Tick = function (a) {
+	return {ctor: 'Tick', _0: a};
+};
 var _user$project$Main$KeyUp = function (a) {
 	return {ctor: 'KeyUp', _0: a};
 };
@@ -9299,7 +9330,8 @@ var _user$project$Main$subscriptions = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$keyboard$Keyboard$downs(_user$project$Main$KeyDown),
-				_elm_lang$keyboard$Keyboard$ups(_user$project$Main$KeyUp)
+				_elm_lang$keyboard$Keyboard$ups(_user$project$Main$KeyUp),
+				A2(_elm_lang$core$Time$every, _elm_lang$core$Time$millisecond, _user$project$Main$Tick)
 			]));
 };
 var _user$project$Main$ResetScore = {ctor: 'ResetScore'};
@@ -9398,6 +9430,7 @@ var _user$project$Main$view = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
+				_user$project$Main$viewDivHeader,
 				_user$project$Main$viewDivName(name),
 				_user$project$Main$viewDivScore(score),
 				_user$project$Main$viewDivNameInput,
