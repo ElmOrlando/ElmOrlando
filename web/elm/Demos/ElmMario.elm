@@ -37,7 +37,8 @@ main =
 type alias Model =
     { name : String
     , score : Int
-    , position : Int
+    , characterPosition : Int
+    , flagPosition : Int
     }
 
 
@@ -45,7 +46,8 @@ init : ( Model, Cmd Msg )
 init =
     ( { name = ""
       , score = 0
-      , position = 20
+      , characterPosition = 20
+      , flagPosition = 275
       }
     , Cmd.none
     )
@@ -89,10 +91,10 @@ keyDown : KeyCode -> Model -> ( Model, Cmd Msg )
 keyDown keyCode model =
     case Key.fromCode keyCode of
         ArrowLeft ->
-            ( { model | position = model.position - 15 }, Cmd.none )
+            ( { model | characterPosition = model.characterPosition - 15 }, Cmd.none )
 
         ArrowRight ->
-            ( { model | position = model.position + 15 }, Cmd.none )
+            ( { model | characterPosition = model.characterPosition + 15 }, Cmd.none )
 
         _ ->
             ( model, Cmd.none )
@@ -102,10 +104,10 @@ keyUp : KeyCode -> Model -> ( Model, Cmd Msg )
 keyUp keyCode model =
     case Key.fromCode keyCode of
         ArrowLeft ->
-            ( { model | position = model.position }, Cmd.none )
+            ( { model | characterPosition = model.characterPosition }, Cmd.none )
 
         ArrowRight ->
-            ( { model | position = model.position }, Cmd.none )
+            ( { model | characterPosition = model.characterPosition }, Cmd.none )
 
         _ ->
             ( model, Cmd.none )
@@ -134,8 +136,8 @@ view model =
                 , ( "font-family", "Helvetica" )
                 ]
             ]
-            [ viewDivHeader
-            , viewDivName name
+            [ --viewDivHeader
+              viewDivName name
             , viewDivScore score
             , viewDivNameInput
             , viewDivResetButton
@@ -198,8 +200,11 @@ viewDivResetButton =
 viewGame : Model -> Html Msg
 viewGame model =
     let
-        position =
-            toString model.position
+        characterPosition =
+            toString model.characterPosition
+
+        flagPosition =
+            toString model.flagPosition
     in
         Svg.svg
             [ Svg.Attributes.version "1.1"
@@ -213,8 +218,10 @@ viewGame model =
             [ viewSvgDefs
             , viewSvgGround
             , viewSvgScore
+            , viewSvgFlagPole
+            , viewSvgElmFlag flagPosition
             , viewSvgCastle
-            , viewSvgMario position
+            , viewSvgMario characterPosition
             ]
 
 
@@ -265,6 +272,30 @@ viewSvgScore =
         []
 
 
+viewSvgFlagPole : Svg Msg
+viewSvgFlagPole =
+    image
+        [ Svg.Attributes.xlinkHref "/images/flag_pole.png"
+        , Svg.Attributes.x "400"
+        , Svg.Attributes.y "19"
+        , Svg.Attributes.width "50"
+        , Svg.Attributes.height "332"
+        ]
+        []
+
+
+viewSvgElmFlag : String -> Svg Msg
+viewSvgElmFlag flagPosition =
+    image
+        [ Svg.Attributes.xlinkHref "/images/elm.png"
+        , Svg.Attributes.x "391"
+        , Svg.Attributes.y flagPosition
+        , Svg.Attributes.width "40"
+        , Svg.Attributes.height "40"
+        ]
+        []
+
+
 viewSvgCastle : Svg Msg
 viewSvgCastle =
     image
@@ -278,10 +309,10 @@ viewSvgCastle =
 
 
 viewSvgMario : String -> Svg Msg
-viewSvgMario position =
+viewSvgMario characterPosition =
     image
         [ Svg.Attributes.xlinkHref "/images/mario.png"
-        , Svg.Attributes.x position
+        , Svg.Attributes.x characterPosition
         , Svg.Attributes.y "300"
         , Svg.Attributes.width "50"
         , Svg.Attributes.height "50"
@@ -293,7 +324,7 @@ viewSuccess : Model -> Html msg
 viewSuccess model =
     let
         message =
-            if (model.name /= "") && (model.score >= 1) && (model.position >= 500) then
+            if (model.name /= "") && (model.score >= 1) && (model.characterPosition >= 400) then
                 "You win, " ++ model.name ++ "!"
             else
                 ""

@@ -9023,7 +9023,7 @@ var _user$project$Key$fromCode = function (keyCode) {
 	}
 };
 var _user$project$Main$viewSuccess = function (model) {
-	var message = ((!_elm_lang$core$Native_Utils.eq(model.name, '')) && ((_elm_lang$core$Native_Utils.cmp(model.score, 1) > -1) && (_elm_lang$core$Native_Utils.cmp(model.position, 500) > -1))) ? A2(
+	var message = ((!_elm_lang$core$Native_Utils.eq(model.name, '')) && ((_elm_lang$core$Native_Utils.cmp(model.score, 1) > -1) && (_elm_lang$core$Native_Utils.cmp(model.characterPosition, 400) > -1))) ? A2(
 		_elm_lang$core$Basics_ops['++'],
 		'You win, ',
 		A2(_elm_lang$core$Basics_ops['++'], model.name, '!')) : '';
@@ -9043,13 +9043,13 @@ var _user$project$Main$viewSuccess = function (model) {
 				_elm_lang$html$Html$text(message)
 			]));
 };
-var _user$project$Main$viewSvgMario = function (position) {
+var _user$project$Main$viewSvgMario = function (characterPosition) {
 	return A2(
 		_elm_lang$svg$Svg$image,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$svg$Svg_Attributes$xlinkHref('/images/mario.png'),
-				_elm_lang$svg$Svg_Attributes$x(position),
+				_elm_lang$svg$Svg_Attributes$x(characterPosition),
 				_elm_lang$svg$Svg_Attributes$y('300'),
 				_elm_lang$svg$Svg_Attributes$width('50'),
 				_elm_lang$svg$Svg_Attributes$height('50')
@@ -9066,6 +9066,32 @@ var _user$project$Main$viewSvgCastle = A2(
 			_elm_lang$svg$Svg_Attributes$y('-2'),
 			_elm_lang$svg$Svg_Attributes$width('337'),
 			_elm_lang$svg$Svg_Attributes$height('352')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$viewSvgElmFlag = function (flagPosition) {
+	return A2(
+		_elm_lang$svg$Svg$image,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$xlinkHref('/images/elm.png'),
+				_elm_lang$svg$Svg_Attributes$x('391'),
+				_elm_lang$svg$Svg_Attributes$y(flagPosition),
+				_elm_lang$svg$Svg_Attributes$width('40'),
+				_elm_lang$svg$Svg_Attributes$height('40')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$Main$viewSvgFlagPole = A2(
+	_elm_lang$svg$Svg$image,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$svg$Svg_Attributes$xlinkHref('/images/flag_pole.png'),
+			_elm_lang$svg$Svg_Attributes$x('400'),
+			_elm_lang$svg$Svg_Attributes$y('19'),
+			_elm_lang$svg$Svg_Attributes$width('50'),
+			_elm_lang$svg$Svg_Attributes$height('332')
 		]),
 	_elm_lang$core$Native_List.fromArray(
 		[]));
@@ -9171,7 +9197,7 @@ var _user$project$Main$keyUp = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{position: model.position}),
+						{characterPosition: model.characterPosition}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ArrowRight':
@@ -9179,7 +9205,7 @@ var _user$project$Main$keyUp = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{position: model.position}),
+						{characterPosition: model.characterPosition}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -9195,7 +9221,7 @@ var _user$project$Main$keyDown = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{position: model.position - 15}),
+						{characterPosition: model.characterPosition - 15}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ArrowRight':
@@ -9203,7 +9229,7 @@ var _user$project$Main$keyDown = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{position: model.position + 15}),
+						{characterPosition: model.characterPosition + 15}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -9255,12 +9281,12 @@ var _user$project$Main$update = F2(
 	});
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
-	_0: {name: '', score: 0, position: 20},
+	_0: {name: '', score: 0, characterPosition: 20, flagPosition: 275},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
-var _user$project$Main$Model = F3(
-	function (a, b, c) {
-		return {name: a, score: b, position: c};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {name: a, score: b, characterPosition: c, flagPosition: d};
 	});
 var _user$project$Main$KeyUp = function (a) {
 	return {ctor: 'KeyUp', _0: a};
@@ -9302,7 +9328,8 @@ var _user$project$Main$viewSvgScore = A2(
 	_elm_lang$core$Native_List.fromArray(
 		[]));
 var _user$project$Main$viewGame = function (model) {
-	var position = _elm_lang$core$Basics$toString(model.position);
+	var flagPosition = _elm_lang$core$Basics$toString(model.flagPosition);
+	var characterPosition = _elm_lang$core$Basics$toString(model.characterPosition);
 	return A2(
 		_elm_lang$svg$Svg$svg,
 		_elm_lang$core$Native_List.fromArray(
@@ -9324,8 +9351,10 @@ var _user$project$Main$viewGame = function (model) {
 				_user$project$Main$viewSvgDefs,
 				_user$project$Main$viewSvgGround,
 				_user$project$Main$viewSvgScore,
+				_user$project$Main$viewSvgFlagPole,
+				_user$project$Main$viewSvgElmFlag(flagPosition),
 				_user$project$Main$viewSvgCastle,
-				_user$project$Main$viewSvgMario(position)
+				_user$project$Main$viewSvgMario(characterPosition)
 			]));
 };
 var _user$project$Main$Name = function (a) {
@@ -9369,7 +9398,6 @@ var _user$project$Main$view = function (model) {
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Main$viewDivHeader,
 				_user$project$Main$viewDivName(name),
 				_user$project$Main$viewDivScore(score),
 				_user$project$Main$viewDivNameInput,
