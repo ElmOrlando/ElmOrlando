@@ -1,3 +1,10 @@
+{-
+   **Key Demo**
+
+   Maps the left and right arrow keys to allow for user interaction with demos.
+-}
+
+
 module Key exposing (..)
 
 

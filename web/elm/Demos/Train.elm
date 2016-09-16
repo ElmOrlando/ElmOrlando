@@ -1,5 +1,8 @@
--- Train Rolls Into Station
--- "My favorite part was when the train rolled into the station."
+{-
+   **Train Demo**
+
+   Demo using keyboard input to move a small train image from left to right.
+-}
 
 
 module Main exposing (..)
@@ -111,7 +114,7 @@ view model =
                 ]
                 []
             , Svg.image
-                [ Svg.Attributes.xlinkHref "img/train.png"
+                [ Svg.Attributes.xlinkHref "/images/train.png"
                 , Svg.Attributes.x position
                 , Svg.Attributes.y "335"
                 , Svg.Attributes.width "100"

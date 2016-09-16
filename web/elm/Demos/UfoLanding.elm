@@ -1,6 +1,9 @@
--- UFO Landing
--- Uses SVG to display a UFO image and the ground. Animates the UFO moving from
--- the top of the screen down to the ground area.
+{-
+   **UFO Landing Demo**
+
+   Uses SVG and Time to display a small UFO image descending from the top of the
+   screen to the ground. Example of using a conditional and let expression.
+-}
 
 
 module Main exposing (..)
@@ -84,7 +87,7 @@ view model =
                 ]
                 []
             , Svg.image
-                [ Svg.Attributes.xlinkHref "img/ufo.png"
+                [ Svg.Attributes.xlinkHref "/images/ufo.png"
                 , Svg.Attributes.x "370"
                 , Svg.Attributes.y position
                 , Svg.Attributes.width "100"

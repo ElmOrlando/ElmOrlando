@@ -1,6 +1,9 @@
--- Rocket Launch
--- Uses SVG to display a rocket image and the ground. Animates the rocket
--- launching upward from the ground.
+{-
+   **Rocket Launch Demo**
+
+   Rocket launch demo to work with SVG and Time. Animates a small rocket image
+   launching upward from the ground.
+-}
 
 
 module Main exposing (..)
@@ -81,7 +84,7 @@ view model =
                 ]
                 []
             , Svg.image
-                [ Svg.Attributes.xlinkHref "img/rocket.png"
+                [ Svg.Attributes.xlinkHref "/images/rocket.png"
                 , Svg.Attributes.x "370"
                 , Svg.Attributes.y position
                 , Svg.Attributes.width "100"
