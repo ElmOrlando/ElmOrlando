@@ -9,8 +9,9 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
-ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Counter", liveDemoUrl: "/demos/Counter.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Counter.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "HelloWorld", liveDemoUrl: "/demos/HelloWorld.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/HelloWorld.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Counter", liveDemoUrl: "/demos/Counter.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Counter.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "CalorieCounter", liveDemoUrl: "/demos/CalorieCounter.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/CalorieCounter.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GuessingGame", liveDemoUrl: "/demos/GuessingGame.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GuessingGame.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RocketLaunch", liveDemoUrl: "/demos/RocketLaunch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/RocketLaunch.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "UfoLanding", liveDemoUrl: "/demos/UfoLanding.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/UfoLanding.elm"})
