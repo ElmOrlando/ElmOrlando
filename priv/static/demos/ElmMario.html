@@ -1,10 +1,5 @@
 <!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Baumans">
-  <title>Main</title>
-   <style>html,head,body { padding:0; margin:0; }
+<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
 body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
@@ -8047,6 +8042,457 @@ var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
 		});
 };
 var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
+var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
+var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
+};
+var _elm_lang$html$Html_Attributes$draggable = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'draggable', value);
+};
+var _elm_lang$html$Html_Attributes$list = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'list', value);
+};
+var _elm_lang$html$Html_Attributes$maxlength = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'maxlength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$datetime = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'datetime', value);
+};
+var _elm_lang$html$Html_Attributes$pubdate = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'pubdate', value);
+};
+var _elm_lang$html$Html_Attributes$colspan = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'colspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$rowspan = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'rowspan',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$property = _elm_lang$virtual_dom$VirtualDom$property;
+var _elm_lang$html$Html_Attributes$stringProperty = F2(
+	function (name, string) {
+		return A2(
+			_elm_lang$html$Html_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$string(string));
+	});
+var _elm_lang$html$Html_Attributes$class = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'className', name);
+};
+var _elm_lang$html$Html_Attributes$id = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'id', name);
+};
+var _elm_lang$html$Html_Attributes$title = function (name) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'title', name);
+};
+var _elm_lang$html$Html_Attributes$accesskey = function ($char) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'accessKey',
+		_elm_lang$core$String$fromChar($char));
+};
+var _elm_lang$html$Html_Attributes$dir = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'dir', value);
+};
+var _elm_lang$html$Html_Attributes$dropzone = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'dropzone', value);
+};
+var _elm_lang$html$Html_Attributes$itemprop = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'itemprop', value);
+};
+var _elm_lang$html$Html_Attributes$lang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'lang', value);
+};
+var _elm_lang$html$Html_Attributes$tabindex = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'tabIndex',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$charset = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'charset', value);
+};
+var _elm_lang$html$Html_Attributes$content = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'content', value);
+};
+var _elm_lang$html$Html_Attributes$httpEquiv = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'httpEquiv', value);
+};
+var _elm_lang$html$Html_Attributes$language = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'language', value);
+};
+var _elm_lang$html$Html_Attributes$src = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'src', value);
+};
+var _elm_lang$html$Html_Attributes$height = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'height',
+		_elm_lang$core$Basics$toString(value));
+};
+var _elm_lang$html$Html_Attributes$width = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'width',
+		_elm_lang$core$Basics$toString(value));
+};
+var _elm_lang$html$Html_Attributes$alt = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'alt', value);
+};
+var _elm_lang$html$Html_Attributes$preload = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'preload', value);
+};
+var _elm_lang$html$Html_Attributes$poster = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'poster', value);
+};
+var _elm_lang$html$Html_Attributes$kind = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'kind', value);
+};
+var _elm_lang$html$Html_Attributes$srclang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'srclang', value);
+};
+var _elm_lang$html$Html_Attributes$sandbox = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'sandbox', value);
+};
+var _elm_lang$html$Html_Attributes$srcdoc = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'srcdoc', value);
+};
+var _elm_lang$html$Html_Attributes$type$ = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'type', value);
+};
+var _elm_lang$html$Html_Attributes$value = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'value', value);
+};
+var _elm_lang$html$Html_Attributes$defaultValue = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'defaultValue', value);
+};
+var _elm_lang$html$Html_Attributes$placeholder = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'placeholder', value);
+};
+var _elm_lang$html$Html_Attributes$accept = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'accept', value);
+};
+var _elm_lang$html$Html_Attributes$acceptCharset = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'acceptCharset', value);
+};
+var _elm_lang$html$Html_Attributes$action = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'action', value);
+};
+var _elm_lang$html$Html_Attributes$autocomplete = function (bool) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'autocomplete',
+		bool ? 'on' : 'off');
+};
+var _elm_lang$html$Html_Attributes$autosave = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'autosave', value);
+};
+var _elm_lang$html$Html_Attributes$enctype = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'enctype', value);
+};
+var _elm_lang$html$Html_Attributes$formaction = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'formAction', value);
+};
+var _elm_lang$html$Html_Attributes$minlength = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'minLength',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$method = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'method', value);
+};
+var _elm_lang$html$Html_Attributes$name = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'name', value);
+};
+var _elm_lang$html$Html_Attributes$pattern = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'pattern', value);
+};
+var _elm_lang$html$Html_Attributes$size = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'size',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$for = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'htmlFor', value);
+};
+var _elm_lang$html$Html_Attributes$form = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'form', value);
+};
+var _elm_lang$html$Html_Attributes$max = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'max', value);
+};
+var _elm_lang$html$Html_Attributes$min = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'min', value);
+};
+var _elm_lang$html$Html_Attributes$step = function (n) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'step', n);
+};
+var _elm_lang$html$Html_Attributes$cols = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'cols',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$rows = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'rows',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$wrap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'wrap', value);
+};
+var _elm_lang$html$Html_Attributes$usemap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'useMap', value);
+};
+var _elm_lang$html$Html_Attributes$shape = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'shape', value);
+};
+var _elm_lang$html$Html_Attributes$coords = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'coords', value);
+};
+var _elm_lang$html$Html_Attributes$challenge = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'challenge', value);
+};
+var _elm_lang$html$Html_Attributes$keytype = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'keytype', value);
+};
+var _elm_lang$html$Html_Attributes$align = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'align', value);
+};
+var _elm_lang$html$Html_Attributes$cite = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'cite', value);
+};
+var _elm_lang$html$Html_Attributes$href = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'href', value);
+};
+var _elm_lang$html$Html_Attributes$target = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'target', value);
+};
+var _elm_lang$html$Html_Attributes$downloadAs = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'download', value);
+};
+var _elm_lang$html$Html_Attributes$hreflang = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'hreflang', value);
+};
+var _elm_lang$html$Html_Attributes$media = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'media', value);
+};
+var _elm_lang$html$Html_Attributes$ping = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'ping', value);
+};
+var _elm_lang$html$Html_Attributes$rel = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'rel', value);
+};
+var _elm_lang$html$Html_Attributes$start = function (n) {
+	return A2(
+		_elm_lang$html$Html_Attributes$stringProperty,
+		'start',
+		_elm_lang$core$Basics$toString(n));
+};
+var _elm_lang$html$Html_Attributes$headers = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'headers', value);
+};
+var _elm_lang$html$Html_Attributes$scope = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'scope', value);
+};
+var _elm_lang$html$Html_Attributes$manifest = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$stringProperty, 'manifest', value);
+};
+var _elm_lang$html$Html_Attributes$boolProperty = F2(
+	function (name, bool) {
+		return A2(
+			_elm_lang$html$Html_Attributes$property,
+			name,
+			_elm_lang$core$Json_Encode$bool(bool));
+	});
+var _elm_lang$html$Html_Attributes$hidden = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'hidden', bool);
+};
+var _elm_lang$html$Html_Attributes$contenteditable = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'contentEditable', bool);
+};
+var _elm_lang$html$Html_Attributes$spellcheck = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'spellcheck', bool);
+};
+var _elm_lang$html$Html_Attributes$async = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'async', bool);
+};
+var _elm_lang$html$Html_Attributes$defer = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'defer', bool);
+};
+var _elm_lang$html$Html_Attributes$scoped = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'scoped', bool);
+};
+var _elm_lang$html$Html_Attributes$autoplay = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'autoplay', bool);
+};
+var _elm_lang$html$Html_Attributes$controls = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'controls', bool);
+};
+var _elm_lang$html$Html_Attributes$loop = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'loop', bool);
+};
+var _elm_lang$html$Html_Attributes$default = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'default', bool);
+};
+var _elm_lang$html$Html_Attributes$seamless = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'seamless', bool);
+};
+var _elm_lang$html$Html_Attributes$checked = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'checked', bool);
+};
+var _elm_lang$html$Html_Attributes$selected = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'selected', bool);
+};
+var _elm_lang$html$Html_Attributes$autofocus = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'autofocus', bool);
+};
+var _elm_lang$html$Html_Attributes$disabled = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'disabled', bool);
+};
+var _elm_lang$html$Html_Attributes$multiple = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'multiple', bool);
+};
+var _elm_lang$html$Html_Attributes$novalidate = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'noValidate', bool);
+};
+var _elm_lang$html$Html_Attributes$readonly = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'readOnly', bool);
+};
+var _elm_lang$html$Html_Attributes$required = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'required', bool);
+};
+var _elm_lang$html$Html_Attributes$ismap = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'isMap', value);
+};
+var _elm_lang$html$Html_Attributes$download = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'download', bool);
+};
+var _elm_lang$html$Html_Attributes$reversed = function (bool) {
+	return A2(_elm_lang$html$Html_Attributes$boolProperty, 'reversed', bool);
+};
+var _elm_lang$html$Html_Attributes$classList = function (list) {
+	return _elm_lang$html$Html_Attributes$class(
+		A2(
+			_elm_lang$core$String$join,
+			' ',
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Basics$fst,
+				A2(_elm_lang$core$List$filter, _elm_lang$core$Basics$snd, list))));
+};
+var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'checked']),
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	_elm_lang$core$Native_List.fromArray(
+		['target', 'value']),
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
 var _elm_lang$keyboard$Keyboard$onSelfMsg = F3(
 	function (router, _p0, state) {
 		var _p1 = _p0;
@@ -8576,72 +9022,194 @@ var _user$project$Key$fromCode = function (keyCode) {
 			return _user$project$Key$Unknown;
 	}
 };
-var _user$project$Main$view = function (model) {
-	var position = _elm_lang$core$Basics$toString(model);
-	var message = _elm_lang$core$Native_Utils.eq(
-		position,
-		_elm_lang$core$Basics$toString(260)) ? 'CITY of ElmLANDO' : 'CITY of ORLANDO';
+var _user$project$Main$viewSuccess = function (model) {
+	var message = ((!_elm_lang$core$Native_Utils.eq(model.name, '')) && ((_elm_lang$core$Native_Utils.cmp(model.score, 1) > -1) && (_elm_lang$core$Native_Utils.cmp(model.characterPosition, 400) > -1))) ? A2(
+		_elm_lang$core$Basics_ops['++'],
+		'You win, ',
+		A2(_elm_lang$core$Basics_ops['++'], model.name, '!')) : '';
 	return A2(
-		_elm_lang$svg$Svg$svg,
+		_elm_lang$html$Html$span,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$svg$Svg_Attributes$version('1.1'),
-				_elm_lang$svg$Svg_Attributes$width('580'),
-				_elm_lang$svg$Svg_Attributes$height('360'),
-				_elm_lang$svg$Svg_Attributes$viewBox('0 0 580 360')
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-size', _1: '40px'},
+						{ctor: '_Tuple2', _0: 'font-weight', _1: 'bold'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '250px'},
+						{ctor: '_Tuple2', _0: 'color', _1: '#fc9434'}
+					]))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				A2(
-				_elm_lang$svg$Svg$image,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$svg$Svg_Attributes$xlinkHref('/images/city_of_orlando.png'),
-						_elm_lang$svg$Svg_Attributes$x('0'),
-						_elm_lang$svg$Svg_Attributes$y('0'),
-						_elm_lang$svg$Svg_Attributes$width('580'),
-						_elm_lang$svg$Svg_Attributes$height('360')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
-				_elm_lang$svg$Svg$image,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$svg$Svg_Attributes$xlinkHref('/images/elm.png'),
-						_elm_lang$svg$Svg_Attributes$x(position),
-						_elm_lang$svg$Svg_Attributes$y('0'),
-						_elm_lang$svg$Svg_Attributes$width('50'),
-						_elm_lang$svg$Svg_Attributes$height('50')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[])),
-				A2(
-				_elm_lang$svg$Svg$text$,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$svg$Svg_Attributes$x('115'),
-						_elm_lang$svg$Svg_Attributes$y('295'),
-						_elm_lang$svg$Svg_Attributes$fontFamily('Baumans, cursive'),
-						_elm_lang$svg$Svg_Attributes$fontWeight('bold'),
-						_elm_lang$svg$Svg_Attributes$fontSize('38px'),
-						_elm_lang$svg$Svg_Attributes$letterSpacing('3.4px'),
-						_elm_lang$svg$Svg_Attributes$fill('#2a2828')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$svg$Svg$text(message)
-					]))
+				_elm_lang$html$Html$text(message)
 			]));
 };
+var _user$project$Main$viewSvgMario = function (characterPosition) {
+	return A2(
+		_elm_lang$svg$Svg$image,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$xlinkHref('/images/mario.png'),
+				_elm_lang$svg$Svg_Attributes$x(characterPosition),
+				_elm_lang$svg$Svg_Attributes$y('300'),
+				_elm_lang$svg$Svg_Attributes$width('50'),
+				_elm_lang$svg$Svg_Attributes$height('50')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$Main$viewSvgCastle = A2(
+	_elm_lang$svg$Svg$image,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$svg$Svg_Attributes$xlinkHref('/images/castle.png'),
+			_elm_lang$svg$Svg_Attributes$x('480'),
+			_elm_lang$svg$Svg_Attributes$y('-2'),
+			_elm_lang$svg$Svg_Attributes$width('337'),
+			_elm_lang$svg$Svg_Attributes$height('352')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$viewSvgElmFlag = function (flagPosition) {
+	return A2(
+		_elm_lang$svg$Svg$image,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$xlinkHref('/images/elm.png'),
+				_elm_lang$svg$Svg_Attributes$x('391'),
+				_elm_lang$svg$Svg_Attributes$y(flagPosition),
+				_elm_lang$svg$Svg_Attributes$width('40'),
+				_elm_lang$svg$Svg_Attributes$height('40')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[]));
+};
+var _user$project$Main$viewSvgFlagPole = A2(
+	_elm_lang$svg$Svg$image,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$svg$Svg_Attributes$xlinkHref('/images/flag_pole.png'),
+			_elm_lang$svg$Svg_Attributes$x('400'),
+			_elm_lang$svg$Svg_Attributes$y('19'),
+			_elm_lang$svg$Svg_Attributes$width('50'),
+			_elm_lang$svg$Svg_Attributes$height('332')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$viewSvgGround = A2(
+	_elm_lang$svg$Svg$rect,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$svg$Svg_Attributes$class('ground'),
+			_elm_lang$svg$Svg_Attributes$fill('url(#ground)'),
+			_elm_lang$svg$Svg_Attributes$x('0'),
+			_elm_lang$svg$Svg_Attributes$y('350'),
+			_elm_lang$svg$Svg_Attributes$width('840'),
+			_elm_lang$svg$Svg_Attributes$height('180')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$viewSvgDefs = A2(
+	_elm_lang$svg$Svg$defs,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$svg$Svg$pattern,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$svg$Svg_Attributes$id('ground'),
+					_elm_lang$svg$Svg_Attributes$patternUnits('userSpaceOnUse'),
+					_elm_lang$svg$Svg_Attributes$width('50'),
+					_elm_lang$svg$Svg_Attributes$height('50')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$svg$Svg$image,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$svg$Svg_Attributes$xlinkHref('/images/ground.png'),
+							_elm_lang$svg$Svg_Attributes$x('0'),
+							_elm_lang$svg$Svg_Attributes$y('0'),
+							_elm_lang$svg$Svg_Attributes$width('50'),
+							_elm_lang$svg$Svg_Attributes$height('50')
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[]))
+				]))
+		]));
+var _user$project$Main$viewDivScore = function (score) {
+	return A2(
+		_elm_lang$html$Html$p,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-size', _1: '20px'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+					]))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(score)
+			]));
+};
+var _user$project$Main$viewDivName = function (name) {
+	return A2(
+		_elm_lang$html$Html$p,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-size', _1: '20px'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+					]))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(name)
+			]));
+};
+var _user$project$Main$viewDivHeader = A2(
+	_elm_lang$html$Html$h1,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$style(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					{ctor: '_Tuple2', _0: 'font-size', _1: '80px'},
+					{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+				]))
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('ElmMario')
+		]));
 var _user$project$Main$keyUp = F2(
 	function (keyCode, model) {
 		var _p0 = _user$project$Key$fromCode(keyCode);
 		switch (_p0.ctor) {
 			case 'ArrowLeft':
-				return {ctor: '_Tuple2', _0: model + 0, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{characterPosition: model.characterPosition}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'ArrowRight':
-				return {ctor: '_Tuple2', _0: model + 0, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{characterPosition: model.characterPosition}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
@@ -8651,9 +9219,21 @@ var _user$project$Main$keyDown = F2(
 		var _p1 = _user$project$Key$fromCode(keyCode);
 		switch (_p1.ctor) {
 			case 'ArrowLeft':
-				return {ctor: '_Tuple2', _0: model - 10, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{characterPosition: model.characterPosition - 15}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			case 'ArrowRight':
-				return {ctor: '_Tuple2', _0: model + 10, _1: _elm_lang$core$Platform_Cmd$none};
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{characterPosition: model.characterPosition + 15}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
@@ -8661,13 +9241,84 @@ var _user$project$Main$keyDown = F2(
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p2 = msg;
-		if (_p2.ctor === 'KeyDown') {
-			return A2(_user$project$Main$keyDown, _p2._0, model);
-		} else {
-			return A2(_user$project$Main$keyUp, _p2._0, model);
+		switch (_p2.ctor) {
+			case 'Name':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{name: _p2._0}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					});
+			case 'IncrementScore':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{score: model.score + 1}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					});
+			case 'ResetScore':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					{
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{score: 0}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					});
+			case 'KeyDown':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					A2(_user$project$Main$keyDown, _p2._0, model));
+			case 'KeyUp':
+				return A2(
+					_elm_lang$core$Debug$log,
+					'Debug',
+					A2(_user$project$Main$keyUp, _p2._0, model));
+			default:
+				return (_elm_lang$core$Native_Utils.cmp(model.flagPosition, 40) < 0) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: 40}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : (((!_elm_lang$core$Native_Utils.eq(model.name, '')) && ((_elm_lang$core$Native_Utils.cmp(model.score, 1) > -1) && (_elm_lang$core$Native_Utils.cmp(model.characterPosition, 400) > -1))) ? {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: model.flagPosition - 1}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				} : {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{flagPosition: 275}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				});
 		}
 	});
-var _user$project$Main$init = {ctor: '_Tuple2', _0: 50, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {
+	ctor: '_Tuple2',
+	_0: {name: '', score: 0, characterPosition: 20, flagPosition: 275},
+	_1: _elm_lang$core$Platform_Cmd$none
+};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {name: a, score: b, characterPosition: c, flagPosition: d};
+	});
+var _user$project$Main$Tick = function (a) {
+	return {ctor: 'Tick', _0: a};
+};
 var _user$project$Main$KeyUp = function (a) {
 	return {ctor: 'KeyUp', _0: a};
 };
@@ -8679,7 +9330,113 @@ var _user$project$Main$subscriptions = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$keyboard$Keyboard$downs(_user$project$Main$KeyDown),
-				_elm_lang$keyboard$Keyboard$ups(_user$project$Main$KeyUp)
+				_elm_lang$keyboard$Keyboard$ups(_user$project$Main$KeyUp),
+				A2(_elm_lang$core$Time$every, _elm_lang$core$Time$millisecond, _user$project$Main$Tick)
+			]));
+};
+var _user$project$Main$ResetScore = {ctor: 'ResetScore'};
+var _user$project$Main$viewDivResetButton = A2(
+	_elm_lang$html$Html$button,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Events$onClick(_user$project$Main$ResetScore)
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html$text('Reset Score')
+		]));
+var _user$project$Main$IncrementScore = {ctor: 'IncrementScore'};
+var _user$project$Main$viewSvgScore = A2(
+	_elm_lang$svg$Svg$image,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Events$onClick(_user$project$Main$IncrementScore),
+			_elm_lang$svg$Svg_Attributes$xlinkHref('/images/score.png'),
+			_elm_lang$svg$Svg_Attributes$x('200'),
+			_elm_lang$svg$Svg_Attributes$y('100'),
+			_elm_lang$svg$Svg_Attributes$width('50'),
+			_elm_lang$svg$Svg_Attributes$height('50')
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$viewGame = function (model) {
+	var flagPosition = _elm_lang$core$Basics$toString(model.flagPosition);
+	var characterPosition = _elm_lang$core$Basics$toString(model.characterPosition);
+	return A2(
+		_elm_lang$svg$Svg$svg,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$svg$Svg_Attributes$version('1.1'),
+				_elm_lang$svg$Svg_Attributes$x('0'),
+				_elm_lang$svg$Svg_Attributes$y('0'),
+				_elm_lang$svg$Svg_Attributes$width('840'),
+				_elm_lang$svg$Svg_Attributes$height('525'),
+				_elm_lang$svg$Svg_Attributes$viewBox('0 0 840 525'),
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'display', _1: 'block'}
+					]))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewSvgDefs,
+				_user$project$Main$viewSvgGround,
+				_user$project$Main$viewSvgScore,
+				_user$project$Main$viewSvgFlagPole,
+				_user$project$Main$viewSvgElmFlag(flagPosition),
+				_user$project$Main$viewSvgCastle,
+				_user$project$Main$viewSvgMario(characterPosition)
+			]));
+};
+var _user$project$Main$Name = function (a) {
+	return {ctor: 'Name', _0: a};
+};
+var _user$project$Main$viewDivNameInput = A2(
+	_elm_lang$html$Html$input,
+	_elm_lang$core$Native_List.fromArray(
+		[
+			_elm_lang$html$Html_Attributes$style(
+			_elm_lang$core$Native_List.fromArray(
+				[
+					{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+				])),
+			_elm_lang$html$Html_Attributes$type$('text'),
+			_elm_lang$html$Html_Attributes$placeholder('Name'),
+			_elm_lang$html$Html_Events$onInput(_user$project$Main$Name)
+		]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$view = function (model) {
+	var score = A2(
+		_elm_lang$core$Basics_ops['++'],
+		'Score: ',
+		_elm_lang$core$Basics$toString(model.score));
+	var name = A2(_elm_lang$core$Basics_ops['++'], 'Name: ', model.name);
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'background-color', _1: '#4b7cfb'},
+						{ctor: '_Tuple2', _0: 'color', _1: 'white'},
+						{ctor: '_Tuple2', _0: 'width', _1: '840'},
+						{ctor: '_Tuple2', _0: 'height', _1: '545'},
+						{ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
+						{ctor: '_Tuple2', _0: 'font-family', _1: 'Helvetica'}
+					]))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$viewDivHeader,
+				_user$project$Main$viewDivName(name),
+				_user$project$Main$viewDivScore(score),
+				_user$project$Main$viewDivNameInput,
+				_user$project$Main$viewDivResetButton,
+				_user$project$Main$viewSuccess(model),
+				_user$project$Main$viewGame(model)
 			]));
 };
 var _user$project$Main$main = {

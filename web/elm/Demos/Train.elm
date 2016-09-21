@@ -1,9 +1,7 @@
 {-
-   **Elm Orlando Demo**
+   **Train Demo**
 
-   Example of using inline styles, fonts, and assets with SVG to create a small
-   "game" where the user triggers movement with the keyboard and finds a success
-   condition.
+   Demo using keyboard input to move a small train image from left to right.
 -}
 
 
@@ -11,6 +9,7 @@ module Main exposing (..)
 
 import Html.App as App
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
 import Keyboard exposing (KeyCode)
@@ -66,10 +65,10 @@ keyDown : KeyCode -> Model -> ( Int, Cmd Msg )
 keyDown keyCode model =
     case Key.fromCode keyCode of
         ArrowLeft ->
-            ( model - 10, Cmd.none )
+            ( model - 20, Cmd.none )
 
         ArrowRight ->
-            ( model + 10, Cmd.none )
+            ( model + 20, Cmd.none )
 
         _ ->
             ( model, Cmd.none )
@@ -97,45 +96,31 @@ view model =
     let
         position =
             toString model
-
-        message =
-            if position == (toString 260) then
-                "CITY of ElmLANDO"
-            else
-                "CITY of ORLANDO"
     in
         Svg.svg
             [ Svg.Attributes.version "1.1"
-            , Svg.Attributes.width "580"
-            , Svg.Attributes.height "360"
-            , Svg.Attributes.viewBox ("0 0 580 360")
+            , Svg.Attributes.width "840"
+            , Svg.Attributes.height "525"
+            , Svg.Attributes.viewBox ("0 0 840 525")
+            , Html.Attributes.style [ ( "background-color", "black" ) ]
             ]
-            [ Svg.image
-                [ Svg.Attributes.xlinkHref "/images/city_of_orlando.png"
+            [ Svg.rect
+                [ Svg.Attributes.class "ground"
+                , Svg.Attributes.fill "lightgray"
                 , Svg.Attributes.x "0"
-                , Svg.Attributes.y "0"
-                , Svg.Attributes.width "580"
-                , Svg.Attributes.height "360"
+                , Svg.Attributes.y "425"
+                , Svg.Attributes.width "840"
+                , Svg.Attributes.height "100"
                 ]
                 []
             , Svg.image
-                [ Svg.Attributes.xlinkHref "/images/elm.png"
+                [ Svg.Attributes.xlinkHref "/images/train.png"
                 , Svg.Attributes.x position
-                , Svg.Attributes.y "0"
-                , Svg.Attributes.width "50"
-                , Svg.Attributes.height "50"
+                , Svg.Attributes.y "335"
+                , Svg.Attributes.width "100"
+                , Svg.Attributes.height "100"
                 ]
                 []
-            , Svg.text'
-                [ Svg.Attributes.x "115"
-                , Svg.Attributes.y "295"
-                , Svg.Attributes.fontFamily "Baumans, cursive"
-                , Svg.Attributes.fontWeight "bold"
-                , Svg.Attributes.fontSize "38px"
-                , Svg.Attributes.letterSpacing "3.4px"
-                , Svg.Attributes.fill "#2a2828"
-                ]
-                [ Svg.text message ]
             ]
 
 

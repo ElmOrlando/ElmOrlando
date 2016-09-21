@@ -7934,7 +7934,13 @@ var _user$project$Main$view = function (model) {
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('guessing-game')
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-family', _1: 'Helvetica'},
+						{ctor: '_Tuple2', _0: 'font-size', _1: '40px'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+					]))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -7952,10 +7958,18 @@ var _user$project$Main$view = function (model) {
 					[]),
 				_elm_lang$core$Native_List.fromArray(
 					[
+						_elm_lang$html$Html$text('Think of a number between 1 and 100.')
+					])),
+				A2(
+				_elm_lang$html$Html$p,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
 						_elm_lang$html$Html$text(
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							'Think of a number (but don\'t tell me what it is yet!) between ',
+							'I currently know it\'s between ',
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								_elm_lang$core$Basics$toString(model.lower),
@@ -7986,21 +8000,11 @@ var _user$project$Main$view = function (model) {
 				_elm_lang$html$Html$button,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Events$onClick(_user$project$Main$Guess)
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Guess')
-					])),
-				A2(
-				_elm_lang$html$Html$button,
-				_elm_lang$core$Native_List.fromArray(
-					[
 						_elm_lang$html$Html_Events$onClick(_user$project$Main$Higher)
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Higher')
+						_elm_lang$html$Html$text('It\'s Higher')
 					])),
 				A2(
 				_elm_lang$html$Html$button,
@@ -8010,7 +8014,17 @@ var _user$project$Main$view = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Lower')
+						_elm_lang$html$Html$text('It\'s Lower')
+					])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Main$Guess)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Make a Guess')
 					])),
 				A2(
 				_elm_lang$html$Html$button,
@@ -8020,7 +8034,7 @@ var _user$project$Main$view = function (model) {
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text('Reset')
+						_elm_lang$html$Html$text('Restart')
 					]))
 			]));
 };
