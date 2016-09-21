@@ -8953,12 +8953,14 @@ var _user$project$Components_PresentationList$view = A2(
 					_elm_lang$core$Native_List.fromArray(
 						[
 							A2(
-							_elm_lang$html$Html$i,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
+							_elm_lang$html$Html$a,
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_elm_lang$html$Html$text('Coming Soon')
+									_elm_lang$html$Html_Attributes$href('http://prezi.com/wofdk8e6uuy3')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Getting to Know Elm')
 								]))
 						]))
 				]))

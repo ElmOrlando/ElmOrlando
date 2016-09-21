@@ -13,6 +13,6 @@ view =
         [ h2 [] [ text "Presentations" ]
         , h3 [] [ text "September 2016" ]
         , ul []
-            [ li [] [ i [] [ text "Coming Soon" ] ]
+            [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ]
             ]
         ]
