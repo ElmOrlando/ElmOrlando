@@ -16,6 +16,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RandomDice", liveDemoUrl: "/demo
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GuessingGame", liveDemoUrl: "/demos/GuessingGame.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GuessingGame.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RocketLaunch", liveDemoUrl: "/demos/RocketLaunch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/RocketLaunch.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "UfoLanding", liveDemoUrl: "/demos/UfoLanding.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/UfoLanding.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Clock", liveDemoUrl: "/demos/Clock.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Clock.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Train", liveDemoUrl: "/demos/Train.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Train.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmOrlando", liveDemoUrl: "/demos/ElmOrlando.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmOrlando.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmMario", liveDemoUrl: "/demos/ElmMario.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmMario.elm"})
