@@ -84,10 +84,18 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "chat" ]
-        [ div [] (List.map viewMessage model.messages)
+    div
+        [ class "chat"
+        , style
+            [ ( "font-family", "Helvetica" )
+            , ( "font-size", "40px" )
+            , ( "margin-left", "40px" )
+            ]
+        ]
+        [ h1 [] [ text "Chat" ]
         , input [ onInput Input ] []
         , button [ onClick Send ] [ text "Send" ]
+        , div [] (List.map viewMessage model.messages)
         ]
 
 
