@@ -1,5 +1,5 @@
 {-
-   **Todo List Demo**
+   **TodoPorts Demo**
 
    This demo functions the same way as the TodoList demo, but also has features
    to persist the data using Ports, JSON, and localStorage.
@@ -40,7 +40,7 @@
 -}
 
 
-port module Main exposing (..)
+port module TodoPorts exposing (..)
 
 import Html.App as App
 import Html exposing (..)

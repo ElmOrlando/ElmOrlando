@@ -1,4 +1,13 @@
-module Main exposing (..)
+{-
+   **Routing Demo**
+
+   Simple example of routing from one location to another in a Single Page
+   Application. Definitely sign up at DailyDrip.com for an in-depth lesson about
+   how to do this!
+-}
+
+
+module Routing exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)

@@ -9,7 +9,7 @@
 -}
 
 
-module Main exposing (..)
+module ScoreKeeper exposing (..)
 
 import Html.App as App
 import Html exposing (..)

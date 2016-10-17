@@ -1,5 +1,5 @@
 {-
-   **Guessing Game Demo**
+   **GuessingGame Demo**
 
    Example of a binary search algorithm using a guessing game where the user
    selects a number between 1 and 100. The game makes guesses and the user can
@@ -7,7 +7,7 @@
 -}
 
 
-module Main exposing (..)
+module GuessingGame exposing (..)
 
 import Html.App as App
 import Html exposing (..)

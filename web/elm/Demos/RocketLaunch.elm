@@ -1,12 +1,12 @@
 {-
-   **Rocket Launch Demo**
+   **RocketLaunch Demo**
 
    Rocket launch demo to work with SVG and Time. Animates a small rocket image
    launching upward from the ground.
 -}
 
 
-module Main exposing (..)
+module RocketLaunch exposing (..)
 
 import Html.App as App
 import Html exposing (..)

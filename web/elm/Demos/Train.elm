@@ -5,7 +5,7 @@
 -}
 
 
-module Main exposing (..)
+module Train exposing (..)
 
 import Html.App as App
 import Html exposing (..)

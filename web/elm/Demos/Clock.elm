@@ -6,7 +6,7 @@
 -}
 
 
-module Main exposing (..)
+module Clock exposing (..)
 
 import Html.App as App
 import Html exposing (..)

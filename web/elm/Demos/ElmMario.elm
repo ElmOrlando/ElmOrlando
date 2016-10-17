@@ -8,7 +8,7 @@
 -}
 
 
-module Main exposing (..)
+module ElmMario exposing (..)
 
 import Html.App as App
 import Html exposing (..)

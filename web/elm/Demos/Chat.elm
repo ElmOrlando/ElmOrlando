@@ -5,7 +5,7 @@
 -}
 
 
-module Main exposing (..)
+module Chat exposing (..)
 
 import Html.App as App
 import Html exposing (..)

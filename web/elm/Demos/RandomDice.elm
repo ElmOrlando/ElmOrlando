@@ -1,12 +1,12 @@
 {-
-   **Random Dice Demo**
+   **RandomDice Demo**
 
    Example of using Random to generate a random simulation of a single dice
    roll. Illustrates Platform.Cmd and managed effects.
 -}
 
 
-module Main exposing (..)
+module RandomDice exposing (..)
 
 import Html.App as App
 import Html exposing (..)

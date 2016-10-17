@@ -1,4 +1,13 @@
-module Main exposing (..)
+{-
+   **GraphicsShapes Demo**
+
+   Uses the Collage package along with the Mouse package to create shapes and
+   move them around on the screen. Definitely sign up at DailyDrip.com for an
+   in-depth lesson about how to do this!
+-}
+
+
+module GraphicsShapes exposing (..)
 
 import Color exposing (..)
 import Collage exposing (..)

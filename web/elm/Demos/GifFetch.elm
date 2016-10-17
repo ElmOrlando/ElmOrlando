@@ -1,12 +1,12 @@
 {-
-   **Gif Fetch Demo**
+   **GifFetch Demo**
 
    Example using Task.perform to fetch a gif from giphy's API with Http.get.
    Also uses Json to decode the response.
 -}
 
 
-module Main exposing (..)
+module GifFetch exposing (..)
 
 import Html.App as App
 import Html exposing (..)

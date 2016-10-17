@@ -1,12 +1,12 @@
 {-
-   **UFO Landing Demo**
+   **UfoLanding Demo**
 
    Uses SVG and Time to display a small UFO image descending from the top of the
    screen to the ground. Example of using a conditional and let expression.
 -}
 
 
-module Main exposing (..)
+module UfoLanding exposing (..)
 
 import Html.App as App
 import Html exposing (..)

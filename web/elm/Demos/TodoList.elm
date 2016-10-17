@@ -1,9 +1,9 @@
 {-
-   **Todo List Demo**
+   **TodoList Demo**
 -}
 
 
-module Main exposing (..)
+module TodoList exposing (..)
 
 import Html.App as App
 import Html exposing (..)
