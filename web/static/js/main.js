@@ -8830,7 +8830,7 @@ var _user$project$Components_DemoList$view = function (model) {
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('demo-list')
+				_elm_lang$html$Html_Attributes$class('demos')
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
@@ -8845,7 +8845,9 @@ var _user$project$Components_DemoList$view = function (model) {
 				A2(
 				_elm_lang$html$Html$ul,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html_Attributes$class('demo-list')
+					]),
 				_user$project$Components_DemoList$renderDemos(model))
 			]));
 };

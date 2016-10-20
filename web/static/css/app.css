@@ -7,6 +7,7 @@
 /* Space out content */
 body, form, ul, table {
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.5em;
   font-weight: bold;
   margin: 20px 0px;
 }
@@ -15,9 +16,10 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
-li {
-  margin: 5px 0px;
+h2 {
+  font-size: 2.5em;
 }
+
 /* Phoenix flash messages */
 .alert:empty { display: none; }
 
@@ -48,11 +50,14 @@ form.link, form.button {
 }
 
 .page-link {
-  font-size: 2.15em;
+  font-size: 2.5em;
 }
 
-.demo-list-item {
-  font-size: 1.5em;
+.demo-list {
+  height: 400px;
+  display: flex;
+  flex-flow: column;
+  flex-wrap: wrap;
 }
 
 #elm-main {

@@ -104,9 +104,9 @@ decodeDemoData =
 
 view : Model -> Html Msg
 view model =
-    div [ class "demo-list" ]
+    div [ class "demos" ]
         [ h2 [] [ text "Demos" ]
-        , ul [] (renderDemos model)
+        , ul [ class "demo-list" ] (renderDemos model)
         ]
 
 
