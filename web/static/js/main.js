@@ -8728,9 +8728,20 @@ var _user$project$Components_Demo$Model = F3(
 		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
 	});
 
+var _user$project$Components_DemoList$initialModel = {
+	demos: _elm_lang$core$Native_List.fromArray(
+		[])
+};
+var _user$project$Components_DemoList$Model = function (a) {
+	return {demos: a};
+};
+var _user$project$Components_DemoList$Demo = F3(
+	function (a, b, c) {
+		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
+	});
 var _user$project$Components_DemoList$decodeDemoData = A4(
 	_elm_lang$core$Json_Decode$object3,
-	_user$project$Components_Demo$Model,
+	_user$project$Components_DemoList$Demo,
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
 	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
@@ -8740,13 +8751,6 @@ var _user$project$Components_DemoList$decodeDemoFetch = A2(
 	_elm_lang$core$Native_List.fromArray(
 		['data']),
 	_user$project$Components_DemoList$decodeDemoList);
-var _user$project$Components_DemoList$initialModel = {
-	demos: _elm_lang$core$Native_List.fromArray(
-		[])
-};
-var _user$project$Components_DemoList$Model = function (a) {
-	return {demos: a};
-};
 var _user$project$Components_DemoList$ShowView = function (a) {
 	return {ctor: 'ShowView', _0: a};
 };
