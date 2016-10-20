@@ -124,3 +124,18 @@ renderDemo demo =
             ]
             [ text demo.name ]
         ]
+
+
+showView : Demo -> Html Msg
+showView model =
+    div []
+        [ h3 [] [ text model.name ]
+        , ul [ class "demo-list-item" ]
+            [ li []
+                [ a [ href model.liveDemoUrl ] [ text "Live Demo" ]
+                ]
+            , li []
+                [ a [ href model.sourceCodeUrl ] [ text "Source Code" ]
+                ]
+            ]
+        ]

@@ -5,7 +5,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
-import Components.DemoShow as DemoShow
 import Components.ResourceList as ResourceList
 import Components.PresentationList as PresentationList
 
@@ -60,7 +59,7 @@ initialModel =
 type Msg
     = UpdateView Page
     | DemoListMsg DemoList.Msg
-    | DemoShowMsg DemoShow.Msg
+    | DemoShowMsg DemoList.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -154,7 +153,7 @@ demoListView model =
 
 demoShowView : DemoList.Demo -> Html Msg
 demoShowView demo =
-    App.map DemoShowMsg (DemoShow.view demo)
+    App.map DemoShowMsg (DemoList.showView demo)
 
 
 resourceListView : Html a

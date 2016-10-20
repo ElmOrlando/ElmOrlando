@@ -8704,6 +8704,66 @@ var _evancz$elm_http$Http$post = F3(
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
 
+var _user$project$Components_DemoList$showView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h3,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.name)
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('demo-list-item')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$a,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Live Demo')
+									]))
+							])),
+						A2(
+						_elm_lang$html$Html$li,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$a,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Source Code')
+									]))
+							]))
+					]))
+			]));
+};
 var _user$project$Components_DemoList$initialModel = {
 	demos: _elm_lang$core$Native_List.fromArray(
 		[])
@@ -8833,72 +8893,6 @@ var _user$project$Components_DemoList$update = F2(
 	});
 var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
 var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
-
-var _user$project$Components_DemoShow$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h3,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.name)
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list-item')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Live Demo')
-									]))
-							])),
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Source Code')
-									]))
-							]))
-					]))
-			]));
-};
-var _user$project$Components_DemoShow$Demo = F3(
-	function (a, b, c) {
-		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
-	});
-var _user$project$Components_DemoShow$NoOp = {ctor: 'NoOp'};
 
 var _user$project$Components_PresentationList$view = A2(
 	_elm_lang$html$Html$div,
@@ -9083,7 +9077,7 @@ var _user$project$Components_ResourceList$view = A2(
 								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_elm_lang$html$Html$text('Daily Drip Elm')
+									_elm_lang$html$Html$text('DailyDrip Elm')
 								]))
 						]))
 				])),
@@ -9246,7 +9240,7 @@ var _user$project$Main$demoShowView = function (demo) {
 	return A2(
 		_elm_lang$html$Html_App$map,
 		_user$project$Main$DemoShowMsg,
-		_user$project$Components_DemoShow$view(demo));
+		_user$project$Components_DemoList$showView(demo));
 };
 var _user$project$Main$DemoListMsg = function (a) {
 	return {ctor: 'DemoListMsg', _0: a};

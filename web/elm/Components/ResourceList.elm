@@ -19,7 +19,7 @@ view =
         , h3 [] [ text "Courses" ]
         , ul []
             [ li [] [ a [ href "http://courses.knowthen.com/courses/elm-for-beginners" ] [ text "Elm for Beginners" ] ]
-            , li [] [ a [ href "https://www.dailydrip.com/topics/elm" ] [ text "Daily Drip Elm" ] ]
+            , li [] [ a [ href "https://www.dailydrip.com/topics/elm" ] [ text "DailyDrip Elm" ] ]
             ]
         , h3 [] [ text "Community" ]
         , ul []
