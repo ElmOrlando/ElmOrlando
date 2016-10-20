@@ -9217,11 +9217,11 @@ var _user$project$Components_ResourceList$view = A2(
 				]))
 		]));
 
+var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
+var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
-var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
 var _user$project$Main$Model = F2(
 	function (a, b) {
 		return {demoListModel: a, currentView: b};

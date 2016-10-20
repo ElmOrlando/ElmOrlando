@@ -95,6 +95,15 @@ update msg model =
 
 
 
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
+
 -- VIEW
 
 
@@ -164,12 +173,3 @@ resourceListView =
 presentationListView : Html a
 presentationListView =
     PresentationList.view
-
-
-
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none
