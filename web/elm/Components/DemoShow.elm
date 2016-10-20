@@ -1,8 +1,18 @@
 module Components.DemoShow exposing (..)
 
-import Components.Demo as Demo
 import Html exposing (..)
 import Html.Attributes exposing (..)
+
+
+-- MODEL
+
+
+type alias Demo =
+    { name : String
+    , liveDemoUrl : String
+    , sourceCodeUrl : String
+    }
+
 
 
 -- UPDATE
@@ -16,7 +26,7 @@ type Msg
 -- VIEW
 
 
-view : Demo.Model -> Html Msg
+view : Demo -> Html Msg
 view model =
     div []
         [ h3 [] [ text model.name ]

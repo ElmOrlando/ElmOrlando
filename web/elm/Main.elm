@@ -6,7 +6,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
 import Components.DemoShow as DemoShow
-import Components.Demo as Demo
 import Components.ResourceList as ResourceList
 import Components.PresentationList as PresentationList
 
@@ -37,7 +36,7 @@ type alias Model =
 type Page
     = RootView
     | DemoListView
-    | DemoShowView Demo.Model
+    | DemoShowView DemoList.Demo
     | ResourceListView
     | PresentationListView
 
@@ -153,7 +152,7 @@ demoListView model =
     App.map DemoListMsg (DemoList.view model.demoListModel)
 
 
-demoShowView : Demo.Model -> Html Msg
+demoShowView : DemoList.Demo -> Html Msg
 demoShowView demo =
     App.map DemoShowMsg (DemoShow.view demo)
 

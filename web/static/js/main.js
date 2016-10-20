@@ -8704,30 +8704,6 @@ var _evancz$elm_http$Http$post = F3(
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
 
-var _user$project$Components_Demo$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$span,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demo')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$strong,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.name)
-					]))
-			]));
-};
-var _user$project$Components_Demo$Model = F3(
-	function (a, b, c) {
-		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
-	});
-
 var _user$project$Components_DemoList$initialModel = {
 	demos: _elm_lang$core$Native_List.fromArray(
 		[])
@@ -8918,6 +8894,10 @@ var _user$project$Components_DemoShow$view = function (model) {
 					]))
 			]));
 };
+var _user$project$Components_DemoShow$Demo = F3(
+	function (a, b, c) {
+		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
+	});
 var _user$project$Components_DemoShow$NoOp = {ctor: 'NoOp'};
 
 var _user$project$Components_PresentationList$view = A2(
