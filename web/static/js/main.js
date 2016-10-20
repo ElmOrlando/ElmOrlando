@@ -9791,14 +9791,11 @@ var _user$project$Main$DemoShowView = function (a) {
 };
 var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
 var _user$project$Main$RootView = {ctor: 'RootView'};
-var _user$project$Main$initialModel = function (location) {
-	var route = _user$project$Main$routeInit(location);
-	return {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView, route: route};
-};
 var _user$project$Main$init = function (location) {
+	var route = _user$project$Main$routeInit(location);
 	return {
 		ctor: '_Tuple2',
-		_0: _user$project$Main$initialModel(location),
+		_0: {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView, route: route},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };

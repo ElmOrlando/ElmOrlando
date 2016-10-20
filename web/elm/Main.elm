@@ -53,19 +53,16 @@ type Location
 
 init : Maybe Location -> ( Model, Cmd Msg )
 init location =
-    ( initialModel location, Cmd.none )
-
-
-initialModel : Maybe Location -> Model
-initialModel location =
     let
         route =
             routeInit location
     in
-        { demoListModel = DemoList.initialModel
-        , currentView = RootView
-        , route = route
-        }
+        ( { demoListModel = DemoList.initialModel
+          , currentView = RootView
+          , route = route
+          }
+        , Cmd.none
+        )
 
 
 
