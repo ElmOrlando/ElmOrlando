@@ -5,8 +5,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
-import Components.DemoShow as DemoShow
-import Components.Demo as Demo
 import Components.ResourceList as ResourceList
 import Components.PresentationList as PresentationList
 
@@ -37,7 +35,7 @@ type alias Model =
 type Page
     = RootView
     | DemoListView
-    | DemoShowView Demo.Model
+    | DemoShowView DemoList.Demo
     | ResourceListView
     | PresentationListView
 
@@ -61,7 +59,7 @@ initialModel =
 type Msg
     = UpdateView Page
     | DemoListMsg DemoList.Msg
-    | DemoShowMsg DemoShow.Msg
+    | DemoShowMsg DemoList.Msg
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -94,6 +92,15 @@ update msg model =
 
         DemoShowMsg demoMsg ->
             ( model, Cmd.none )
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
 
 
 
@@ -153,9 +160,9 @@ demoListView model =
     App.map DemoListMsg (DemoList.view model.demoListModel)
 
 
-demoShowView : Demo.Model -> Html Msg
+demoShowView : DemoList.Demo -> Html Msg
 demoShowView demo =
-    App.map DemoShowMsg (DemoShow.view demo)
+    App.map DemoShowMsg (DemoList.showView demo)
 
 
 resourceListView : Html a
@@ -166,12 +173,3 @@ resourceListView =
 presentationListView : Html a
 presentationListView =
     PresentationList.view
-
-
-
--- SUBSCRIPTIONS
-
-
-subscriptions : Model -> Sub Msg
-subscriptions model =
-    Sub.none

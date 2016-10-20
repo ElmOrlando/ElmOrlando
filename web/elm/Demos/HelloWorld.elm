@@ -1,5 +1,5 @@
 {-
-   **Hello World Demo**
+   **HelloWorld Demo**
 
    Example of Elm Architecture to demonstrate Model, Update, and View. User
    can update the text content with a form field, and a log of non-destructive
@@ -7,7 +7,7 @@
 -}
 
 
-module Main exposing (..)
+module HelloWorld exposing (..)
 
 import Html.App as App
 import Html exposing (..)

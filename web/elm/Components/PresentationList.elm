@@ -15,4 +15,8 @@ view =
         , ul []
             [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ]
             ]
+        , h3 [] [ text "October 2016" ]
+        , ul []
+            [ li [] [ text "Elm and React (Coming Soon)" ]
+            ]
         ]

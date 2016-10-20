@@ -4,7 +4,6 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import List
-import Components.Demo as Demo
 import Http
 import Task
 import Json.Decode as Json exposing ((:=))
@@ -15,12 +14,19 @@ import Debug
 
 
 type alias Model =
-    { demos : List Demo.Model }
+    { demos : List Demo }
+
+
+type alias Demo =
+    { name : String
+    , liveDemoUrl : String
+    , sourceCodeUrl : String
+    }
 
 
 type SubPage
     = ListView
-    | ShowView Demo.Model
+    | ShowView Demo
 
 
 initialModel : Model
@@ -35,7 +41,7 @@ initialModel =
 type Msg
     = NoOp
     | Fetch
-    | FetchSucceed (List Demo.Model)
+    | FetchSucceed (List Demo)
     | FetchFail Http.Error
     | RouteToNewPage SubPage
 
@@ -74,19 +80,19 @@ fetchDemos =
         Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch url)
 
 
-decodeDemoFetch : Json.Decoder (List Demo.Model)
+decodeDemoFetch : Json.Decoder (List Demo)
 decodeDemoFetch =
     Json.at [ "data" ] decodeDemoList
 
 
-decodeDemoList : Json.Decoder (List Demo.Model)
+decodeDemoList : Json.Decoder (List Demo)
 decodeDemoList =
     Json.list decodeDemoData
 
 
-decodeDemoData : Json.Decoder Demo.Model
+decodeDemoData : Json.Decoder Demo
 decodeDemoData =
-    Json.object3 Demo.Model
+    Json.object3 Demo
         ("name" := Json.string)
         ("liveDemoUrl" := Json.string)
         ("sourceCodeUrl" := Json.string)
@@ -98,9 +104,9 @@ decodeDemoData =
 
 view : Model -> Html Msg
 view model =
-    div [ class "demo-list" ]
+    div [ class "demos" ]
         [ h2 [] [ text "Demos" ]
-        , ul [] (renderDemos model)
+        , ul [ class "demo-list" ] (renderDemos model)
         ]
 
 
@@ -109,7 +115,7 @@ renderDemos model =
     List.map renderDemo model.demos
 
 
-renderDemo : Demo.Model -> Html Msg
+renderDemo : Demo -> Html Msg
 renderDemo demo =
     li [ class "demo-list-item" ]
         [ a
@@ -117,4 +123,19 @@ renderDemo demo =
             , onClick (RouteToNewPage (ShowView demo))
             ]
             [ text demo.name ]
+        ]
+
+
+showView : Demo -> Html Msg
+showView model =
+    div []
+        [ h3 [] [ text model.name ]
+        , ul [ class "demo-list-item" ]
+            [ li []
+                [ a [ href model.liveDemoUrl ] [ text "Live Demo" ]
+                ]
+            , li []
+                [ a [ href model.sourceCodeUrl ] [ text "Source Code" ]
+                ]
+            ]
         ]

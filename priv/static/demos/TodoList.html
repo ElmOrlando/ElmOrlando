@@ -1,4 +1,6 @@
-
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
+body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
 
@@ -134,7 +136,6 @@ function A9(fun, a, b, c, d, e, f, g, h, i)
     ? fun.func(a, b, c, d, e, f, g, h, i)
     : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
-
 //import Native.List //
 
 var _elm_lang$core$Native_Array = function() {
@@ -1101,8 +1102,7 @@ return {
 	fromJSArray: fromJSArray
 };
 
-}();
-//import Native.Utils //
+}();//import Native.Utils //
 
 var _elm_lang$core$Native_Basics = function() {
 
@@ -1242,8 +1242,7 @@ return {
 	isInfinite: isInfinite
 };
 
-}();
-//import //
+}();//import //
 
 var _elm_lang$core$Native_Utils = function() {
 
@@ -1725,8 +1724,7 @@ return {
 	toString: toString
 };
 
-}();
-var _elm_lang$core$Basics$uncurry = F2(
+}();var _elm_lang$core$Basics$uncurry = F2(
 	function (f, _p0) {
 		var _p1 = _p0;
 		return A2(f, _p1._0, _p1._1);
@@ -1850,7 +1848,6 @@ var _elm_lang$core$Basics$LT = {ctor: 'LT'};
 var _elm_lang$core$Basics$Never = function (a) {
 	return {ctor: 'Never', _0: a};
 };
-
 var _elm_lang$core$Maybe$withDefault = F2(
 	function ($default, maybe) {
 		var _p0 = maybe;
@@ -1942,7 +1939,6 @@ var _elm_lang$core$Maybe$map5 = F6(
 			return _elm_lang$core$Maybe$Nothing;
 		}
 	});
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_List = function() {
@@ -2095,8 +2091,7 @@ return {
 	sortWith: F2(sortWith)
 };
 
-}();
-var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
+}();var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
 var _elm_lang$core$List$sortBy = _elm_lang$core$Native_List.sortBy;
 var _elm_lang$core$List$sort = function (xs) {
 	return A2(_elm_lang$core$List$sortBy, _elm_lang$core$Basics$identity, xs);
@@ -2597,7 +2592,6 @@ var _elm_lang$core$List$repeat = F2(
 			n,
 			value);
 	});
-
 var _elm_lang$core$Array$append = _elm_lang$core$Native_Array.append;
 var _elm_lang$core$Array$length = _elm_lang$core$Native_Array.length;
 var _elm_lang$core$Array$isEmpty = function (array) {
@@ -2651,7 +2645,6 @@ var _elm_lang$core$Array$repeat = F2(
 			_elm_lang$core$Basics$always(e));
 	});
 var _elm_lang$core$Array$Array = {ctor: 'Array'};
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Char = function() {
@@ -2665,8 +2658,7 @@ return {
 	toLocaleLower: function(c) { return _elm_lang$core$Native_Utils.chr(c.toLocaleLowerCase()); }
 };
 
-}();
-var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
+}();var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
 var _elm_lang$core$Char$toCode = _elm_lang$core$Native_Char.toCode;
 var _elm_lang$core$Char$toLocaleLower = _elm_lang$core$Native_Char.toLocaleLower;
 var _elm_lang$core$Char$toLocaleUpper = _elm_lang$core$Native_Char.toLocaleUpper;
@@ -2708,7 +2700,6 @@ var _elm_lang$core$Char$isHexDigit = function ($char) {
 		_elm_lang$core$Native_Utils.chr('F'),
 		$char));
 };
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Scheduler = function() {
@@ -2989,8 +2980,7 @@ return {
 	rawSend: rawSend
 };
 
-}();
-//import //
+}();//import //
 
 var _elm_lang$core$Native_Platform = function() {
 
@@ -3600,7 +3590,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$Platform$hack = _elm_lang$core$Native_Scheduler.succeed;
 var _elm_lang$core$Platform$sendToSelf = _elm_lang$core$Native_Platform.sendToSelf;
 var _elm_lang$core$Platform$sendToApp = _elm_lang$core$Native_Platform.sendToApp;
@@ -3608,7 +3597,6 @@ var _elm_lang$core$Platform$Program = {ctor: 'Program'};
 var _elm_lang$core$Platform$Task = {ctor: 'Task'};
 var _elm_lang$core$Platform$ProcessId = {ctor: 'ProcessId'};
 var _elm_lang$core$Platform$Router = {ctor: 'Router'};
-
 var _elm_lang$core$Platform_Cmd$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Cmd$none = _elm_lang$core$Platform_Cmd$batch(
 	_elm_lang$core$Native_List.fromArray(
@@ -3624,7 +3612,6 @@ _elm_lang$core$Platform_Cmd_ops['!'] = F2(
 	});
 var _elm_lang$core$Platform_Cmd$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Cmd$Cmd = {ctor: 'Cmd'};
-
 var _elm_lang$core$Result$toMaybe = function (result) {
 	var _p0 = result;
 	if (_p0.ctor === 'Ok') {
@@ -3766,240 +3753,6 @@ var _elm_lang$core$Result$fromMaybe = F2(
 			return _elm_lang$core$Result$Err(err);
 		}
 	});
-
-var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
-var _elm_lang$core$Task$andThen = _elm_lang$core$Native_Scheduler.andThen;
-var _elm_lang$core$Task$spawnCmd = F2(
-	function (router, _p0) {
-		var _p1 = _p0;
-		return _elm_lang$core$Native_Scheduler.spawn(
-			A2(
-				_elm_lang$core$Task$andThen,
-				_p1._0,
-				_elm_lang$core$Platform$sendToApp(router)));
-	});
-var _elm_lang$core$Task$fail = _elm_lang$core$Native_Scheduler.fail;
-var _elm_lang$core$Task$mapError = F2(
-	function (f, task) {
-		return A2(
-			_elm_lang$core$Task$onError,
-			task,
-			function (err) {
-				return _elm_lang$core$Task$fail(
-					f(err));
-			});
-	});
-var _elm_lang$core$Task$succeed = _elm_lang$core$Native_Scheduler.succeed;
-var _elm_lang$core$Task$map = F2(
-	function (func, taskA) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskA,
-			function (a) {
-				return _elm_lang$core$Task$succeed(
-					func(a));
-			});
-	});
-var _elm_lang$core$Task$map2 = F3(
-	function (func, taskA, taskB) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskA,
-			function (a) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					taskB,
-					function (b) {
-						return _elm_lang$core$Task$succeed(
-							A2(func, a, b));
-					});
-			});
-	});
-var _elm_lang$core$Task$map3 = F4(
-	function (func, taskA, taskB, taskC) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskA,
-			function (a) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					taskB,
-					function (b) {
-						return A2(
-							_elm_lang$core$Task$andThen,
-							taskC,
-							function (c) {
-								return _elm_lang$core$Task$succeed(
-									A3(func, a, b, c));
-							});
-					});
-			});
-	});
-var _elm_lang$core$Task$map4 = F5(
-	function (func, taskA, taskB, taskC, taskD) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskA,
-			function (a) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					taskB,
-					function (b) {
-						return A2(
-							_elm_lang$core$Task$andThen,
-							taskC,
-							function (c) {
-								return A2(
-									_elm_lang$core$Task$andThen,
-									taskD,
-									function (d) {
-										return _elm_lang$core$Task$succeed(
-											A4(func, a, b, c, d));
-									});
-							});
-					});
-			});
-	});
-var _elm_lang$core$Task$map5 = F6(
-	function (func, taskA, taskB, taskC, taskD, taskE) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskA,
-			function (a) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					taskB,
-					function (b) {
-						return A2(
-							_elm_lang$core$Task$andThen,
-							taskC,
-							function (c) {
-								return A2(
-									_elm_lang$core$Task$andThen,
-									taskD,
-									function (d) {
-										return A2(
-											_elm_lang$core$Task$andThen,
-											taskE,
-											function (e) {
-												return _elm_lang$core$Task$succeed(
-													A5(func, a, b, c, d, e));
-											});
-									});
-							});
-					});
-			});
-	});
-var _elm_lang$core$Task$andMap = F2(
-	function (taskFunc, taskValue) {
-		return A2(
-			_elm_lang$core$Task$andThen,
-			taskFunc,
-			function (func) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					taskValue,
-					function (value) {
-						return _elm_lang$core$Task$succeed(
-							func(value));
-					});
-			});
-	});
-var _elm_lang$core$Task$sequence = function (tasks) {
-	var _p2 = tasks;
-	if (_p2.ctor === '[]') {
-		return _elm_lang$core$Task$succeed(
-			_elm_lang$core$Native_List.fromArray(
-				[]));
-	} else {
-		return A3(
-			_elm_lang$core$Task$map2,
-			F2(
-				function (x, y) {
-					return A2(_elm_lang$core$List_ops['::'], x, y);
-				}),
-			_p2._0,
-			_elm_lang$core$Task$sequence(_p2._1));
-	}
-};
-var _elm_lang$core$Task$onEffects = F3(
-	function (router, commands, state) {
-		return A2(
-			_elm_lang$core$Task$map,
-			function (_p3) {
-				return {ctor: '_Tuple0'};
-			},
-			_elm_lang$core$Task$sequence(
-				A2(
-					_elm_lang$core$List$map,
-					_elm_lang$core$Task$spawnCmd(router),
-					commands)));
-	});
-var _elm_lang$core$Task$toMaybe = function (task) {
-	return A2(
-		_elm_lang$core$Task$onError,
-		A2(_elm_lang$core$Task$map, _elm_lang$core$Maybe$Just, task),
-		function (_p4) {
-			return _elm_lang$core$Task$succeed(_elm_lang$core$Maybe$Nothing);
-		});
-};
-var _elm_lang$core$Task$fromMaybe = F2(
-	function ($default, maybe) {
-		var _p5 = maybe;
-		if (_p5.ctor === 'Just') {
-			return _elm_lang$core$Task$succeed(_p5._0);
-		} else {
-			return _elm_lang$core$Task$fail($default);
-		}
-	});
-var _elm_lang$core$Task$toResult = function (task) {
-	return A2(
-		_elm_lang$core$Task$onError,
-		A2(_elm_lang$core$Task$map, _elm_lang$core$Result$Ok, task),
-		function (msg) {
-			return _elm_lang$core$Task$succeed(
-				_elm_lang$core$Result$Err(msg));
-		});
-};
-var _elm_lang$core$Task$fromResult = function (result) {
-	var _p6 = result;
-	if (_p6.ctor === 'Ok') {
-		return _elm_lang$core$Task$succeed(_p6._0);
-	} else {
-		return _elm_lang$core$Task$fail(_p6._0);
-	}
-};
-var _elm_lang$core$Task$init = _elm_lang$core$Task$succeed(
-	{ctor: '_Tuple0'});
-var _elm_lang$core$Task$onSelfMsg = F3(
-	function (_p9, _p8, _p7) {
-		return _elm_lang$core$Task$succeed(
-			{ctor: '_Tuple0'});
-	});
-var _elm_lang$core$Task$command = _elm_lang$core$Native_Platform.leaf('Task');
-var _elm_lang$core$Task$T = function (a) {
-	return {ctor: 'T', _0: a};
-};
-var _elm_lang$core$Task$perform = F3(
-	function (onFail, onSuccess, task) {
-		return _elm_lang$core$Task$command(
-			_elm_lang$core$Task$T(
-				A2(
-					_elm_lang$core$Task$onError,
-					A2(_elm_lang$core$Task$map, onSuccess, task),
-					function (x) {
-						return _elm_lang$core$Task$succeed(
-							onFail(x));
-					})));
-	});
-var _elm_lang$core$Task$cmdMap = F2(
-	function (tagger, _p10) {
-		var _p11 = _p10;
-		return _elm_lang$core$Task$T(
-			A2(_elm_lang$core$Task$map, tagger, _p11._0));
-	});
-_elm_lang$core$Native_Platform.effectManagers['Task'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Task$init, onEffects: _elm_lang$core$Task$onEffects, onSelfMsg: _elm_lang$core$Task$onSelfMsg, tag: 'cmd', cmdMap: _elm_lang$core$Task$cmdMap};
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Debug = function() {
@@ -4029,8 +3782,7 @@ return {
 	log: F2(log)
 };
 
-}();
-//import Maybe, Native.List, Native.Utils, Result //
+}();//import Maybe, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_String = function() {
 
@@ -4365,7 +4117,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$String$fromList = _elm_lang$core$Native_String.fromList;
 var _elm_lang$core$String$toList = _elm_lang$core$Native_String.toList;
 var _elm_lang$core$String$toFloat = _elm_lang$core$Native_String.toFloat;
@@ -4409,7 +4160,6 @@ var _elm_lang$core$String$fromChar = function ($char) {
 	return A2(_elm_lang$core$String$cons, $char, '');
 };
 var _elm_lang$core$String$isEmpty = _elm_lang$core$Native_String.isEmpty;
-
 var _elm_lang$core$Dict$foldr = F3(
 	function (f, acc, t) {
 		foldr:
@@ -5303,233 +5053,14 @@ var _elm_lang$core$Dict$diff = F2(
 			t1,
 			t2);
 	});
-
-//import Native.Scheduler //
-
-var _elm_lang$core$Native_Time = function() {
-
-var now = _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
-{
-	callback(_elm_lang$core$Native_Scheduler.succeed(Date.now()));
-});
-
-function setInterval_(interval, task)
-{
-	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback)
-	{
-		var id = setInterval(function() {
-			_elm_lang$core$Native_Scheduler.rawSpawn(task);
-		}, interval);
-
-		return function() { clearInterval(id); };
-	});
-}
-
-return {
-	now: now,
-	setInterval_: F2(setInterval_)
-};
-
-}();
 var _elm_lang$core$Platform_Sub$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Sub$none = _elm_lang$core$Platform_Sub$batch(
 	_elm_lang$core$Native_List.fromArray(
 		[]));
 var _elm_lang$core$Platform_Sub$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Sub$Sub = {ctor: 'Sub'};
-
-var _elm_lang$core$Time$setInterval = _elm_lang$core$Native_Time.setInterval_;
-var _elm_lang$core$Time$spawnHelp = F3(
-	function (router, intervals, processes) {
-		var _p0 = intervals;
-		if (_p0.ctor === '[]') {
-			return _elm_lang$core$Task$succeed(processes);
-		} else {
-			var _p1 = _p0._0;
-			return A2(
-				_elm_lang$core$Task$andThen,
-				_elm_lang$core$Native_Scheduler.spawn(
-					A2(
-						_elm_lang$core$Time$setInterval,
-						_p1,
-						A2(_elm_lang$core$Platform$sendToSelf, router, _p1))),
-				function (id) {
-					return A3(
-						_elm_lang$core$Time$spawnHelp,
-						router,
-						_p0._1,
-						A3(_elm_lang$core$Dict$insert, _p1, id, processes));
-				});
-		}
-	});
-var _elm_lang$core$Time$addMySub = F2(
-	function (_p2, state) {
-		var _p3 = _p2;
-		var _p6 = _p3._1;
-		var _p5 = _p3._0;
-		var _p4 = A2(_elm_lang$core$Dict$get, _p5, state);
-		if (_p4.ctor === 'Nothing') {
-			return A3(
-				_elm_lang$core$Dict$insert,
-				_p5,
-				_elm_lang$core$Native_List.fromArray(
-					[_p6]),
-				state);
-		} else {
-			return A3(
-				_elm_lang$core$Dict$insert,
-				_p5,
-				A2(_elm_lang$core$List_ops['::'], _p6, _p4._0),
-				state);
-		}
-	});
-var _elm_lang$core$Time$inMilliseconds = function (t) {
-	return t;
-};
-var _elm_lang$core$Time$millisecond = 1;
-var _elm_lang$core$Time$second = 1000 * _elm_lang$core$Time$millisecond;
-var _elm_lang$core$Time$minute = 60 * _elm_lang$core$Time$second;
-var _elm_lang$core$Time$hour = 60 * _elm_lang$core$Time$minute;
-var _elm_lang$core$Time$inHours = function (t) {
-	return t / _elm_lang$core$Time$hour;
-};
-var _elm_lang$core$Time$inMinutes = function (t) {
-	return t / _elm_lang$core$Time$minute;
-};
-var _elm_lang$core$Time$inSeconds = function (t) {
-	return t / _elm_lang$core$Time$second;
-};
-var _elm_lang$core$Time$now = _elm_lang$core$Native_Time.now;
-var _elm_lang$core$Time$onSelfMsg = F3(
-	function (router, interval, state) {
-		var _p7 = A2(_elm_lang$core$Dict$get, interval, state.taggers);
-		if (_p7.ctor === 'Nothing') {
-			return _elm_lang$core$Task$succeed(state);
-		} else {
-			return A2(
-				_elm_lang$core$Task$andThen,
-				_elm_lang$core$Time$now,
-				function (time) {
-					return A2(
-						_elm_lang$core$Task$andThen,
-						_elm_lang$core$Task$sequence(
-							A2(
-								_elm_lang$core$List$map,
-								function (tagger) {
-									return A2(
-										_elm_lang$core$Platform$sendToApp,
-										router,
-										tagger(time));
-								},
-								_p7._0)),
-						function (_p8) {
-							return _elm_lang$core$Task$succeed(state);
-						});
-				});
-		}
-	});
-var _elm_lang$core$Time$subscription = _elm_lang$core$Native_Platform.leaf('Time');
-var _elm_lang$core$Time$State = F2(
-	function (a, b) {
-		return {taggers: a, processes: b};
-	});
-var _elm_lang$core$Time$init = _elm_lang$core$Task$succeed(
-	A2(_elm_lang$core$Time$State, _elm_lang$core$Dict$empty, _elm_lang$core$Dict$empty));
-var _elm_lang$core$Time$onEffects = F3(
-	function (router, subs, _p9) {
-		var _p10 = _p9;
-		var rightStep = F3(
-			function (_p12, id, _p11) {
-				var _p13 = _p11;
-				return {
-					ctor: '_Tuple3',
-					_0: _p13._0,
-					_1: _p13._1,
-					_2: A2(
-						_elm_lang$core$Task$andThen,
-						_elm_lang$core$Native_Scheduler.kill(id),
-						function (_p14) {
-							return _p13._2;
-						})
-				};
-			});
-		var bothStep = F4(
-			function (interval, taggers, id, _p15) {
-				var _p16 = _p15;
-				return {
-					ctor: '_Tuple3',
-					_0: _p16._0,
-					_1: A3(_elm_lang$core$Dict$insert, interval, id, _p16._1),
-					_2: _p16._2
-				};
-			});
-		var leftStep = F3(
-			function (interval, taggers, _p17) {
-				var _p18 = _p17;
-				return {
-					ctor: '_Tuple3',
-					_0: A2(_elm_lang$core$List_ops['::'], interval, _p18._0),
-					_1: _p18._1,
-					_2: _p18._2
-				};
-			});
-		var newTaggers = A3(_elm_lang$core$List$foldl, _elm_lang$core$Time$addMySub, _elm_lang$core$Dict$empty, subs);
-		var _p19 = A6(
-			_elm_lang$core$Dict$merge,
-			leftStep,
-			bothStep,
-			rightStep,
-			newTaggers,
-			_p10.processes,
-			{
-				ctor: '_Tuple3',
-				_0: _elm_lang$core$Native_List.fromArray(
-					[]),
-				_1: _elm_lang$core$Dict$empty,
-				_2: _elm_lang$core$Task$succeed(
-					{ctor: '_Tuple0'})
-			});
-		var spawnList = _p19._0;
-		var existingDict = _p19._1;
-		var killTask = _p19._2;
-		return A2(
-			_elm_lang$core$Task$andThen,
-			killTask,
-			function (_p20) {
-				return A2(
-					_elm_lang$core$Task$andThen,
-					A3(_elm_lang$core$Time$spawnHelp, router, spawnList, existingDict),
-					function (newProcesses) {
-						return _elm_lang$core$Task$succeed(
-							A2(_elm_lang$core$Time$State, newTaggers, newProcesses));
-					});
-			});
-	});
-var _elm_lang$core$Time$Every = F2(
-	function (a, b) {
-		return {ctor: 'Every', _0: a, _1: b};
-	});
-var _elm_lang$core$Time$every = F2(
-	function (interval, tagger) {
-		return _elm_lang$core$Time$subscription(
-			A2(_elm_lang$core$Time$Every, interval, tagger));
-	});
-var _elm_lang$core$Time$subMap = F2(
-	function (f, _p21) {
-		var _p22 = _p21;
-		return A2(
-			_elm_lang$core$Time$Every,
-			_p22._0,
-			function (_p23) {
-				return f(
-					_p22._1(_p23));
-			});
-	});
-_elm_lang$core$Native_Platform.effectManagers['Time'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Time$init, onEffects: _elm_lang$core$Time$onEffects, onSelfMsg: _elm_lang$core$Time$onSelfMsg, tag: 'sub', subMap: _elm_lang$core$Time$subMap};
-
 var _elm_lang$core$Debug$crash = _elm_lang$core$Native_Debug.crash;
 var _elm_lang$core$Debug$log = _elm_lang$core$Native_Debug.log;
-
 //import Maybe, Native.Array, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_Json = function() {
@@ -6193,7 +5724,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$Json_Encode$list = _elm_lang$core$Native_Json.encodeList;
 var _elm_lang$core$Json_Encode$array = _elm_lang$core$Native_Json.encodeArray;
 var _elm_lang$core$Json_Encode$object = _elm_lang$core$Native_Json.encodeObject;
@@ -6204,7 +5734,6 @@ var _elm_lang$core$Json_Encode$int = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$string = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$encode = _elm_lang$core$Native_Json.encode;
 var _elm_lang$core$Json_Encode$Value = {ctor: 'Value'};
-
 var _elm_lang$core$Json_Decode$tuple8 = _elm_lang$core$Native_Json.decodeTuple8;
 var _elm_lang$core$Json_Decode$tuple7 = _elm_lang$core$Native_Json.decodeTuple7;
 var _elm_lang$core$Json_Decode$tuple6 = _elm_lang$core$Native_Json.decodeTuple6;
@@ -6265,7 +5794,6 @@ var _elm_lang$core$Json_Decode$dict = function (decoder) {
 		_elm_lang$core$Json_Decode$keyValuePairs(decoder));
 };
 var _elm_lang$core$Json_Decode$Decoder = {ctor: 'Decoder'};
-
 //import Native.Json //
 
 var _elm_lang$virtual_dom$Native_VirtualDom = function() {
@@ -7727,8 +7255,7 @@ return {
 	programWithFlags: programWithFlags
 };
 
-}();
-var _elm_lang$virtual_dom$VirtualDom$programWithFlags = _elm_lang$virtual_dom$Native_VirtualDom.programWithFlags;
+}();var _elm_lang$virtual_dom$VirtualDom$programWithFlags = _elm_lang$virtual_dom$Native_VirtualDom.programWithFlags;
 var _elm_lang$virtual_dom$VirtualDom$keyedNode = _elm_lang$virtual_dom$Native_VirtualDom.keyedNode;
 var _elm_lang$virtual_dom$VirtualDom$lazy3 = _elm_lang$virtual_dom$Native_VirtualDom.lazy3;
 var _elm_lang$virtual_dom$VirtualDom$lazy2 = _elm_lang$virtual_dom$Native_VirtualDom.lazy2;
@@ -7752,7 +7279,6 @@ var _elm_lang$virtual_dom$VirtualDom$Options = F2(
 	});
 var _elm_lang$virtual_dom$VirtualDom$Node = {ctor: 'Node'};
 var _elm_lang$virtual_dom$VirtualDom$Property = {ctor: 'Property'};
-
 var _elm_lang$html$Html$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$html$Html$node = _elm_lang$virtual_dom$VirtualDom$node;
 var _elm_lang$html$Html$body = _elm_lang$html$Html$node('body');
@@ -7854,7 +7380,6 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
-
 var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
 var _elm_lang$html$Html_App$program = function (app) {
 	return _elm_lang$html$Html_App$programWithFlags(
@@ -7892,7 +7417,6 @@ var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
 		});
 };
 var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
-
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
@@ -8244,7 +7768,6 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 				A2(_elm_lang$core$List$filter, _elm_lang$core$Basics$snd, list))));
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
-
 var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
 var _elm_lang$html$Html_Events$targetChecked = A2(
 	_elm_lang$core$Json_Decode$at,
@@ -8345,1196 +7868,386 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
-
-//import Dict, List, Maybe, Native.Scheduler //
-
-var _evancz$elm_http$Native_Http = function() {
-
-function send(settings, request)
-{
-	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback) {
-		var req = new XMLHttpRequest();
-
-		// start
-		if (settings.onStart.ctor === 'Just')
-		{
-			req.addEventListener('loadStart', function() {
-				var task = settings.onStart._0;
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
+var _user$project$Main$styles = '\n    html,\n    body {\n      margin: 0;\n      padding: 0;\n    }\n\n    button {\n      margin: 0;\n      padding: 0;\n      border: 0;\n      background: none;\n      font-size: 100%;\n      vertical-align: baseline;\n      font-family: inherit;\n      font-weight: inherit;\n      color: inherit;\n      -webkit-appearance: none;\n      appearance: none;\n      -webkit-font-smoothing: antialiased;\n      -moz-osx-font-smoothing: grayscale;\n    }\n\n    body {\n      font: 14px \'Helvetica Neue\', Helvetica, Arial, sans-serif;\n      line-height: 1.4em;\n      background: #f5f5f5;\n      color: #4d4d4d;\n      min-width: 230px;\n      max-width: 550px;\n      margin: 0 auto;\n      -webkit-font-smoothing: antialiased;\n      -moz-osx-font-smoothing: grayscale;\n      font-weight: 300;\n    }\n\n    :focus {\n      outline: 0;\n    }\n\n    .hidden {\n      display: none;\n    }\n\n    .todoapp {\n      background: #fff;\n      margin: 130px 0 40px 0;\n      position: relative;\n      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),\n                  0 25px 50px 0 rgba(0, 0, 0, 0.1);\n    }\n\n    .todoapp input::-webkit-input-placeholder {\n      font-style: italic;\n      font-weight: 300;\n      color: #e6e6e6;\n    }\n\n    .todoapp input::-moz-placeholder {\n      font-style: italic;\n      font-weight: 300;\n      color: #e6e6e6;\n    }\n\n    .todoapp input::input-placeholder {\n      font-style: italic;\n      font-weight: 300;\n      color: #e6e6e6;\n    }\n\n    .todoapp h1 {\n      position: absolute;\n      top: -155px;\n      width: 100%;\n      font-size: 100px;\n      font-weight: 100;\n      text-align: center;\n      color: rgba(175, 47, 47, 0.15);\n      -webkit-text-rendering: optimizeLegibility;\n      -moz-text-rendering: optimizeLegibility;\n      text-rendering: optimizeLegibility;\n    }\n\n    .new-todo,\n    .edit {\n      position: relative;\n      margin: 0;\n      width: 100%;\n      font-size: 24px;\n      font-family: inherit;\n      font-weight: inherit;\n      line-height: 1.4em;\n      border: 0;\n      color: inherit;\n      padding: 6px;\n      border: 1px solid #999;\n      box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);\n      box-sizing: border-box;\n      -webkit-font-smoothing: antialiased;\n      -moz-osx-font-smoothing: grayscale;\n    }\n\n    .new-todo {\n      padding: 16px 16px 16px 60px;\n      border: none;\n      background: rgba(0, 0, 0, 0.003);\n      box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);\n    }\n\n    .main {\n      position: relative;\n      z-index: 2;\n      border-top: 1px solid #e6e6e6;\n    }\n\n    label[for=\'toggle-all\'] {\n      display: none;\n    }\n\n    .toggle-all {\n      position: absolute;\n      top: -55px;\n      left: -12px;\n      width: 60px;\n      height: 34px;\n      text-align: center;\n      border: none; /* Mobile Safari */\n    }\n\n    .toggle-all:before {\n      content: \'❯\';\n      font-size: 22px;\n      color: #e6e6e6;\n      padding: 10px 27px 10px 27px;\n    }\n\n    .toggle-all:checked:before {\n      color: #737373;\n    }\n\n    .todo-list {\n      margin: 0;\n      padding: 0;\n      list-style: none;\n    }\n\n    .todo-list li {\n      position: relative;\n      font-size: 24px;\n      border-bottom: 1px solid #ededed;\n    }\n\n    .todo-list li:last-child {\n      border-bottom: none;\n    }\n\n    .todo-list li.editing {\n      border-bottom: none;\n      padding: 0;\n    }\n\n    .todo-list li.editing .edit {\n      display: block;\n      width: 506px;\n      padding: 12px 16px;\n      margin: 0 0 0 43px;\n    }\n\n    .todo-list li.editing .view {\n      display: none;\n    }\n\n    .todo-list li .toggle {\n      text-align: center;\n      width: 40px;\n      /* auto, since non-WebKit browsers doesn\'t support input styling */\n      height: auto;\n      position: absolute;\n      top: 0;\n      bottom: 0;\n      margin: auto 0;\n      border: none; /* Mobile Safari */\n      -webkit-appearance: none;\n      appearance: none;\n    }\n\n    .todo-list li .toggle:after {\n      content: url(\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"-10 -18 100 135\"><circle cx=\"50\" cy=\"50\" r=\"50\" fill=\"none\" stroke=\"#ededed\" stroke-width=\"3\"/></svg>\');\n    }\n\n    .todo-list li .toggle:checked:after {\n      content: url(\'data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"-10 -18 100 135\"><circle cx=\"50\" cy=\"50\" r=\"50\" fill=\"none\" stroke=\"#bddad5\" stroke-width=\"3\"/><path fill=\"#5dc2af\" d=\"M72 25L42 71 27 56l-4 4 20 20 34-52z\"/></svg>\');\n    }\n\n    .todo-list li label {\n      word-break: break-all;\n      padding: 15px 60px 15px 15px;\n      margin-left: 45px;\n      display: block;\n      line-height: 1.2;\n      transition: color 0.4s;\n    }\n\n    .todo-list li.completed label {\n      color: #d9d9d9;\n      text-decoration: line-through;\n    }\n\n    .todo-list li .destroy {\n      display: none;\n      position: absolute;\n      top: 0;\n      right: 10px;\n      bottom: 0;\n      width: 40px;\n      height: 40px;\n      margin: auto 0;\n      font-size: 30px;\n      color: #cc9a9a;\n      margin-bottom: 11px;\n      transition: color 0.2s ease-out;\n    }\n\n    .todo-list li .destroy:hover {\n      color: #af5b5e;\n    }\n\n    .todo-list li .destroy:after {\n      content: \'×\';\n    }\n\n    .todo-list li:hover .destroy {\n      display: block;\n    }\n\n    .todo-list li .edit {\n      display: none;\n    }\n\n    .todo-list li.editing:last-child {\n      margin-bottom: -1px;\n    }\n\n    .footer {\n      color: #777;\n      padding: 10px 15px;\n      height: 20px;\n      text-align: center;\n      border-top: 1px solid #e6e6e6;\n    }\n\n    .footer:before {\n      content: \'\';\n      position: absolute;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      height: 50px;\n      overflow: hidden;\n      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),\n                  0 8px 0 -3px #f6f6f6,\n                  0 9px 1px -3px rgba(0, 0, 0, 0.2),\n                  0 16px 0 -6px #f6f6f6,\n                  0 17px 2px -6px rgba(0, 0, 0, 0.2);\n    }\n\n    .todo-count {\n      float: left;\n      text-align: left;\n    }\n\n    .todo-count strong {\n      font-weight: 300;\n    }\n\n    .filters {\n      margin: 0;\n      padding: 0;\n      list-style: none;\n      position: absolute;\n      right: 0;\n      left: 0;\n    }\n\n    .filters li {\n      display: inline;\n    }\n\n    .filters li a {\n      color: inherit;\n      margin: 3px;\n      padding: 3px 7px;\n      text-decoration: none;\n      border: 1px solid transparent;\n      border-radius: 3px;\n    }\n\n    .filters li a:hover {\n      border-color: rgba(175, 47, 47, 0.1);\n    }\n\n    .filters li a.selected {\n      border-color: rgba(175, 47, 47, 0.2);\n    }\n\n    .clear-completed,\n    html .clear-completed:active {\n      float: right;\n      position: relative;\n      line-height: 20px;\n      text-decoration: none;\n      cursor: pointer;\n    }\n\n    .clear-completed:hover {\n      text-decoration: underline;\n    }\n\n    .info {\n      margin: 65px auto 0;\n      color: #bfbfbf;\n      font-size: 10px;\n      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);\n      text-align: center;\n    }\n\n    .info p {\n      line-height: 1;\n    }\n\n    .info a {\n      color: inherit;\n      text-decoration: none;\n      font-weight: 400;\n    }\n\n    .info a:hover {\n      text-decoration: underline;\n    }\n\n    /*\n      Hack to remove background from Mobile Safari.\n      Can\'t use it globally since it destroys checkboxes in Firefox\n    */\n    @media screen and (-webkit-min-device-pixel-ratio:0) {\n      .toggle-all,\n      .todo-list li .toggle {\n        background: none;\n      }\n\n      .todo-list li .toggle {\n        height: 40px;\n      }\n\n      .toggle-all {\n        -webkit-transform: rotate(90deg);\n        transform: rotate(90deg);\n        -webkit-appearance: none;\n        appearance: none;\n      }\n    }\n\n    @media (max-width: 430px) {\n      .footer {\n        height: 50px;\n      }\n\n      .filters {\n        bottom: 10px;\n      }\n    }\n    ';
+var _user$project$Main$filteredTodos = function (model) {
+	var matchesFilter = function () {
+		var _p0 = model.filter;
+		switch (_p0.ctor) {
+			case 'All':
+				return function (_p1) {
+					return true;
+				};
+			case 'Active':
+				return function (todo) {
+					return _elm_lang$core$Native_Utils.eq(todo.completed, false);
+				};
+			default:
+				return function (todo) {
+					return _elm_lang$core$Native_Utils.eq(todo.completed, true);
+				};
 		}
-
-		// progress
-		if (settings.onProgress.ctor === 'Just')
-		{
-			req.addEventListener('progress', function(event) {
-				var progress = !event.lengthComputable
-					? _elm_lang$core$Maybe$Nothing
-					: _elm_lang$core$Maybe$Just({
-						loaded: event.loaded,
-						total: event.total
+	}();
+	return A2(_elm_lang$core$List$filter, matchesFilter, model.todos);
+};
+var _user$project$Main$is13 = function (code) {
+	return _elm_lang$core$Native_Utils.eq(code, 13) ? _elm_lang$core$Result$Ok(
+		{ctor: '_Tuple0'}) : _elm_lang$core$Result$Err('not the right key code');
+};
+var _user$project$Main$isNotCompleted = function (todo) {
+	return _elm_lang$core$Basics$not(todo.completed);
+};
+var _user$project$Main$newTodo = {title: '', completed: false, editing: false, identifier: 0};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p2 = msg;
+		switch (_p2.ctor) {
+			case 'Add':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(_elm_lang$core$List_ops['::'], model.todo, model.todos),
+						todo: _elm_lang$core$Native_Utils.update(
+							_user$project$Main$newTodo,
+							{identifier: model.nextIdentifier}),
+						nextIdentifier: model.nextIdentifier + 1
 					});
-				var task = settings.onProgress._0(progress);
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
-		}
-
-		// end
-		req.addEventListener('error', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawNetworkError' }));
-		});
-
-		req.addEventListener('timeout', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawTimeout' }));
-		});
-
-		req.addEventListener('load', function() {
-			return callback(_elm_lang$core$Native_Scheduler.succeed(toResponse(req)));
-		});
-
-		req.open(request.verb, request.url, true);
-
-		// set all the headers
-		function setHeader(pair) {
-			req.setRequestHeader(pair._0, pair._1);
-		}
-		A2(_elm_lang$core$List$map, setHeader, request.headers);
-
-		// set the timeout
-		req.timeout = settings.timeout;
-
-		// enable this withCredentials thing
-		req.withCredentials = settings.withCredentials;
-
-		// ask for a specific MIME type for the response
-		if (settings.desiredResponseType.ctor === 'Just')
-		{
-			req.overrideMimeType(settings.desiredResponseType._0);
-		}
-
-		// actuall send the request
-		if(request.body.ctor === "BodyFormData")
-		{
-			req.send(request.body.formData)
-		}
-		else
-		{
-			req.send(request.body._0);
-		}
-
-		return function() {
-			req.abort();
-		};
-	});
-}
-
-
-// deal with responses
-
-function toResponse(req)
-{
-	var tag = req.responseType === 'blob' ? 'Blob' : 'Text'
-	var response = tag === 'Blob' ? req.response : req.responseText;
-	return {
-		status: req.status,
-		statusText: req.statusText,
-		headers: parseHeaders(req.getAllResponseHeaders()),
-		url: req.responseURL,
-		value: { ctor: tag, _0: response }
-	};
-}
-
-
-function parseHeaders(rawHeaders)
-{
-	var headers = _elm_lang$core$Dict$empty;
-
-	if (!rawHeaders)
-	{
-		return headers;
-	}
-
-	var headerPairs = rawHeaders.split('\u000d\u000a');
-	for (var i = headerPairs.length; i--; )
-	{
-		var headerPair = headerPairs[i];
-		var index = headerPair.indexOf('\u003a\u0020');
-		if (index > 0)
-		{
-			var key = headerPair.substring(0, index);
-			var value = headerPair.substring(index + 2);
-
-			headers = A3(_elm_lang$core$Dict$update, key, function(oldValue) {
-				if (oldValue.ctor === 'Just')
-				{
-					return _elm_lang$core$Maybe$Just(value + ', ' + oldValue._0);
-				}
-				return _elm_lang$core$Maybe$Just(value);
-			}, headers);
-		}
-	}
-
-	return headers;
-}
-
-
-function multipart(dataList)
-{
-	var formData = new FormData();
-
-	while (dataList.ctor !== '[]')
-	{
-		var data = dataList._0;
-		if (data.ctor === 'StringData')
-		{
-			formData.append(data._0, data._1);
-		}
-		else
-		{
-			var fileName = data._1.ctor === 'Nothing'
-				? undefined
-				: data._1._0;
-			formData.append(data._0, data._2, fileName);
-		}
-		dataList = dataList._1;
-	}
-
-	return { ctor: 'BodyFormData', formData: formData };
-}
-
-
-function uriEncode(string)
-{
-	return encodeURIComponent(string);
-}
-
-function uriDecode(string)
-{
-	return decodeURIComponent(string);
-}
-
-return {
-	send: F2(send),
-	multipart: multipart,
-	uriEncode: uriEncode,
-	uriDecode: uriDecode
-};
-
-}();
-
-var _evancz$elm_http$Http$send = _evancz$elm_http$Native_Http.send;
-var _evancz$elm_http$Http$defaultSettings = {timeout: 0, onStart: _elm_lang$core$Maybe$Nothing, onProgress: _elm_lang$core$Maybe$Nothing, desiredResponseType: _elm_lang$core$Maybe$Nothing, withCredentials: false};
-var _evancz$elm_http$Http$multipart = _evancz$elm_http$Native_Http.multipart;
-var _evancz$elm_http$Http$uriDecode = _evancz$elm_http$Native_Http.uriDecode;
-var _evancz$elm_http$Http$uriEncode = _evancz$elm_http$Native_Http.uriEncode;
-var _evancz$elm_http$Http$queryEscape = function (string) {
-	return A2(
-		_elm_lang$core$String$join,
-		'+',
-		A2(
-			_elm_lang$core$String$split,
-			'%20',
-			_evancz$elm_http$Http$uriEncode(string)));
-};
-var _evancz$elm_http$Http$queryPair = function (_p0) {
-	var _p1 = _p0;
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		_evancz$elm_http$Http$queryEscape(_p1._0),
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'=',
-			_evancz$elm_http$Http$queryEscape(_p1._1)));
-};
-var _evancz$elm_http$Http$url = F2(
-	function (baseUrl, args) {
-		var _p2 = args;
-		if (_p2.ctor === '[]') {
-			return baseUrl;
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				baseUrl,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'?',
-					A2(
-						_elm_lang$core$String$join,
-						'&',
-						A2(_elm_lang$core$List$map, _evancz$elm_http$Http$queryPair, args))));
+			case 'Complete':
+				var _p3 = _p2._0;
+				var updateTodo = function (thisTodo) {
+					return _elm_lang$core$Native_Utils.eq(thisTodo.identifier, _p3.identifier) ? _elm_lang$core$Native_Utils.update(
+						_p3,
+						{completed: true}) : thisTodo;
+				};
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(_elm_lang$core$List$map, updateTodo, model.todos)
+					});
+			case 'Uncomplete':
+				var updateTodo = function (thisTodo) {
+					return _elm_lang$core$Native_Utils.eq(thisTodo.identifier, _p2._0.identifier) ? _elm_lang$core$Native_Utils.update(
+						thisTodo,
+						{completed: false}) : thisTodo;
+				};
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(_elm_lang$core$List$map, updateTodo, model.todos)
+					});
+			case 'Delete':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(
+							_elm_lang$core$List$filter,
+							function (mappedTodo) {
+								return !_elm_lang$core$Native_Utils.eq(_p2._0.identifier, mappedTodo.identifier);
+							},
+							model.todos)
+					});
+			case 'ClearCompleted':
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						todos: A2(_elm_lang$core$List$filter, _user$project$Main$isNotCompleted, model.todos)
+					});
+			case 'UpdateField':
+				var todo = model.todo;
+				var updatedTodo = _elm_lang$core$Native_Utils.update(
+					todo,
+					{title: _p2._0});
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{todo: updatedTodo});
+			default:
+				return _elm_lang$core$Native_Utils.update(
+					model,
+					{filter: _p2._0});
 		}
 	});
-var _evancz$elm_http$Http$Request = F4(
+var _user$project$Main$Model = F4(
 	function (a, b, c, d) {
-		return {verb: a, headers: b, url: c, body: d};
+		return {todos: a, todo: b, filter: c, nextIdentifier: d};
 	});
-var _evancz$elm_http$Http$Settings = F5(
-	function (a, b, c, d, e) {
-		return {timeout: a, onStart: b, onProgress: c, desiredResponseType: d, withCredentials: e};
+var _user$project$Main$Todo = F4(
+	function (a, b, c, d) {
+		return {title: a, completed: b, editing: c, identifier: d};
 	});
-var _evancz$elm_http$Http$Response = F5(
-	function (a, b, c, d, e) {
-		return {status: a, statusText: b, headers: c, url: d, value: e};
-	});
-var _evancz$elm_http$Http$TODO_implement_blob_in_another_library = {ctor: 'TODO_implement_blob_in_another_library'};
-var _evancz$elm_http$Http$TODO_implement_file_in_another_library = {ctor: 'TODO_implement_file_in_another_library'};
-var _evancz$elm_http$Http$BodyBlob = function (a) {
-	return {ctor: 'BodyBlob', _0: a};
+var _user$project$Main$Completed = {ctor: 'Completed'};
+var _user$project$Main$Active = {ctor: 'Active'};
+var _user$project$Main$All = {ctor: 'All'};
+var _user$project$Main$model = {
+	todos: _elm_lang$core$Native_List.fromArray(
+		[]),
+	todo: _elm_lang$core$Native_Utils.update(
+		_user$project$Main$newTodo,
+		{identifier: 1}),
+	filter: _user$project$Main$All,
+	nextIdentifier: 2
 };
-var _evancz$elm_http$Http$BodyFormData = {ctor: 'BodyFormData'};
-var _evancz$elm_http$Http$ArrayBuffer = {ctor: 'ArrayBuffer'};
-var _evancz$elm_http$Http$BodyString = function (a) {
-	return {ctor: 'BodyString', _0: a};
+var _user$project$Main$Filter = function (a) {
+	return {ctor: 'Filter', _0: a};
 };
-var _evancz$elm_http$Http$string = _evancz$elm_http$Http$BodyString;
-var _evancz$elm_http$Http$Empty = {ctor: 'Empty'};
-var _evancz$elm_http$Http$empty = _evancz$elm_http$Http$Empty;
-var _evancz$elm_http$Http$FileData = F3(
-	function (a, b, c) {
-		return {ctor: 'FileData', _0: a, _1: b, _2: c};
+var _user$project$Main$filterItemView = F2(
+	function (model, filterState) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$classList(
+							_elm_lang$core$Native_List.fromArray(
+								[
+									{
+									ctor: '_Tuple2',
+									_0: 'selected',
+									_1: _elm_lang$core$Native_Utils.eq(model.filter, filterState)
+								}
+								])),
+							_elm_lang$html$Html_Attributes$href('#'),
+							_elm_lang$html$Html_Events$onClick(
+							_user$project$Main$Filter(filterState))
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(
+							_elm_lang$core$Basics$toString(filterState))
+						]))
+				]));
 	});
-var _evancz$elm_http$Http$BlobData = F3(
-	function (a, b, c) {
-		return {ctor: 'BlobData', _0: a, _1: b, _2: c};
-	});
-var _evancz$elm_http$Http$blobData = _evancz$elm_http$Http$BlobData;
-var _evancz$elm_http$Http$StringData = F2(
-	function (a, b) {
-		return {ctor: 'StringData', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$stringData = _evancz$elm_http$Http$StringData;
-var _evancz$elm_http$Http$Blob = function (a) {
-	return {ctor: 'Blob', _0: a};
+var _user$project$Main$UpdateField = function (a) {
+	return {ctor: 'UpdateField', _0: a};
 };
-var _evancz$elm_http$Http$Text = function (a) {
-	return {ctor: 'Text', _0: a};
+var _user$project$Main$ClearCompleted = {ctor: 'ClearCompleted'};
+var _user$project$Main$Delete = function (a) {
+	return {ctor: 'Delete', _0: a};
 };
-var _evancz$elm_http$Http$RawNetworkError = {ctor: 'RawNetworkError'};
-var _evancz$elm_http$Http$RawTimeout = {ctor: 'RawTimeout'};
-var _evancz$elm_http$Http$BadResponse = F2(
-	function (a, b) {
-		return {ctor: 'BadResponse', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$UnexpectedPayload = function (a) {
-	return {ctor: 'UnexpectedPayload', _0: a};
+var _user$project$Main$Uncomplete = function (a) {
+	return {ctor: 'Uncomplete', _0: a};
 };
-var _evancz$elm_http$Http$handleResponse = F2(
-	function (handle, response) {
-		if ((_elm_lang$core$Native_Utils.cmp(200, response.status) < 1) && (_elm_lang$core$Native_Utils.cmp(response.status, 300) < 0)) {
-			var _p3 = response.value;
-			if (_p3.ctor === 'Text') {
-				return handle(_p3._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload('Response body is a blob, expecting a string.'));
-			}
+var _user$project$Main$Complete = function (a) {
+	return {ctor: 'Complete', _0: a};
+};
+var _user$project$Main$todoView = function (todo) {
+	var handleComplete = function () {
+		var _p4 = todo.completed;
+		if (_p4 === true) {
+			return function (_p5) {
+				return _user$project$Main$Uncomplete(todo);
+			};
 		} else {
-			return _elm_lang$core$Task$fail(
-				A2(_evancz$elm_http$Http$BadResponse, response.status, response.statusText));
+			return function (_p6) {
+				return _user$project$Main$Complete(todo);
+			};
 		}
-	});
-var _evancz$elm_http$Http$NetworkError = {ctor: 'NetworkError'};
-var _evancz$elm_http$Http$Timeout = {ctor: 'Timeout'};
-var _evancz$elm_http$Http$promoteError = function (rawError) {
-	var _p4 = rawError;
-	if (_p4.ctor === 'RawTimeout') {
-		return _evancz$elm_http$Http$Timeout;
-	} else {
-		return _evancz$elm_http$Http$NetworkError;
-	}
-};
-var _evancz$elm_http$Http$getString = function (url) {
-	var request = {
-		verb: 'GET',
-		headers: _elm_lang$core$Native_List.fromArray(
-			[]),
-		url: url,
-		body: _evancz$elm_http$Http$empty
-	};
-	return A2(
-		_elm_lang$core$Task$andThen,
-		A2(
-			_elm_lang$core$Task$mapError,
-			_evancz$elm_http$Http$promoteError,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request)),
-		_evancz$elm_http$Http$handleResponse(_elm_lang$core$Task$succeed));
-};
-var _evancz$elm_http$Http$fromJson = F2(
-	function (decoder, response) {
-		var decode = function (str) {
-			var _p5 = A2(_elm_lang$core$Json_Decode$decodeString, decoder, str);
-			if (_p5.ctor === 'Ok') {
-				return _elm_lang$core$Task$succeed(_p5._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload(_p5._0));
-			}
-		};
-		return A2(
-			_elm_lang$core$Task$andThen,
-			A2(_elm_lang$core$Task$mapError, _evancz$elm_http$Http$promoteError, response),
-			_evancz$elm_http$Http$handleResponse(decode));
-	});
-var _evancz$elm_http$Http$get = F2(
-	function (decoder, url) {
-		var request = {
-			verb: 'GET',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: _evancz$elm_http$Http$empty
-		};
-		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
-	});
-var _evancz$elm_http$Http$post = F3(
-	function (decoder, url, body) {
-		var request = {
-			verb: 'POST',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: body
-		};
-		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
-	});
-
-var _user$project$Components_DemoList$showView = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h3,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.name)
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list-item')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Live Demo')
-									]))
-							])),
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Source Code')
-									]))
-							]))
-					]))
-			]));
-};
-var _user$project$Components_DemoList$initialModel = {
-	demos: _elm_lang$core$Native_List.fromArray(
-		[])
-};
-var _user$project$Components_DemoList$Model = function (a) {
-	return {demos: a};
-};
-var _user$project$Components_DemoList$Demo = F3(
-	function (a, b, c) {
-		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
-	});
-var _user$project$Components_DemoList$decodeDemoData = A4(
-	_elm_lang$core$Json_Decode$object3,
-	_user$project$Components_DemoList$Demo,
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
-var _user$project$Components_DemoList$decodeDemoList = _elm_lang$core$Json_Decode$list(_user$project$Components_DemoList$decodeDemoData);
-var _user$project$Components_DemoList$decodeDemoFetch = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['data']),
-	_user$project$Components_DemoList$decodeDemoList);
-var _user$project$Components_DemoList$ShowView = function (a) {
-	return {ctor: 'ShowView', _0: a};
-};
-var _user$project$Components_DemoList$ListView = {ctor: 'ListView'};
-var _user$project$Components_DemoList$RouteToNewPage = function (a) {
-	return {ctor: 'RouteToNewPage', _0: a};
-};
-var _user$project$Components_DemoList$renderDemo = function (demo) {
+	}();
 	return A2(
 		_elm_lang$html$Html$li,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('demo-list-item')
+				_elm_lang$html$Html_Attributes$classList(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'completed', _1: todo.completed}
+					]))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				A2(
-				_elm_lang$html$Html$a,
+				_elm_lang$html$Html$div,
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html_Attributes$href(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'#demo/',
-							A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
-						_elm_lang$html$Html_Events$onClick(
-						_user$project$Components_DemoList$RouteToNewPage(
-							_user$project$Components_DemoList$ShowView(demo)))
+						_elm_lang$html$Html_Attributes$class('view')
 					]),
 				_elm_lang$core$Native_List.fromArray(
 					[
-						_elm_lang$html$Html$text(demo.name)
+						A2(
+						_elm_lang$html$Html$input,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('toggle'),
+								_elm_lang$html$Html_Attributes$type$('checkbox'),
+								_elm_lang$html$Html_Attributes$checked(todo.completed),
+								_elm_lang$html$Html_Events$onCheck(handleComplete)
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[])),
+						A2(
+						_elm_lang$html$Html$label,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(todo.title)
+							])),
+						A2(
+						_elm_lang$html$Html$button,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('destroy'),
+								_elm_lang$html$Html_Events$onClick(
+								_user$project$Main$Delete(todo))
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[]))
 					]))
 			]));
 };
-var _user$project$Components_DemoList$renderDemos = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
-};
-var _user$project$Components_DemoList$view = function (model) {
+var _user$project$Main$Add = {ctor: 'Add'};
+var _user$project$Main$handleKeyPress = function (model) {
 	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demos')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h2,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Demos')
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list')
-					]),
-				_user$project$Components_DemoList$renderDemos(model))
-			]));
-};
-var _user$project$Components_DemoList$FetchFail = function (a) {
-	return {ctor: 'FetchFail', _0: a};
-};
-var _user$project$Components_DemoList$FetchSucceed = function (a) {
-	return {ctor: 'FetchSucceed', _0: a};
-};
-var _user$project$Components_DemoList$fetchDemos = function () {
-	var url = '/api/demos';
-	return A3(
-		_elm_lang$core$Task$perform,
-		_user$project$Components_DemoList$FetchFail,
-		_user$project$Components_DemoList$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
-}();
-var _user$project$Components_DemoList$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _user$project$Components_DemoList$fetchDemos};
-			case 'FetchSucceed':
-				return {
-					ctor: '_Tuple2',
-					_0: _user$project$Components_DemoList$Model(_p0._0),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'FetchFail':
-				var _p1 = _p0._0;
-				if (_p1.ctor === 'UnexpectedPayload') {
-					return A2(
-						_elm_lang$core$Debug$log,
-						_p1._0,
-						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
-				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
-var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
-
-var _user$project$Components_PresentationList$view = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('presentations')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Presentations')
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('September 2016')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://prezi.com/wofdk8e6uuy3')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Getting to Know Elm')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('October 2016')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Elm and React (Coming Soon)')
-						]))
-				]))
-		]));
-
-var _user$project$Components_ResourceList$view = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('resources')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Resources')
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Books')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://guide.elm-lang.org')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('An Introduction to Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://raorao.gitbooks.io/elmbridge-curriculum/content')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elmbridge Curriculum')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Courses')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://courses.knowthen.com/courses/elm-for-beginners')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm for Beginners')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://www.dailydrip.com/topics/elm')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('DailyDrip Elm')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Community')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://elmlang.herokuapp.com')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Slack')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://twitter.com/elmlang')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Twitter')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.elmweekly.nl')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Weekly')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Elm and Phoenix')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Setting Up Elm with Phoenix')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Writing a Full Site in Phoenix and Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.cultivatehq.com/posts/phoenix-elm-1')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Phoenix with Elm')
-								]))
-						]))
-				]))
-		]));
-
-var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
-var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
-var _user$project$Main$subscriptions = function (model) {
-	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$Model = F2(
-	function (a, b) {
-		return {demoListModel: a, currentView: b};
-	});
-var _user$project$Main$PresentationListView = {ctor: 'PresentationListView'};
-var _user$project$Main$ResourceListView = {ctor: 'ResourceListView'};
-var _user$project$Main$DemoShowView = function (a) {
-	return {ctor: 'DemoShowView', _0: a};
-};
-var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
-var _user$project$Main$RootView = {ctor: 'RootView'};
-var _user$project$Main$initialModel = {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView};
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$DemoShowMsg = function (a) {
-	return {ctor: 'DemoShowMsg', _0: a};
-};
-var _user$project$Main$demoShowView = function (demo) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoShowMsg,
-		_user$project$Components_DemoList$showView(demo));
-};
-var _user$project$Main$DemoListMsg = function (a) {
-	return {ctor: 'DemoListMsg', _0: a};
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'DemoListMsg':
-				var _p4 = _p0._0;
-				var _p1 = _p4;
-				if (_p1.ctor === 'RouteToNewPage') {
-					var _p2 = _p1._0;
-					if (_p2.ctor === 'ShowView') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									currentView: _user$project$Main$DemoShowView(_p2._0)
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				} else {
-					var _p3 = A2(_user$project$Components_DemoList$update, _p4, model.demoListModel);
-					var updatedModel = _p3._0;
-					var cmd = _p3._1;
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{demoListModel: updatedModel}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-					};
-				}
-			case 'UpdateView':
-				var _p6 = _p0._0;
-				var _p5 = _p6;
-				if (_p5.ctor === 'DemoListView') {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p6}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
-					};
-				} else {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p6}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$Main$demoListView = function (model) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoListMsg,
-		_user$project$Components_DemoList$view(model.demoListModel));
-};
-var _user$project$Main$UpdateView = function (a) {
-	return {ctor: 'UpdateView', _0: a};
-};
-var _user$project$Main$header = A2(
-	_elm_lang$html$Html$header,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('header')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$a,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$href('#'),
-					_elm_lang$html$Html_Events$onClick(
-					_user$project$Main$UpdateView(_user$project$Main$RootView))
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$h1,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('header-text')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Elm Orlando')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$nav,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$ul,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('nav nav-pills')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://www.meetup.com/ElmOrlando')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/meetup.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								])),
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://github.com/ElmOrlando')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/github.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								])),
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://twitter.com/ElmOrlandoGroup')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/twitter.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								]))
-						]))
-				]))
-		]));
-var _user$project$Main$welcomeView = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#demos'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$DemoListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Demos')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#resources'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$ResourceListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Resources')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#presentations'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$PresentationListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Presentations')
-						]))
-				]))
-		]));
-var _user$project$Main$pageView = function (model) {
-	var _p7 = model.currentView;
-	switch (_p7.ctor) {
-		case 'RootView':
-			return _user$project$Main$welcomeView;
-		case 'DemoListView':
-			return _user$project$Main$demoListView(model);
-		case 'DemoShowView':
-			return _user$project$Main$demoShowView(_p7._0);
-		case 'ResourceListView':
-			return _user$project$Main$resourceListView;
-		default:
-			return _user$project$Main$presentationListView;
-	}
+		_elm_lang$core$Json_Decode$map,
+		_elm_lang$core$Basics$always(_user$project$Main$Add),
+		A2(_elm_lang$core$Json_Decode$customDecoder, _elm_lang$html$Html_Events$keyCode, _user$project$Main$is13));
 };
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('elm-app')
-			]),
+			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Main$header,
-				_user$project$Main$pageView(model)
+				A3(
+				_elm_lang$html$Html$node,
+				'style',
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$type$('text/css')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(_user$project$Main$styles)
+					])),
+				A2(
+				_elm_lang$html$Html$section,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('todoapp')
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$header,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('header')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$h1,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('TodoList')
+									])),
+								A2(
+								_elm_lang$html$Html$input,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('new-todo'),
+										_elm_lang$html$Html_Attributes$placeholder('What needs to be done?'),
+										_elm_lang$html$Html_Attributes$value(model.todo.title),
+										_elm_lang$html$Html_Attributes$autofocus(true),
+										A2(
+										_elm_lang$html$Html_Events$on,
+										'keypress',
+										_user$project$Main$handleKeyPress(model)),
+										_elm_lang$html$Html_Events$onInput(_user$project$Main$UpdateField)
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[]))
+							])),
+						A2(
+						_elm_lang$html$Html$section,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('main')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$ul,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('todo-list')
+									]),
+								A2(
+									_elm_lang$core$List$map,
+									_user$project$Main$todoView,
+									_user$project$Main$filteredTodos(model)))
+							])),
+						A2(
+						_elm_lang$html$Html$footer,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('footer')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$span,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('todo-count')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$strong,
+										_elm_lang$core$Native_List.fromArray(
+											[]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text(
+												_elm_lang$core$Basics$toString(
+													_elm_lang$core$List$length(
+														A2(
+															_elm_lang$core$List$filter,
+															function (todo) {
+																return _elm_lang$core$Native_Utils.eq(todo.completed, false);
+															},
+															model.todos))))
+											])),
+										_elm_lang$html$Html$text(' items left')
+									])),
+								A2(
+								_elm_lang$html$Html$ul,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Attributes$class('filters')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(_user$project$Main$filterItemView, model, _user$project$Main$All),
+										A2(_user$project$Main$filterItemView, model, _user$project$Main$Active),
+										A2(_user$project$Main$filterItemView, model, _user$project$Main$Completed)
+									])),
+								A2(
+								_elm_lang$html$Html$button,
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html_Events$onClick(_user$project$Main$ClearCompleted),
+										_elm_lang$html$Html_Attributes$class('clear-completed')
+									]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										_elm_lang$html$Html$text('Clear completed')
+									]))
+							]))
+					]))
 			]));
 };
 var _user$project$Main$main = {
-	main: _elm_lang$html$Html_App$program(
-		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})
+	main: _elm_lang$html$Html_App$beginnerProgram(
+		{model: _user$project$Main$model, update: _user$project$Main$update, view: _user$project$Main$view})
 };
-
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 _elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _user$project$Main$main === 'undefined' ? null : _user$project$Main$main);
@@ -9568,4 +8281,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-
+</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>

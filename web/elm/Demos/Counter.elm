@@ -6,7 +6,7 @@
 -}
 
 
-module Main exposing (..)
+module Counter exposing (..)
 
 import Html.App as App
 import Html exposing (Html, button, div, h1, text)

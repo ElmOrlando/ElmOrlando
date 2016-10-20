@@ -1,4 +1,6 @@
-
+<!DOCTYPE HTML>
+<html><head><meta charset="UTF-8"><title>Main</title><style>html,head,body { padding:0; margin:0; }
+body { font-family: calibri, helvetica, arial, sans-serif; }</style><script type="text/javascript">
 (function() {
 'use strict';
 
@@ -134,7 +136,6 @@ function A9(fun, a, b, c, d, e, f, g, h, i)
     ? fun.func(a, b, c, d, e, f, g, h, i)
     : fun(a)(b)(c)(d)(e)(f)(g)(h)(i);
 }
-
 //import Native.List //
 
 var _elm_lang$core$Native_Array = function() {
@@ -1101,8 +1102,7 @@ return {
 	fromJSArray: fromJSArray
 };
 
-}();
-//import Native.Utils //
+}();//import Native.Utils //
 
 var _elm_lang$core$Native_Basics = function() {
 
@@ -1242,8 +1242,7 @@ return {
 	isInfinite: isInfinite
 };
 
-}();
-//import //
+}();//import //
 
 var _elm_lang$core$Native_Utils = function() {
 
@@ -1725,8 +1724,7 @@ return {
 	toString: toString
 };
 
-}();
-var _elm_lang$core$Basics$uncurry = F2(
+}();var _elm_lang$core$Basics$uncurry = F2(
 	function (f, _p0) {
 		var _p1 = _p0;
 		return A2(f, _p1._0, _p1._1);
@@ -1850,7 +1848,6 @@ var _elm_lang$core$Basics$LT = {ctor: 'LT'};
 var _elm_lang$core$Basics$Never = function (a) {
 	return {ctor: 'Never', _0: a};
 };
-
 var _elm_lang$core$Maybe$withDefault = F2(
 	function ($default, maybe) {
 		var _p0 = maybe;
@@ -1942,7 +1939,6 @@ var _elm_lang$core$Maybe$map5 = F6(
 			return _elm_lang$core$Maybe$Nothing;
 		}
 	});
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_List = function() {
@@ -2095,8 +2091,7 @@ return {
 	sortWith: F2(sortWith)
 };
 
-}();
-var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
+}();var _elm_lang$core$List$sortWith = _elm_lang$core$Native_List.sortWith;
 var _elm_lang$core$List$sortBy = _elm_lang$core$Native_List.sortBy;
 var _elm_lang$core$List$sort = function (xs) {
 	return A2(_elm_lang$core$List$sortBy, _elm_lang$core$Basics$identity, xs);
@@ -2597,7 +2592,6 @@ var _elm_lang$core$List$repeat = F2(
 			n,
 			value);
 	});
-
 var _elm_lang$core$Array$append = _elm_lang$core$Native_Array.append;
 var _elm_lang$core$Array$length = _elm_lang$core$Native_Array.length;
 var _elm_lang$core$Array$isEmpty = function (array) {
@@ -2651,7 +2645,6 @@ var _elm_lang$core$Array$repeat = F2(
 			_elm_lang$core$Basics$always(e));
 	});
 var _elm_lang$core$Array$Array = {ctor: 'Array'};
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Char = function() {
@@ -2665,8 +2658,7 @@ return {
 	toLocaleLower: function(c) { return _elm_lang$core$Native_Utils.chr(c.toLocaleLowerCase()); }
 };
 
-}();
-var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
+}();var _elm_lang$core$Char$fromCode = _elm_lang$core$Native_Char.fromCode;
 var _elm_lang$core$Char$toCode = _elm_lang$core$Native_Char.toCode;
 var _elm_lang$core$Char$toLocaleLower = _elm_lang$core$Native_Char.toLocaleLower;
 var _elm_lang$core$Char$toLocaleUpper = _elm_lang$core$Native_Char.toLocaleUpper;
@@ -2708,7 +2700,6 @@ var _elm_lang$core$Char$isHexDigit = function ($char) {
 		_elm_lang$core$Native_Utils.chr('F'),
 		$char));
 };
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Scheduler = function() {
@@ -2989,8 +2980,7 @@ return {
 	rawSend: rawSend
 };
 
-}();
-//import //
+}();//import //
 
 var _elm_lang$core$Native_Platform = function() {
 
@@ -3600,7 +3590,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$Platform$hack = _elm_lang$core$Native_Scheduler.succeed;
 var _elm_lang$core$Platform$sendToSelf = _elm_lang$core$Native_Platform.sendToSelf;
 var _elm_lang$core$Platform$sendToApp = _elm_lang$core$Native_Platform.sendToApp;
@@ -3608,7 +3597,6 @@ var _elm_lang$core$Platform$Program = {ctor: 'Program'};
 var _elm_lang$core$Platform$Task = {ctor: 'Task'};
 var _elm_lang$core$Platform$ProcessId = {ctor: 'ProcessId'};
 var _elm_lang$core$Platform$Router = {ctor: 'Router'};
-
 var _elm_lang$core$Platform_Cmd$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Cmd$none = _elm_lang$core$Platform_Cmd$batch(
 	_elm_lang$core$Native_List.fromArray(
@@ -3624,7 +3612,6 @@ _elm_lang$core$Platform_Cmd_ops['!'] = F2(
 	});
 var _elm_lang$core$Platform_Cmd$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Cmd$Cmd = {ctor: 'Cmd'};
-
 var _elm_lang$core$Result$toMaybe = function (result) {
 	var _p0 = result;
 	if (_p0.ctor === 'Ok') {
@@ -3766,7 +3753,6 @@ var _elm_lang$core$Result$fromMaybe = F2(
 			return _elm_lang$core$Result$Err(err);
 		}
 	});
-
 var _elm_lang$core$Task$onError = _elm_lang$core$Native_Scheduler.onError;
 var _elm_lang$core$Task$andThen = _elm_lang$core$Native_Scheduler.andThen;
 var _elm_lang$core$Task$spawnCmd = F2(
@@ -3999,7 +3985,6 @@ var _elm_lang$core$Task$cmdMap = F2(
 			A2(_elm_lang$core$Task$map, tagger, _p11._0));
 	});
 _elm_lang$core$Native_Platform.effectManagers['Task'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Task$init, onEffects: _elm_lang$core$Task$onEffects, onSelfMsg: _elm_lang$core$Task$onSelfMsg, tag: 'cmd', cmdMap: _elm_lang$core$Task$cmdMap};
-
 //import Native.Utils //
 
 var _elm_lang$core$Native_Debug = function() {
@@ -4029,8 +4014,7 @@ return {
 	log: F2(log)
 };
 
-}();
-//import Maybe, Native.List, Native.Utils, Result //
+}();//import Maybe, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_String = function() {
 
@@ -4365,7 +4349,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$String$fromList = _elm_lang$core$Native_String.fromList;
 var _elm_lang$core$String$toList = _elm_lang$core$Native_String.toList;
 var _elm_lang$core$String$toFloat = _elm_lang$core$Native_String.toFloat;
@@ -4409,7 +4392,6 @@ var _elm_lang$core$String$fromChar = function ($char) {
 	return A2(_elm_lang$core$String$cons, $char, '');
 };
 var _elm_lang$core$String$isEmpty = _elm_lang$core$Native_String.isEmpty;
-
 var _elm_lang$core$Dict$foldr = F3(
 	function (f, acc, t) {
 		foldr:
@@ -5303,7 +5285,6 @@ var _elm_lang$core$Dict$diff = F2(
 			t1,
 			t2);
 	});
-
 //import Native.Scheduler //
 
 var _elm_lang$core$Native_Time = function() {
@@ -5330,14 +5311,12 @@ return {
 	setInterval_: F2(setInterval_)
 };
 
-}();
-var _elm_lang$core$Platform_Sub$batch = _elm_lang$core$Native_Platform.batch;
+}();var _elm_lang$core$Platform_Sub$batch = _elm_lang$core$Native_Platform.batch;
 var _elm_lang$core$Platform_Sub$none = _elm_lang$core$Platform_Sub$batch(
 	_elm_lang$core$Native_List.fromArray(
 		[]));
 var _elm_lang$core$Platform_Sub$map = _elm_lang$core$Native_Platform.map;
 var _elm_lang$core$Platform_Sub$Sub = {ctor: 'Sub'};
-
 var _elm_lang$core$Time$setInterval = _elm_lang$core$Native_Time.setInterval_;
 var _elm_lang$core$Time$spawnHelp = F3(
 	function (router, intervals, processes) {
@@ -5526,10 +5505,8 @@ var _elm_lang$core$Time$subMap = F2(
 			});
 	});
 _elm_lang$core$Native_Platform.effectManagers['Time'] = {pkg: 'elm-lang/core', init: _elm_lang$core$Time$init, onEffects: _elm_lang$core$Time$onEffects, onSelfMsg: _elm_lang$core$Time$onSelfMsg, tag: 'sub', subMap: _elm_lang$core$Time$subMap};
-
 var _elm_lang$core$Debug$crash = _elm_lang$core$Native_Debug.crash;
 var _elm_lang$core$Debug$log = _elm_lang$core$Native_Debug.log;
-
 //import Maybe, Native.Array, Native.List, Native.Utils, Result //
 
 var _elm_lang$core$Native_Json = function() {
@@ -6193,7 +6170,6 @@ return {
 };
 
 }();
-
 var _elm_lang$core$Json_Encode$list = _elm_lang$core$Native_Json.encodeList;
 var _elm_lang$core$Json_Encode$array = _elm_lang$core$Native_Json.encodeArray;
 var _elm_lang$core$Json_Encode$object = _elm_lang$core$Native_Json.encodeObject;
@@ -6204,7 +6180,6 @@ var _elm_lang$core$Json_Encode$int = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$string = _elm_lang$core$Native_Json.identity;
 var _elm_lang$core$Json_Encode$encode = _elm_lang$core$Native_Json.encode;
 var _elm_lang$core$Json_Encode$Value = {ctor: 'Value'};
-
 var _elm_lang$core$Json_Decode$tuple8 = _elm_lang$core$Native_Json.decodeTuple8;
 var _elm_lang$core$Json_Decode$tuple7 = _elm_lang$core$Native_Json.decodeTuple7;
 var _elm_lang$core$Json_Decode$tuple6 = _elm_lang$core$Native_Json.decodeTuple6;
@@ -6265,7 +6240,6 @@ var _elm_lang$core$Json_Decode$dict = function (decoder) {
 		_elm_lang$core$Json_Decode$keyValuePairs(decoder));
 };
 var _elm_lang$core$Json_Decode$Decoder = {ctor: 'Decoder'};
-
 //import Native.Json //
 
 var _elm_lang$virtual_dom$Native_VirtualDom = function() {
@@ -7727,8 +7701,7 @@ return {
 	programWithFlags: programWithFlags
 };
 
-}();
-var _elm_lang$virtual_dom$VirtualDom$programWithFlags = _elm_lang$virtual_dom$Native_VirtualDom.programWithFlags;
+}();var _elm_lang$virtual_dom$VirtualDom$programWithFlags = _elm_lang$virtual_dom$Native_VirtualDom.programWithFlags;
 var _elm_lang$virtual_dom$VirtualDom$keyedNode = _elm_lang$virtual_dom$Native_VirtualDom.keyedNode;
 var _elm_lang$virtual_dom$VirtualDom$lazy3 = _elm_lang$virtual_dom$Native_VirtualDom.lazy3;
 var _elm_lang$virtual_dom$VirtualDom$lazy2 = _elm_lang$virtual_dom$Native_VirtualDom.lazy2;
@@ -7752,7 +7725,6 @@ var _elm_lang$virtual_dom$VirtualDom$Options = F2(
 	});
 var _elm_lang$virtual_dom$VirtualDom$Node = {ctor: 'Node'};
 var _elm_lang$virtual_dom$VirtualDom$Property = {ctor: 'Property'};
-
 var _elm_lang$html$Html$text = _elm_lang$virtual_dom$VirtualDom$text;
 var _elm_lang$html$Html$node = _elm_lang$virtual_dom$VirtualDom$node;
 var _elm_lang$html$Html$body = _elm_lang$html$Html$node('body');
@@ -7854,7 +7826,6 @@ var _elm_lang$html$Html$details = _elm_lang$html$Html$node('details');
 var _elm_lang$html$Html$summary = _elm_lang$html$Html$node('summary');
 var _elm_lang$html$Html$menuitem = _elm_lang$html$Html$node('menuitem');
 var _elm_lang$html$Html$menu = _elm_lang$html$Html$node('menu');
-
 var _elm_lang$html$Html_App$programWithFlags = _elm_lang$virtual_dom$VirtualDom$programWithFlags;
 var _elm_lang$html$Html_App$program = function (app) {
 	return _elm_lang$html$Html_App$programWithFlags(
@@ -7892,7 +7863,6 @@ var _elm_lang$html$Html_App$beginnerProgram = function (_p1) {
 		});
 };
 var _elm_lang$html$Html_App$map = _elm_lang$virtual_dom$VirtualDom$map;
-
 var _elm_lang$html$Html_Attributes$attribute = _elm_lang$virtual_dom$VirtualDom$attribute;
 var _elm_lang$html$Html_Attributes$contextmenu = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'contextmenu', value);
@@ -8244,7 +8214,6 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 				A2(_elm_lang$core$List$filter, _elm_lang$core$Basics$snd, list))));
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
-
 var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
 var _elm_lang$html$Html_Events$targetChecked = A2(
 	_elm_lang$core$Json_Decode$at,
@@ -8345,7 +8314,6 @@ var _elm_lang$html$Html_Events$Options = F2(
 	function (a, b) {
 		return {stopPropagation: a, preventDefault: b};
 	});
-
 //import Dict, List, Maybe, Native.Scheduler //
 
 var _evancz$elm_http$Native_Http = function() {
@@ -8521,7 +8489,6 @@ return {
 };
 
 }();
-
 var _evancz$elm_http$Http$send = _evancz$elm_http$Native_Http.send;
 var _evancz$elm_http$Http$defaultSettings = {timeout: 0, onStart: _elm_lang$core$Maybe$Nothing, onProgress: _elm_lang$core$Maybe$Nothing, desiredResponseType: _elm_lang$core$Maybe$Nothing, withCredentials: false};
 var _evancz$elm_http$Http$multipart = _evancz$elm_http$Native_Http.multipart;
@@ -8703,838 +8670,118 @@ var _evancz$elm_http$Http$post = F3(
 			decoder,
 			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
 	});
-
-var _user$project$Components_DemoList$showView = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h3,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.name)
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list-item')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Live Demo')
-									]))
-							])),
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Source Code')
-									]))
-							]))
-					]))
-			]));
-};
-var _user$project$Components_DemoList$initialModel = {
-	demos: _elm_lang$core$Native_List.fromArray(
-		[])
-};
-var _user$project$Components_DemoList$Model = function (a) {
-	return {demos: a};
-};
-var _user$project$Components_DemoList$Demo = F3(
-	function (a, b, c) {
-		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
-	});
-var _user$project$Components_DemoList$decodeDemoData = A4(
-	_elm_lang$core$Json_Decode$object3,
-	_user$project$Components_DemoList$Demo,
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
-var _user$project$Components_DemoList$decodeDemoList = _elm_lang$core$Json_Decode$list(_user$project$Components_DemoList$decodeDemoData);
-var _user$project$Components_DemoList$decodeDemoFetch = A2(
+var _user$project$Main$decodeGifUrl = A2(
 	_elm_lang$core$Json_Decode$at,
 	_elm_lang$core$Native_List.fromArray(
-		['data']),
-	_user$project$Components_DemoList$decodeDemoList);
-var _user$project$Components_DemoList$ShowView = function (a) {
-	return {ctor: 'ShowView', _0: a};
-};
-var _user$project$Components_DemoList$ListView = {ctor: 'ListView'};
-var _user$project$Components_DemoList$RouteToNewPage = function (a) {
-	return {ctor: 'RouteToNewPage', _0: a};
-};
-var _user$project$Components_DemoList$renderDemo = function (demo) {
-	return A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demo-list-item')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$a,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$href(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'#demo/',
-							A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
-						_elm_lang$html$Html_Events$onClick(
-						_user$project$Components_DemoList$RouteToNewPage(
-							_user$project$Components_DemoList$ShowView(demo)))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(demo.name)
-					]))
-			]));
-};
-var _user$project$Components_DemoList$renderDemos = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
-};
-var _user$project$Components_DemoList$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demos')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h2,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Demos')
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list')
-					]),
-				_user$project$Components_DemoList$renderDemos(model))
-			]));
-};
-var _user$project$Components_DemoList$FetchFail = function (a) {
-	return {ctor: 'FetchFail', _0: a};
-};
-var _user$project$Components_DemoList$FetchSucceed = function (a) {
-	return {ctor: 'FetchSucceed', _0: a};
-};
-var _user$project$Components_DemoList$fetchDemos = function () {
-	var url = '/api/demos';
-	return A3(
-		_elm_lang$core$Task$perform,
-		_user$project$Components_DemoList$FetchFail,
-		_user$project$Components_DemoList$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
-}();
-var _user$project$Components_DemoList$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _user$project$Components_DemoList$fetchDemos};
-			case 'FetchSucceed':
-				return {
-					ctor: '_Tuple2',
-					_0: _user$project$Components_DemoList$Model(_p0._0),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'FetchFail':
-				var _p1 = _p0._0;
-				if (_p1.ctor === 'UnexpectedPayload') {
-					return A2(
-						_elm_lang$core$Debug$log,
-						_p1._0,
-						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
-				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
-var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
-
-var _user$project$Components_PresentationList$view = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('presentations')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Presentations')
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('September 2016')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://prezi.com/wofdk8e6uuy3')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Getting to Know Elm')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('October 2016')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Elm and React (Coming Soon)')
-						]))
-				]))
-		]));
-
-var _user$project$Components_ResourceList$view = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('resources')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Resources')
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Books')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://guide.elm-lang.org')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('An Introduction to Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://raorao.gitbooks.io/elmbridge-curriculum/content')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elmbridge Curriculum')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Courses')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://courses.knowthen.com/courses/elm-for-beginners')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm for Beginners')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://www.dailydrip.com/topics/elm')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('DailyDrip Elm')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Community')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://elmlang.herokuapp.com')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Slack')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://twitter.com/elmlang')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Twitter')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.elmweekly.nl')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Weekly')
-								]))
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h3,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Elm and Phoenix')
-				])),
-			A2(
-			_elm_lang$html$Html$ul,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Setting Up Elm with Phoenix')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Writing a Full Site in Phoenix and Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.cultivatehq.com/posts/phoenix-elm-1')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Phoenix with Elm')
-								]))
-						]))
-				]))
-		]));
-
-var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
-var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
+		['data', 'image_url']),
+	_elm_lang$core$Json_Decode$string);
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$Model = F2(
 	function (a, b) {
-		return {demoListModel: a, currentView: b};
+		return {topic: a, gifUrl: b};
 	});
-var _user$project$Main$PresentationListView = {ctor: 'PresentationListView'};
-var _user$project$Main$ResourceListView = {ctor: 'ResourceListView'};
-var _user$project$Main$DemoShowView = function (a) {
-	return {ctor: 'DemoShowView', _0: a};
+var _user$project$Main$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
 };
-var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
-var _user$project$Main$RootView = {ctor: 'RootView'};
-var _user$project$Main$initialModel = {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView};
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$initialModel, _1: _elm_lang$core$Platform_Cmd$none};
-var _user$project$Main$DemoShowMsg = function (a) {
-	return {ctor: 'DemoShowMsg', _0: a};
+var _user$project$Main$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
 };
-var _user$project$Main$demoShowView = function (demo) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoShowMsg,
-		_user$project$Components_DemoList$showView(demo));
+var _user$project$Main$getRandomGif = function (topic) {
+	var url = A2(_elm_lang$core$Basics_ops['++'], 'http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=', topic);
+	return A3(
+		_elm_lang$core$Task$perform,
+		_user$project$Main$FetchFail,
+		_user$project$Main$FetchSucceed,
+		A2(_evancz$elm_http$Http$get, _user$project$Main$decodeGifUrl, url));
 };
-var _user$project$Main$DemoListMsg = function (a) {
-	return {ctor: 'DemoListMsg', _0: a};
+var _user$project$Main$init = function (topic) {
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_user$project$Main$Model, topic, '/images/waiting.gif'),
+		_1: _user$project$Main$getRandomGif(topic)
+	};
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
 		var _p0 = msg;
 		switch (_p0.ctor) {
-			case 'DemoListMsg':
-				var _p4 = _p0._0;
-				var _p1 = _p4;
-				if (_p1.ctor === 'RouteToNewPage') {
-					var _p2 = _p1._0;
-					if (_p2.ctor === 'ShowView') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									currentView: _user$project$Main$DemoShowView(_p2._0)
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				} else {
-					var _p3 = A2(_user$project$Components_DemoList$update, _p4, model.demoListModel);
-					var updatedModel = _p3._0;
-					var cmd = _p3._1;
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{demoListModel: updatedModel}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-					};
-				}
-			case 'UpdateView':
-				var _p6 = _p0._0;
-				var _p5 = _p6;
-				if (_p5.ctor === 'DemoListView') {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p6}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
-					};
-				} else {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p6}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				}
+			case 'MorePlease':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: _user$project$Main$getRandomGif(model.topic)
+				};
+			case 'FetchSucceed':
+				return {
+					ctor: '_Tuple2',
+					_0: A2(_user$project$Main$Model, model.topic, _p0._0),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 			default:
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 		}
 	});
-var _user$project$Main$demoListView = function (model) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoListMsg,
-		_user$project$Components_DemoList$view(model.demoListModel));
-};
-var _user$project$Main$UpdateView = function (a) {
-	return {ctor: 'UpdateView', _0: a};
-};
-var _user$project$Main$header = A2(
-	_elm_lang$html$Html$header,
-	_elm_lang$core$Native_List.fromArray(
-		[
-			_elm_lang$html$Html_Attributes$class('header')
-		]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$a,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$href('#'),
-					_elm_lang$html$Html_Events$onClick(
-					_user$project$Main$UpdateView(_user$project$Main$RootView))
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$h1,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('header-text')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Elm Orlando')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$nav,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$ul,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$class('nav nav-pills')
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://www.meetup.com/ElmOrlando')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/meetup.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								])),
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://github.com/ElmOrlando')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/github.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								])),
-							A2(
-							_elm_lang$html$Html$li,
-							_elm_lang$core$Native_List.fromArray(
-								[]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$a,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$href('https://twitter.com/ElmOrlandoGroup')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[
-											A2(
-											_elm_lang$html$Html$img,
-											_elm_lang$core$Native_List.fromArray(
-												[
-													_elm_lang$html$Html_Attributes$src('/images/twitter.png')
-												]),
-											_elm_lang$core$Native_List.fromArray(
-												[]))
-										]))
-								]))
-						]))
-				]))
-		]));
-var _user$project$Main$welcomeView = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#demos'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$DemoListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Demos')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#resources'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$ResourceListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Resources')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#presentations'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$PresentationListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Presentations')
-						]))
-				]))
-		]));
-var _user$project$Main$pageView = function (model) {
-	var _p7 = model.currentView;
-	switch (_p7.ctor) {
-		case 'RootView':
-			return _user$project$Main$welcomeView;
-		case 'DemoListView':
-			return _user$project$Main$demoListView(model);
-		case 'DemoShowView':
-			return _user$project$Main$demoShowView(_p7._0);
-		case 'ResourceListView':
-			return _user$project$Main$resourceListView;
-		default:
-			return _user$project$Main$presentationListView;
-	}
-};
+var _user$project$Main$MorePlease = {ctor: 'MorePlease'};
 var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html_Attributes$class('elm-app')
+				_elm_lang$html$Html_Attributes$style(
+				_elm_lang$core$Native_List.fromArray(
+					[
+						{ctor: '_Tuple2', _0: 'font-family', _1: 'Helvetica'},
+						{ctor: '_Tuple2', _0: 'font-size', _1: '40px'},
+						{ctor: '_Tuple2', _0: 'margin-left', _1: '40px'}
+					]))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_user$project$Main$header,
-				_user$project$Main$pageView(model)
+				A2(
+				_elm_lang$html$Html$h1,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text(model.topic)
+					])),
+				A2(
+				_elm_lang$html$Html$img,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$src(model.gifUrl)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$br,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[])),
+				A2(
+				_elm_lang$html$Html$button,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Events$onClick(_user$project$Main$MorePlease)
+					]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('More Please!')
+					]))
 			]));
 };
 var _user$project$Main$main = {
 	main: _elm_lang$html$Html_App$program(
-		{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})
+		{
+			init: _user$project$Main$init('Dogs'),
+			view: _user$project$Main$view,
+			update: _user$project$Main$update,
+			subscriptions: _user$project$Main$subscriptions
+		})
 };
-
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
 _elm_lang$core$Native_Platform.addPublicModule(Elm['Main'], 'Main', typeof _user$project$Main$main === 'undefined' ? null : _user$project$Main$main);
@@ -9568,4 +8815,4 @@ for (var publicModule in Elm)
 }
 
 }).call(this);
-
+</script></head><body><script type="text/javascript">Elm.Main.fullscreen()</script></body></html>

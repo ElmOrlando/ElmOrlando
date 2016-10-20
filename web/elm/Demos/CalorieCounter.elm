@@ -1,5 +1,5 @@
 {-
-   **Calorie Counter Demo**
+   **CalorieCounter Demo**
 
    Simple beginner program example to track calories. For more about this demo,
    check out the amazing Elm for Beginners course at
@@ -7,7 +7,7 @@
 -}
 
 
-module Main exposing (..)
+module CalorieCounter exposing (..)
 
 import Html.App as App
 import Html exposing (..)
