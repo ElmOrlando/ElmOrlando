@@ -7,6 +7,8 @@ import Html.Events exposing (onClick)
 import Components.DemoList as DemoList
 import Components.ResourceList as ResourceList
 import Components.PresentationList as PresentationList
+import Navigation
+import String
 
 
 -- MAIN
@@ -14,10 +16,11 @@ import Components.PresentationList as PresentationList
 
 main : Program Never
 main =
-    App.program
+    Navigation.program (Navigation.makeParser locationFor)
         { init = init
-        , view = view
         , update = update
+        , urlUpdate = updateRoute
+        , view = view
         , subscriptions = subscriptions
         }
 
@@ -29,6 +32,7 @@ main =
 type alias Model =
     { demoListModel : DemoList.Model
     , currentView : Page
+    , route : Maybe Location
     }
 
 
@@ -40,16 +44,28 @@ type Page
     | PresentationListView
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, Cmd.none )
+type Location
+    = Home
+    | Demos
+    | Resources
+    | Presentations
 
 
-initialModel : Model
-initialModel =
-    { demoListModel = DemoList.initialModel
-    , currentView = RootView
-    }
+init : Maybe Location -> ( Model, Cmd Msg )
+init location =
+    ( initialModel location, Cmd.none )
+
+
+initialModel : Maybe Location -> Model
+initialModel location =
+    let
+        route =
+            routeInit location
+    in
+        { demoListModel = DemoList.initialModel
+        , currentView = RootView
+        , route = route
+        }
 
 
 
@@ -173,3 +189,62 @@ resourceListView =
 presentationListView : Html a
 presentationListView =
     PresentationList.view
+
+
+
+-- NAVIGATION
+
+
+updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )
+updateRoute route model =
+    ( { model | route = route }, Cmd.none )
+
+
+routeInit : Maybe Location -> Maybe Location
+routeInit location =
+    location
+
+
+urlFor : Location -> String
+urlFor loc =
+    let
+        url =
+            case loc of
+                Home ->
+                    "/"
+
+                Demos ->
+                    "/demos"
+
+                Resources ->
+                    "/resources"
+
+                Presentations ->
+                    "/presentations"
+    in
+        "#" ++ url
+
+
+locationFor : Navigation.Location -> Maybe Location
+locationFor path =
+    let
+        segments =
+            path.hash
+                |> String.split "/"
+                |> List.filter (\seg -> seg /= "" && seg /= "#")
+    in
+        case segments of
+            [] ->
+                Just Home
+
+            [ "demos" ] ->
+                Just Demos
+
+            [ "resources" ] ->
+                Just Resources
+
+            [ "presentations" ] ->
+                Just Presentations
+
+            _ ->
+                Nothing
