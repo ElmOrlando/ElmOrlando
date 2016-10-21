@@ -45,8 +45,14 @@ form.link, form.button {
   border-radius: 15px;
 }
 
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
 .demo-list {
-  height: 400px;
+  height: 300px;
   display: flex;
   flex-flow: column;
   flex-wrap: wrap;

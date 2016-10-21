@@ -9777,11 +9777,17 @@ var _user$project$Main$updateRoute = F2(
 	});
 var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
 var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
-var _user$project$Main$notFoundView = _elm_lang$html$Html$text('Page not found.');
-var _user$project$Main$presentationsView = _elm_lang$html$Html$text('This is the Presentations page.');
-var _user$project$Main$resourcesView = _elm_lang$html$Html$text('This is the Resources page.');
+var _user$project$Main$welcomeView = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
+var _user$project$Main$notFoundView = _elm_lang$html$Html$text('Page not found. Return from whence ye came.');
+var _user$project$Main$presentationsView = _user$project$Components_PresentationList$view;
+var _user$project$Main$resourcesView = _user$project$Components_ResourceList$view;
 var _user$project$Main$demosView = _elm_lang$html$Html$text('This is the Demos page.');
-var _user$project$Main$homeView = _elm_lang$html$Html$text('This is the Home page.');
+var _user$project$Main$homeView = _elm_lang$html$Html$text('');
 var _user$project$Main$navigationLink = function (_p1) {
 	var _p2 = _p1;
 	return A2(
@@ -9821,10 +9827,8 @@ var _user$project$Main$init = function (location) {
 var _user$project$Main$Presentations = {ctor: 'Presentations'};
 var _user$project$Main$Resources = {ctor: 'Resources'};
 var _user$project$Main$Demos = {ctor: 'Demos'};
-var _user$project$Main$Home = {ctor: 'Home'};
 var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
 	[
-		{ctor: '_Tuple2', _0: _user$project$Main$Home, _1: 'Home'},
 		{ctor: '_Tuple2', _0: _user$project$Main$Demos, _1: 'Demos'},
 		{ctor: '_Tuple2', _0: _user$project$Main$Resources, _1: 'Resources'},
 		{ctor: '_Tuple2', _0: _user$project$Main$Presentations, _1: 'Presentations'}
@@ -9849,10 +9853,13 @@ var _user$project$Main$navigationView = function (model) {
 				A2(
 				_elm_lang$html$Html$ul,
 				_elm_lang$core$Native_List.fromArray(
-					[]),
+					[
+						_elm_lang$html$Html_Attributes$class('nav-list')
+					]),
 				A2(_elm_lang$core$List$map, linkListItem, _user$project$Main$navigationLinks))
 			]));
 };
+var _user$project$Main$Home = {ctor: 'Home'};
 var _user$project$Main$locationFor = function (path) {
 	var segments = A2(
 		_elm_lang$core$List$filter,
@@ -9959,6 +9966,21 @@ var _user$project$Main$demoListView = function (model) {
 		_elm_lang$html$Html_App$map,
 		_user$project$Main$DemoListMsg,
 		_user$project$Components_DemoList$view(model.demoListModel));
+};
+var _user$project$Main$pageView = function (model) {
+	var _p11 = model.currentView;
+	switch (_p11.ctor) {
+		case 'RootView':
+			return _user$project$Main$welcomeView;
+		case 'DemoListView':
+			return _user$project$Main$demoListView(model);
+		case 'DemoShowView':
+			return _user$project$Main$demoShowView(_p11._0);
+		case 'ResourceListView':
+			return _user$project$Main$resourceListView;
+		default:
+			return _user$project$Main$presentationListView;
+	}
 };
 var _user$project$Main$UpdateView = function (a) {
 	return {ctor: 'UpdateView', _0: a};
@@ -10083,9 +10105,9 @@ var _user$project$Main$header = A2(
 		]));
 var _user$project$Main$view = function (model) {
 	var body = function () {
-		var _p11 = model.route;
-		if (_p11.ctor === 'Just') {
-			switch (_p11._0.ctor) {
+		var _p12 = model.route;
+		if (_p12.ctor === 'Just') {
+			switch (_p12._0.ctor) {
 				case 'Home':
 					return _user$project$Main$homeView;
 				case 'Demos':
@@ -10117,91 +10139,6 @@ var _user$project$Main$main = {
 		_elm_lang$navigation$Navigation$program,
 		_elm_lang$navigation$Navigation$makeParser(_user$project$Main$locationFor),
 		{init: _user$project$Main$init, update: _user$project$Main$update, urlUpdate: _user$project$Main$updateRoute, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions})
-};
-var _user$project$Main$welcomeView = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#demos'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$DemoListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Demos')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#resources'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$ResourceListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Resources')
-						]))
-				])),
-			A2(
-			_elm_lang$html$Html$h2,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('page-link')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href('#presentations'),
-							_elm_lang$html$Html_Events$onClick(
-							_user$project$Main$UpdateView(_user$project$Main$PresentationListView))
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Presentations')
-						]))
-				]))
-		]));
-var _user$project$Main$pageView = function (model) {
-	var _p12 = model.currentView;
-	switch (_p12.ctor) {
-		case 'RootView':
-			return _user$project$Main$welcomeView;
-		case 'DemoListView':
-			return _user$project$Main$demoListView(model);
-		case 'DemoShowView':
-			return _user$project$Main$demoShowView(_p12._0);
-		case 'ResourceListView':
-			return _user$project$Main$resourceListView;
-		default:
-			return _user$project$Main$presentationListView;
-	}
 };
 
 var Elm = {};

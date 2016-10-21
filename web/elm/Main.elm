@@ -147,6 +147,20 @@ view model =
             ]
 
 
+header : Html Msg
+header =
+    Html.header [ class "header" ]
+        [ a [ href "#", onClick (UpdateView RootView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+        , nav []
+            [ ul [ class "nav nav-pills" ]
+                [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+                , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+                , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+                ]
+            ]
+        ]
+
+
 navigationView : Model -> Html Msg
 navigationView model =
     let
@@ -154,7 +168,7 @@ navigationView model =
             li [] [ navigationLink linkData ]
     in
         nav []
-            [ ul []
+            [ ul [ class "nav-list" ]
                 (List.map linkListItem navigationLinks)
             ]
 
@@ -166,8 +180,7 @@ navigationLink ( location, label ) =
 
 navigationLinks : List ( Location, String )
 navigationLinks =
-    [ ( Home, "Home" )
-    , ( Demos, "Demos" )
+    [ ( Demos, "Demos" )
     , ( Resources, "Resources" )
     , ( Presentations, "Presentations" )
     ]
@@ -175,7 +188,7 @@ navigationLinks =
 
 homeView : Html msg
 homeView =
-    text "This is the Home page."
+    text ""
 
 
 demosView : Html msg
@@ -185,17 +198,17 @@ demosView =
 
 resourcesView : Html msg
 resourcesView =
-    text "This is the Resources page."
+    ResourceList.view
 
 
 presentationsView : Html msg
 presentationsView =
-    text "This is the Presentations page."
+    PresentationList.view
 
 
 notFoundView : Html msg
 notFoundView =
-    text "Page not found."
+    text "Page not found. Return from whence ye came."
 
 
 pageView : Model -> Html Msg
@@ -217,27 +230,9 @@ pageView model =
             presentationListView
 
 
-header : Html Msg
-header =
-    Html.header [ class "header" ]
-        [ a [ href "#", onClick (UpdateView RootView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
-        , nav []
-            [ ul [ class "nav nav-pills" ]
-                [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
-                , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
-                , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
-                ]
-            ]
-        ]
-
-
 welcomeView : Html Msg
 welcomeView =
-    div []
-        [ h2 [ class "page-link" ] [ a [ href "#demos", onClick (UpdateView DemoListView) ] [ text "Demos" ] ]
-        , h2 [ class "page-link" ] [ a [ href "#resources", onClick (UpdateView ResourceListView) ] [ text "Resources" ] ]
-        , h2 [ class "page-link" ] [ a [ href "#presentations", onClick (UpdateView PresentationListView) ] [ text "Presentations" ] ]
-        ]
+    div [] []
 
 
 demoListView : Model -> Html Msg
