@@ -37,8 +37,7 @@ type alias Model =
 
 
 type Page
-    = RootView
-    | DemoListView
+    = DemoListView
     | DemoShowView DemoList.Demo
 
 
@@ -56,7 +55,7 @@ init location =
             routeInit location
     in
         ( { demoListModel = DemoList.initialModel
-          , currentView = RootView
+          , currentView = DemoListView
           , route = route
           }
         , Cmd.none
@@ -148,7 +147,7 @@ view model =
 header : Html Msg
 header =
     Html.header [ class "header" ]
-        [ a [ href "#", onClick (UpdateView RootView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+        [ a [ href "#", onClick (UpdateView DemoListView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
         , nav []
             [ ul [ class "nav nav-pills" ]
                 [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
@@ -212,19 +211,11 @@ notFoundView =
 pageView : Model -> Html Msg
 pageView model =
     case model.currentView of
-        RootView ->
-            welcomeView
-
         DemoListView ->
             demoListView model
 
         DemoShowView demo ->
             demoShowView demo
-
-
-welcomeView : Html Msg
-welcomeView =
-    div [] []
 
 
 demoListView : Model -> Html Msg

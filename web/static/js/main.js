@@ -9798,12 +9798,6 @@ var _user$project$Main$updateRoute = F2(
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
-var _user$project$Main$welcomeView = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[]));
 var _user$project$Main$notFoundView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9867,12 +9861,11 @@ var _user$project$Main$DemoShowView = function (a) {
 	return {ctor: 'DemoShowView', _0: a};
 };
 var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
-var _user$project$Main$RootView = {ctor: 'RootView'};
 var _user$project$Main$init = function (location) {
 	var route = _user$project$Main$routeInit(location);
 	return {
 		ctor: '_Tuple2',
-		_0: {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$RootView, route: route},
+		_0: {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$DemoListView, route: route},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };
@@ -10021,13 +10014,10 @@ var _user$project$Main$demoListView = function (model) {
 };
 var _user$project$Main$pageView = function (model) {
 	var _p11 = model.currentView;
-	switch (_p11.ctor) {
-		case 'RootView':
-			return _user$project$Main$welcomeView;
-		case 'DemoListView':
-			return _user$project$Main$demoListView(model);
-		default:
-			return _user$project$Main$demoShowView(_p11._0);
+	if (_p11.ctor === 'DemoListView') {
+		return _user$project$Main$demoListView(model);
+	} else {
+		return _user$project$Main$demoShowView(_p11._0);
 	}
 };
 var _user$project$Main$UpdateView = function (a) {
@@ -10047,7 +10037,7 @@ var _user$project$Main$header = A2(
 				[
 					_elm_lang$html$Html_Attributes$href('#'),
 					_elm_lang$html$Html_Events$onClick(
-					_user$project$Main$UpdateView(_user$project$Main$RootView))
+					_user$project$Main$UpdateView(_user$project$Main$DemoListView))
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
