@@ -9495,6 +9495,29 @@ var _user$project$Components_PresentationList$view = A2(
 						[
 							_elm_lang$html$Html$text('Elm and React (Coming Soon)')
 						]))
+				])),
+			A2(
+			_elm_lang$html$Html$h3,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('November 2016')
+				])),
+			A2(
+			_elm_lang$html$Html$ul,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Solving a Problem with Elm (Coming Soon)')
+						]))
 				]))
 		]));
 

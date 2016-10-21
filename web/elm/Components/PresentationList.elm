@@ -19,4 +19,8 @@ view =
         , ul []
             [ li [] [ text "Elm and React (Coming Soon)" ]
             ]
+        , h3 [] [ text "November 2016" ]
+        , ul []
+            [ li [] [ text "Solving a Problem with Elm (Coming Soon)" ]
+            ]
         ]
