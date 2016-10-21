@@ -122,8 +122,80 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div [ class "elm-app" ]
-        [ header, pageView model ]
+    let
+        body =
+            case model.route of
+                Just Home ->
+                    homeView
+
+                Just Demos ->
+                    demosView
+
+                Just Resources ->
+                    resourcesView
+
+                Just Presentations ->
+                    presentationsView
+
+                Nothing ->
+                    notFoundView
+    in
+        div [ class "elm-app" ]
+            [ header
+            , navigationView model
+            , body
+            ]
+
+
+navigationView : Model -> Html Msg
+navigationView model =
+    let
+        linkListItem linkData =
+            li [] [ navigationLink linkData ]
+    in
+        nav []
+            [ ul []
+                (List.map linkListItem navigationLinks)
+            ]
+
+
+navigationLink : ( Location, String ) -> Html Msg
+navigationLink ( location, label ) =
+    a [ href <| urlFor location ] [ text label ]
+
+
+navigationLinks : List ( Location, String )
+navigationLinks =
+    [ ( Home, "Home" )
+    , ( Demos, "Demos" )
+    , ( Resources, "Resources" )
+    , ( Presentations, "Presentations" )
+    ]
+
+
+homeView : Html msg
+homeView =
+    text "This is the Home page."
+
+
+demosView : Html msg
+demosView =
+    text "This is the Demos page."
+
+
+resourcesView : Html msg
+resourcesView =
+    text "This is the Resources page."
+
+
+presentationsView : Html msg
+presentationsView =
+    text "This is the Presentations page."
+
+
+notFoundView : Html msg
+notFoundView =
+    text "Page not found."
 
 
 pageView : Model -> Html Msg
