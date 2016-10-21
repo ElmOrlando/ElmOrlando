@@ -184,29 +184,29 @@ navigationLinks =
     ]
 
 
-homeView : Html msg
+homeView : Html Msg
 homeView =
-    text ""
+    div [] []
 
 
-demosView : Html msg
+demosView : Html Msg
 demosView =
-    text "This is the Demos page."
+    div [] [ p [] [ text "This is the Demos page." ] ]
 
 
-resourcesView : Html msg
+resourcesView : Html Msg
 resourcesView =
     ResourceList.view
 
 
-presentationsView : Html msg
+presentationsView : Html Msg
 presentationsView =
     PresentationList.view
 
 
-notFoundView : Html msg
+notFoundView : Html Msg
 notFoundView =
-    text "Page not found. Return from whence ye came."
+    div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
 
 
 pageView : Model -> Html Msg

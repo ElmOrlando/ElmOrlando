@@ -9804,11 +9804,44 @@ var _user$project$Main$welcomeView = A2(
 		[]),
 	_elm_lang$core$Native_List.fromArray(
 		[]));
-var _user$project$Main$notFoundView = _elm_lang$html$Html$text('Page not found. Return from whence ye came.');
+var _user$project$Main$notFoundView = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Page not found. Return from whence ye came.')
+				]))
+		]));
 var _user$project$Main$presentationsView = _user$project$Components_PresentationList$view;
 var _user$project$Main$resourcesView = _user$project$Components_ResourceList$view;
-var _user$project$Main$demosView = _elm_lang$html$Html$text('This is the Demos page.');
-var _user$project$Main$homeView = _elm_lang$html$Html$text('');
+var _user$project$Main$demosView = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('This is the Demos page.')
+				]))
+		]));
+var _user$project$Main$homeView = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[]));
 var _user$project$Main$navigationLink = function (_p1) {
 	var _p2 = _p1;
 	return A2(
