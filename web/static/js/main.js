@@ -9798,8 +9798,6 @@ var _user$project$Main$updateRoute = F2(
 			_1: _elm_lang$core$Platform_Cmd$none
 		};
 	});
-var _user$project$Main$presentationListView = _user$project$Components_PresentationList$view;
-var _user$project$Main$resourceListView = _user$project$Components_ResourceList$view;
 var _user$project$Main$welcomeView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9832,8 +9830,6 @@ var _user$project$Main$Model = F3(
 	function (a, b, c) {
 		return {demoListModel: a, currentView: b, route: c};
 	});
-var _user$project$Main$PresentationListView = {ctor: 'PresentationListView'};
-var _user$project$Main$ResourceListView = {ctor: 'ResourceListView'};
 var _user$project$Main$DemoShowView = function (a) {
 	return {ctor: 'DemoShowView', _0: a};
 };
@@ -9997,12 +9993,8 @@ var _user$project$Main$pageView = function (model) {
 			return _user$project$Main$welcomeView;
 		case 'DemoListView':
 			return _user$project$Main$demoListView(model);
-		case 'DemoShowView':
-			return _user$project$Main$demoShowView(_p11._0);
-		case 'ResourceListView':
-			return _user$project$Main$resourceListView;
 		default:
-			return _user$project$Main$presentationListView;
+			return _user$project$Main$demoShowView(_p11._0);
 	}
 };
 var _user$project$Main$UpdateView = function (a) {

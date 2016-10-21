@@ -40,8 +40,6 @@ type Page
     = RootView
     | DemoListView
     | DemoShowView DemoList.Demo
-    | ResourceListView
-    | PresentationListView
 
 
 type Location
@@ -223,12 +221,6 @@ pageView model =
         DemoShowView demo ->
             demoShowView demo
 
-        ResourceListView ->
-            resourceListView
-
-        PresentationListView ->
-            presentationListView
-
 
 welcomeView : Html Msg
 welcomeView =
@@ -243,16 +235,6 @@ demoListView model =
 demoShowView : DemoList.Demo -> Html Msg
 demoShowView demo =
     App.map DemoShowMsg (DemoList.showView demo)
-
-
-resourceListView : Html a
-resourceListView =
-    ResourceList.view
-
-
-presentationListView : Html a
-presentationListView =
-    PresentationList.view
 
 
 
