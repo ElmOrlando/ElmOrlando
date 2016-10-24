@@ -68,7 +68,8 @@ init location =
 
 
 type Msg
-    = UpdateView Page
+    = NoOp
+    | UpdateView Page
     | DemoListMsg DemoList.Msg
     | DemoShowMsg DemoList.Msg
 
@@ -76,6 +77,9 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
         DemoListMsg demoMsg ->
             case demoMsg of
                 DemoList.RouteToNewPage page ->
@@ -168,7 +172,7 @@ navigationView : Model -> Html Msg
 navigationView model =
     let
         linkListItem linkData =
-            li [] [ navigationLink linkData ]
+            li [ class "nav-list-item" ] [ navigationLink linkData ]
     in
         nav []
             [ ul [ class "nav-list" ]
@@ -227,7 +231,24 @@ demoShowView demo =
 
 demosView : Model -> Html Msg
 demosView model =
-    App.map DemoListMsg (DemoList.view model.demoListModel)
+    let
+        demoList =
+            model.demoListModel
+    in
+        div [ class "demos" ]
+            [ h2 [] [ text "Demos" ]
+            , ul [ class "demo-list" ]
+                (List.map demoListItemView demoList.demos)
+            ]
+
+
+demoListItemView : DemoList.Demo -> Html Msg
+demoListItemView demo =
+    li
+        [ class "demo-list-item"
+          --, onClick (RouteToNewPage (ShowView demo))
+        ]
+        [ navigationLink ( Demo demo.name, demo.name ) ]
 
 
 demoView : String -> List DemoList.Demo -> Html msg
@@ -242,7 +263,13 @@ demoView name demos =
                 text "Demo not found!"
 
             Just demo ->
-                text ("This is the " ++ demo.name ++ " topic")
+                div []
+                    [ h3 [] [ text demo.name ]
+                    , ul [ class "demo-list-item" ]
+                        [ li [] [ a [ href demo.liveDemoUrl ] [ text "Live Demo" ] ]
+                        , li [] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
+                        ]
+                    ]
 
 
 resourcesView : Html Msg

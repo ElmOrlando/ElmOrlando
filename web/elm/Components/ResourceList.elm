@@ -14,7 +14,7 @@ view =
         , h3 [] [ text "Books" ]
         , ul []
             [ li [] [ a [ href "http://guide.elm-lang.org" ] [ text "An Introduction to Elm" ] ]
-            , li [] [ a [ href "https://raorao.gitbooks.io/elmbridge-curriculum/content" ] [ text "Elmbridge Curriculum" ] ]
+            , li [] [ a [ href "https://raorao.gitbooks.io/elmbridge-curriculum/content" ] [ text "ElmBridge Curriculum" ] ]
             ]
         , h3 [] [ text "Courses" ]
         , ul []

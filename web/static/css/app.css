@@ -46,9 +46,13 @@ form.link, form.button {
 }
 
 .nav-list {
-  list-style-type: none;
   display: flex;
   justify-content: space-around;
+  list-style-type: none;
+}
+
+.nav-list-item {
+  margin-left: 15px;
 }
 
 .demo-list {

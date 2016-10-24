@@ -9582,7 +9582,7 @@ var _user$project$Components_ResourceList$view = A2(
 								]),
 							_elm_lang$core$Native_List.fromArray(
 								[
-									_elm_lang$html$Html$text('Elmbridge Curriculum')
+									_elm_lang$html$Html$text('ElmBridge Curriculum')
 								]))
 						]))
 				])),
@@ -9830,11 +9830,65 @@ var _user$project$Main$demoView = F2(
 		if (_p1.ctor === 'Nothing') {
 			return _elm_lang$html$Html$text('Demo not found!');
 		} else {
-			return _elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'This is the ',
-					A2(_elm_lang$core$Basics_ops['++'], _p1._0.name, ' topic')));
+			var _p2 = _p1._0;
+			return A2(
+				_elm_lang$html$Html$div,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						A2(
+						_elm_lang$html$Html$h3,
+						_elm_lang$core$Native_List.fromArray(
+							[]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html$text(_p2.name)
+							])),
+						A2(
+						_elm_lang$html$Html$ul,
+						_elm_lang$core$Native_List.fromArray(
+							[
+								_elm_lang$html$Html_Attributes$class('demo-list-item')
+							]),
+						_elm_lang$core$Native_List.fromArray(
+							[
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$a,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$href(_p2.liveDemoUrl)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Live Demo')
+											]))
+									])),
+								A2(
+								_elm_lang$html$Html$li,
+								_elm_lang$core$Native_List.fromArray(
+									[]),
+								_elm_lang$core$Native_List.fromArray(
+									[
+										A2(
+										_elm_lang$html$Html$a,
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html_Attributes$href(_p2.sourceCodeUrl)
+											]),
+										_elm_lang$core$Native_List.fromArray(
+											[
+												_elm_lang$html$Html$text('Source Code')
+											]))
+									]))
+							]))
+					]));
 		}
 	});
 var _user$project$Main$homeView = A2(
@@ -9931,18 +9985,18 @@ var _user$project$Main$navigationIcons = A2(
 						]))
 				]))
 		]));
-var _user$project$Main$navigationLink = function (_p2) {
-	var _p3 = _p2;
+var _user$project$Main$navigationLink = function (_p3) {
+	var _p4 = _p3;
 	return A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_elm_lang$html$Html_Attributes$href(
-				_user$project$Main$urlFor(_p3._0))
+				_user$project$Main$urlFor(_p4._0))
 			]),
 		_elm_lang$core$Native_List.fromArray(
 			[
-				_elm_lang$html$Html$text(_p3._1)
+				_elm_lang$html$Html$text(_p4._1)
 			]));
 };
 var _user$project$Main$navigationHome = A2(
@@ -9988,6 +10042,50 @@ var _user$project$Main$Resources = {ctor: 'Resources'};
 var _user$project$Main$Demo = function (a) {
 	return {ctor: 'Demo', _0: a};
 };
+var _user$project$Main$demoListItemView = function (demo) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('demo-list-item')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$navigationLink(
+				{
+					ctor: '_Tuple2',
+					_0: _user$project$Main$Demo(demo.name),
+					_1: demo.name
+				})
+			]));
+};
+var _user$project$Main$demosView = function (model) {
+	var demoList = model.demoListModel;
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('demos')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Demos')
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('demo-list')
+					]),
+				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, demoList.demos))
+			]));
+};
 var _user$project$Main$Demos = {ctor: 'Demos'};
 var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
 	[
@@ -10000,7 +10098,9 @@ var _user$project$Main$navigationView = function (model) {
 		return A2(
 			_elm_lang$html$Html$li,
 			_elm_lang$core$Native_List.fromArray(
-				[]),
+				[
+					_elm_lang$html$Html_Attributes$class('nav-list-item')
+				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
 					_user$project$Main$navigationLink(linkData)
@@ -10035,145 +10135,18 @@ var _user$project$Main$header = function (model) {
 				_user$project$Main$navigationIcons
 			]));
 };
-var _user$project$Main$Home = {ctor: 'Home'};
-var _user$project$Main$locationFor = function (path) {
-	var segments = A2(
-		_elm_lang$core$List$filter,
-		function (seg) {
-			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
-		},
-		A2(_elm_lang$core$String$split, '/', path.hash));
-	var _p4 = segments;
-	_v3_5:
-	do {
-		if (_p4.ctor === '[]') {
-			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
-		} else {
-			if (_p4._1.ctor === '::') {
-				if ((_p4._0 === 'demos') && (_p4._1._1.ctor === '[]')) {
-					return _elm_lang$core$Maybe$Just(
-						_user$project$Main$Demo(_p4._1._0));
-				} else {
-					break _v3_5;
-				}
-			} else {
-				switch (_p4._0) {
-					case 'demos':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
-					case 'resources':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
-					case 'presentations':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
-					default:
-						break _v3_5;
-				}
-			}
-		}
-	} while(false);
-	return _elm_lang$core$Maybe$Nothing;
-};
-var _user$project$Main$DemoShowMsg = function (a) {
-	return {ctor: 'DemoShowMsg', _0: a};
-};
-var _user$project$Main$demoShowView = function (demo) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoShowMsg,
-		_user$project$Components_DemoList$showView(demo));
-};
-var _user$project$Main$DemoListMsg = function (a) {
-	return {ctor: 'DemoListMsg', _0: a};
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p5 = msg;
-		switch (_p5.ctor) {
-			case 'DemoListMsg':
-				var _p9 = _p5._0;
-				var _p6 = _p9;
-				if (_p6.ctor === 'RouteToNewPage') {
-					var _p7 = _p6._0;
-					if (_p7.ctor === 'ShowView') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									currentView: _user$project$Main$DemoShowView(_p7._0)
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				} else {
-					var _p8 = A2(_user$project$Components_DemoList$update, _p9, model.demoListModel);
-					var updatedModel = _p8._0;
-					var cmd = _p8._1;
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{demoListModel: updatedModel}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-					};
-				}
-			case 'UpdateView':
-				var _p11 = _p5._0;
-				var _p10 = _p11;
-				if (_p10.ctor === 'DemoListView') {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p11}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
-					};
-				} else {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p11}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$Main$demoListView = function (model) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoListMsg,
-		_user$project$Components_DemoList$view(model.demoListModel));
-};
-var _user$project$Main$pageView = function (model) {
-	var _p12 = model.currentView;
-	if (_p12.ctor === 'DemoListView') {
-		return _user$project$Main$demoListView(model);
-	} else {
-		return _user$project$Main$demoShowView(_p12._0);
-	}
-};
-var _user$project$Main$demosView = function (model) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoListMsg,
-		_user$project$Components_DemoList$view(model.demoListModel));
-};
 var _user$project$Main$view = function (model) {
 	var demosModel = model.demoListModel;
 	var body = function () {
-		var _p13 = model.route;
-		if (_p13.ctor === 'Just') {
-			switch (_p13._0.ctor) {
+		var _p5 = model.route;
+		if (_p5.ctor === 'Just') {
+			switch (_p5._0.ctor) {
 				case 'Home':
 					return _user$project$Main$homeView;
 				case 'Demos':
 					return _user$project$Main$demosView(model);
 				case 'Demo':
-					return A2(_user$project$Main$demoView, _p13._0._0, demosModel.demos);
+					return A2(_user$project$Main$demoView, _p5._0._0, demosModel.demos);
 				case 'Resources':
 					return _user$project$Main$resourcesView;
 				default:
@@ -10195,15 +10168,139 @@ var _user$project$Main$view = function (model) {
 				body
 			]));
 };
+var _user$project$Main$Home = {ctor: 'Home'};
+var _user$project$Main$locationFor = function (path) {
+	var segments = A2(
+		_elm_lang$core$List$filter,
+		function (seg) {
+			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
+		},
+		A2(_elm_lang$core$String$split, '/', path.hash));
+	var _p6 = segments;
+	_v4_5:
+	do {
+		if (_p6.ctor === '[]') {
+			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
+		} else {
+			if (_p6._1.ctor === '::') {
+				if ((_p6._0 === 'demos') && (_p6._1._1.ctor === '[]')) {
+					return _elm_lang$core$Maybe$Just(
+						_user$project$Main$Demo(_p6._1._0));
+				} else {
+					break _v4_5;
+				}
+			} else {
+				switch (_p6._0) {
+					case 'demos':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
+					case 'resources':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
+					case 'presentations':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
+					default:
+						break _v4_5;
+				}
+			}
+		}
+	} while(false);
+	return _elm_lang$core$Maybe$Nothing;
+};
+var _user$project$Main$DemoShowMsg = function (a) {
+	return {ctor: 'DemoShowMsg', _0: a};
+};
+var _user$project$Main$demoShowView = function (demo) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Main$DemoShowMsg,
+		_user$project$Components_DemoList$showView(demo));
+};
+var _user$project$Main$DemoListMsg = function (a) {
+	return {ctor: 'DemoListMsg', _0: a};
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p7 = msg;
+		switch (_p7.ctor) {
+			case 'NoOp':
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'DemoListMsg':
+				var _p11 = _p7._0;
+				var _p8 = _p11;
+				if (_p8.ctor === 'RouteToNewPage') {
+					var _p9 = _p8._0;
+					if (_p9.ctor === 'ShowView') {
+						return {
+							ctor: '_Tuple2',
+							_0: _elm_lang$core$Native_Utils.update(
+								model,
+								{
+									currentView: _user$project$Main$DemoShowView(_p9._0)
+								}),
+							_1: _elm_lang$core$Platform_Cmd$none
+						};
+					} else {
+						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					}
+				} else {
+					var _p10 = A2(_user$project$Components_DemoList$update, _p11, model.demoListModel);
+					var updatedModel = _p10._0;
+					var cmd = _p10._1;
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{demoListModel: updatedModel}),
+						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
+					};
+				}
+			case 'UpdateView':
+				var _p13 = _p7._0;
+				var _p12 = _p13;
+				if (_p12.ctor === 'DemoListView') {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{currentView: _p13}),
+						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							model,
+							{currentView: _p13}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
+			default:
+				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
 var _user$project$Main$main = {
 	main: A2(
 		_elm_lang$navigation$Navigation$program,
 		_elm_lang$navigation$Navigation$makeParser(_user$project$Main$locationFor),
 		{init: _user$project$Main$init, update: _user$project$Main$update, urlUpdate: _user$project$Main$updateRoute, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions})
 };
+var _user$project$Main$demoListView = function (model) {
+	return A2(
+		_elm_lang$html$Html_App$map,
+		_user$project$Main$DemoListMsg,
+		_user$project$Components_DemoList$view(model.demoListModel));
+};
+var _user$project$Main$pageView = function (model) {
+	var _p14 = model.currentView;
+	if (_p14.ctor === 'DemoListView') {
+		return _user$project$Main$demoListView(model);
+	} else {
+		return _user$project$Main$demoShowView(_p14._0);
+	}
+};
 var _user$project$Main$UpdateView = function (a) {
 	return {ctor: 'UpdateView', _0: a};
 };
+var _user$project$Main$NoOp = {ctor: 'NoOp'};
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
