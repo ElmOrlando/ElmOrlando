@@ -44,6 +44,7 @@ type Page
 type Location
     = Home
     | Demos
+    | Demo String
     | Resources
     | Presentations
 
@@ -120,13 +121,19 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     let
+        demosModel =
+            model.demoListModel
+
         body =
             case model.route of
                 Just Home ->
                     homeView
 
                 Just Demos ->
-                    demosView
+                    demosView model
+
+                Just (Demo name) ->
+                    demoView name demosModel.demos
 
                 Just Resources ->
                     resourcesView
@@ -138,24 +145,23 @@ view model =
                     notFoundView
     in
         div [ class "elm-app" ]
-            [ header
-            , navigationView model
+            [ header model
             , body
             ]
 
 
-header : Html Msg
-header =
+header : Model -> Html Msg
+header model =
     Html.header [ class "header" ]
-        [ a [ href "#", onClick (UpdateView DemoListView) ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
-        , nav []
-            [ ul [ class "nav nav-pills" ]
-                [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
-                , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
-                , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
-                ]
-            ]
+        [ navigationHome
+        , navigationView model
+        , navigationIcons
         ]
+
+
+navigationHome : Html Msg
+navigationHome =
+    a [ href "/" ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
 navigationView : Model -> Html Msg
@@ -183,29 +189,20 @@ navigationLinks =
     ]
 
 
+navigationIcons : Html Msg
+navigationIcons =
+    nav []
+        [ ul [ class "nav nav-pills" ]
+            [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+            , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+            , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+            ]
+        ]
+
+
 homeView : Html Msg
 homeView =
     div [] []
-
-
-demosView : Html Msg
-demosView =
-    div [] [ p [] [ text "This is the Demos page." ] ]
-
-
-resourcesView : Html Msg
-resourcesView =
-    ResourceList.view
-
-
-presentationsView : Html Msg
-presentationsView =
-    PresentationList.view
-
-
-notFoundView : Html Msg
-notFoundView =
-    div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
 
 
 pageView : Model -> Html Msg
@@ -226,6 +223,41 @@ demoListView model =
 demoShowView : DemoList.Demo -> Html Msg
 demoShowView demo =
     App.map DemoShowMsg (DemoList.showView demo)
+
+
+demosView : Model -> Html Msg
+demosView model =
+    App.map DemoListMsg (DemoList.view model.demoListModel)
+
+
+demoView : String -> List DemoList.Demo -> Html msg
+demoView name demos =
+    let
+        currentDemo =
+            List.filter (\d -> d.name == name) demos
+                |> List.head
+    in
+        case currentDemo of
+            Nothing ->
+                text "Demo not found!"
+
+            Just demo ->
+                text ("This is the " ++ demo.name ++ " topic")
+
+
+resourcesView : Html Msg
+resourcesView =
+    ResourceList.view
+
+
+presentationsView : Html Msg
+presentationsView =
+    PresentationList.view
+
+
+notFoundView : Html Msg
+notFoundView =
+    div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
 
 
 
@@ -253,6 +285,9 @@ urlFor loc =
                 Demos ->
                     "/demos"
 
+                Demo name ->
+                    "/demos/" ++ name
+
                 Resources ->
                     "/resources"
 
@@ -276,6 +311,9 @@ locationFor path =
 
             [ "demos" ] ->
                 Just Demos
+
+            [ "demos", name ] ->
+                Just (Demo name)
 
             [ "resources" ] ->
                 Just Resources
