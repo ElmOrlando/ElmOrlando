@@ -9945,7 +9945,7 @@ var _user$project$Main$NoOp = {ctor: 'NoOp'};
 var _user$project$Main$navigationLink = function (_p6) {
 	var _p7 = _p6;
 	var _p8 = _p7._0;
-	var demoLoader = _elm_lang$core$Native_Utils.eq(_p8, _user$project$Main$Demos) ? _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp) : _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp);
+	var demoLoader = _elm_lang$core$Native_Utils.eq(_p8, _user$project$Main$Demos) ? _elm_lang$html$Html_Events$onClick(_user$project$Main$Fetch) : _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp);
 	return A2(
 		_elm_lang$html$Html$a,
 		_elm_lang$core$Native_List.fromArray(
@@ -10041,7 +10041,7 @@ var _user$project$Main$demosView = function (model) {
 					[
 						_elm_lang$html$Html_Attributes$class('demo-list')
 					]),
-				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, _user$project$Main$fakeDemosForNavTesting))
+				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, model.demos))
 			]));
 };
 var _user$project$Main$view = function (model) {

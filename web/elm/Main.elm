@@ -196,8 +196,7 @@ navigationLink ( location, label ) =
     let
         demoLoader =
             if location == Demos then
-                -- replace NoOp with FetchDemos
-                onClick NoOp
+                onClick Fetch
             else
                 onClick NoOp
     in
@@ -233,16 +232,13 @@ demosView model =
     div [ class "demos" ]
         [ h2 [] [ text "Demos" ]
         , ul [ class "demo-list" ]
-            (List.map demoListItemView fakeDemosForNavTesting)
+            (List.map demoListItemView model.demos)
         ]
 
 
 demoListItemView : Demo -> Html Msg
 demoListItemView demo =
-    li
-        [ class "demo-list-item"
-          --, onClick (RouteToNewPage (ShowView demo))
-        ]
+    li [ class "demo-list-item" ]
         [ navigationLink ( DemoShow demo.name, demo.name ) ]
 
 
