@@ -1,10 +1,14 @@
 module Main exposing (..)
 
+import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Json.Decode as Json exposing ((:=))
+import Http
 import Navigation
 import String
+import Task
 
 
 -- MAIN
@@ -65,7 +69,9 @@ init location =
 
 type Msg
     = NoOp
-    | FetchDemos
+    | Fetch
+    | FetchSucceed (List Demo)
+    | FetchFail Http.Error
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -74,8 +80,47 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        FetchDemos ->
-            ( model, Cmd.none )
+        Fetch ->
+            ( model, fetchDemos )
+
+        FetchSucceed demoList ->
+            ( { model | demos = demoList }, Cmd.none )
+
+        FetchFail error ->
+            case error of
+                Http.UnexpectedPayload errorMessage ->
+                    Debug.log errorMessage
+                        ( model, Cmd.none )
+
+                _ ->
+                    ( model, Cmd.none )
+
+
+fetchDemos : Cmd Msg
+fetchDemos =
+    let
+        url =
+            "/api/demos"
+    in
+        Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch url)
+
+
+decodeDemoFetch : Json.Decoder (List Demo)
+decodeDemoFetch =
+    Json.at [ "data" ] decodeDemoList
+
+
+decodeDemoList : Json.Decoder (List Demo)
+decodeDemoList =
+    Json.list decodeDemoData
+
+
+decodeDemoData : Json.Decoder Demo
+decodeDemoData =
+    Json.object3 Demo
+        ("name" := Json.string)
+        ("liveDemoUrl" := Json.string)
+        ("sourceCodeUrl" := Json.string)
 
 
 
