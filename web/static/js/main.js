@@ -8875,556 +8875,6 @@ var _elm_lang$navigation$Navigation$subMap = F2(
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
 
-//import Dict, List, Maybe, Native.Scheduler //
-
-var _evancz$elm_http$Native_Http = function() {
-
-function send(settings, request)
-{
-	return _elm_lang$core$Native_Scheduler.nativeBinding(function(callback) {
-		var req = new XMLHttpRequest();
-
-		// start
-		if (settings.onStart.ctor === 'Just')
-		{
-			req.addEventListener('loadStart', function() {
-				var task = settings.onStart._0;
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
-		}
-
-		// progress
-		if (settings.onProgress.ctor === 'Just')
-		{
-			req.addEventListener('progress', function(event) {
-				var progress = !event.lengthComputable
-					? _elm_lang$core$Maybe$Nothing
-					: _elm_lang$core$Maybe$Just({
-						loaded: event.loaded,
-						total: event.total
-					});
-				var task = settings.onProgress._0(progress);
-				_elm_lang$core$Native_Scheduler.rawSpawn(task);
-			});
-		}
-
-		// end
-		req.addEventListener('error', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawNetworkError' }));
-		});
-
-		req.addEventListener('timeout', function() {
-			return callback(_elm_lang$core$Native_Scheduler.fail({ ctor: 'RawTimeout' }));
-		});
-
-		req.addEventListener('load', function() {
-			return callback(_elm_lang$core$Native_Scheduler.succeed(toResponse(req)));
-		});
-
-		req.open(request.verb, request.url, true);
-
-		// set all the headers
-		function setHeader(pair) {
-			req.setRequestHeader(pair._0, pair._1);
-		}
-		A2(_elm_lang$core$List$map, setHeader, request.headers);
-
-		// set the timeout
-		req.timeout = settings.timeout;
-
-		// enable this withCredentials thing
-		req.withCredentials = settings.withCredentials;
-
-		// ask for a specific MIME type for the response
-		if (settings.desiredResponseType.ctor === 'Just')
-		{
-			req.overrideMimeType(settings.desiredResponseType._0);
-		}
-
-		// actuall send the request
-		if(request.body.ctor === "BodyFormData")
-		{
-			req.send(request.body.formData)
-		}
-		else
-		{
-			req.send(request.body._0);
-		}
-
-		return function() {
-			req.abort();
-		};
-	});
-}
-
-
-// deal with responses
-
-function toResponse(req)
-{
-	var tag = req.responseType === 'blob' ? 'Blob' : 'Text'
-	var response = tag === 'Blob' ? req.response : req.responseText;
-	return {
-		status: req.status,
-		statusText: req.statusText,
-		headers: parseHeaders(req.getAllResponseHeaders()),
-		url: req.responseURL,
-		value: { ctor: tag, _0: response }
-	};
-}
-
-
-function parseHeaders(rawHeaders)
-{
-	var headers = _elm_lang$core$Dict$empty;
-
-	if (!rawHeaders)
-	{
-		return headers;
-	}
-
-	var headerPairs = rawHeaders.split('\u000d\u000a');
-	for (var i = headerPairs.length; i--; )
-	{
-		var headerPair = headerPairs[i];
-		var index = headerPair.indexOf('\u003a\u0020');
-		if (index > 0)
-		{
-			var key = headerPair.substring(0, index);
-			var value = headerPair.substring(index + 2);
-
-			headers = A3(_elm_lang$core$Dict$update, key, function(oldValue) {
-				if (oldValue.ctor === 'Just')
-				{
-					return _elm_lang$core$Maybe$Just(value + ', ' + oldValue._0);
-				}
-				return _elm_lang$core$Maybe$Just(value);
-			}, headers);
-		}
-	}
-
-	return headers;
-}
-
-
-function multipart(dataList)
-{
-	var formData = new FormData();
-
-	while (dataList.ctor !== '[]')
-	{
-		var data = dataList._0;
-		if (data.ctor === 'StringData')
-		{
-			formData.append(data._0, data._1);
-		}
-		else
-		{
-			var fileName = data._1.ctor === 'Nothing'
-				? undefined
-				: data._1._0;
-			formData.append(data._0, data._2, fileName);
-		}
-		dataList = dataList._1;
-	}
-
-	return { ctor: 'BodyFormData', formData: formData };
-}
-
-
-function uriEncode(string)
-{
-	return encodeURIComponent(string);
-}
-
-function uriDecode(string)
-{
-	return decodeURIComponent(string);
-}
-
-return {
-	send: F2(send),
-	multipart: multipart,
-	uriEncode: uriEncode,
-	uriDecode: uriDecode
-};
-
-}();
-
-var _evancz$elm_http$Http$send = _evancz$elm_http$Native_Http.send;
-var _evancz$elm_http$Http$defaultSettings = {timeout: 0, onStart: _elm_lang$core$Maybe$Nothing, onProgress: _elm_lang$core$Maybe$Nothing, desiredResponseType: _elm_lang$core$Maybe$Nothing, withCredentials: false};
-var _evancz$elm_http$Http$multipart = _evancz$elm_http$Native_Http.multipart;
-var _evancz$elm_http$Http$uriDecode = _evancz$elm_http$Native_Http.uriDecode;
-var _evancz$elm_http$Http$uriEncode = _evancz$elm_http$Native_Http.uriEncode;
-var _evancz$elm_http$Http$queryEscape = function (string) {
-	return A2(
-		_elm_lang$core$String$join,
-		'+',
-		A2(
-			_elm_lang$core$String$split,
-			'%20',
-			_evancz$elm_http$Http$uriEncode(string)));
-};
-var _evancz$elm_http$Http$queryPair = function (_p0) {
-	var _p1 = _p0;
-	return A2(
-		_elm_lang$core$Basics_ops['++'],
-		_evancz$elm_http$Http$queryEscape(_p1._0),
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			'=',
-			_evancz$elm_http$Http$queryEscape(_p1._1)));
-};
-var _evancz$elm_http$Http$url = F2(
-	function (baseUrl, args) {
-		var _p2 = args;
-		if (_p2.ctor === '[]') {
-			return baseUrl;
-		} else {
-			return A2(
-				_elm_lang$core$Basics_ops['++'],
-				baseUrl,
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'?',
-					A2(
-						_elm_lang$core$String$join,
-						'&',
-						A2(_elm_lang$core$List$map, _evancz$elm_http$Http$queryPair, args))));
-		}
-	});
-var _evancz$elm_http$Http$Request = F4(
-	function (a, b, c, d) {
-		return {verb: a, headers: b, url: c, body: d};
-	});
-var _evancz$elm_http$Http$Settings = F5(
-	function (a, b, c, d, e) {
-		return {timeout: a, onStart: b, onProgress: c, desiredResponseType: d, withCredentials: e};
-	});
-var _evancz$elm_http$Http$Response = F5(
-	function (a, b, c, d, e) {
-		return {status: a, statusText: b, headers: c, url: d, value: e};
-	});
-var _evancz$elm_http$Http$TODO_implement_blob_in_another_library = {ctor: 'TODO_implement_blob_in_another_library'};
-var _evancz$elm_http$Http$TODO_implement_file_in_another_library = {ctor: 'TODO_implement_file_in_another_library'};
-var _evancz$elm_http$Http$BodyBlob = function (a) {
-	return {ctor: 'BodyBlob', _0: a};
-};
-var _evancz$elm_http$Http$BodyFormData = {ctor: 'BodyFormData'};
-var _evancz$elm_http$Http$ArrayBuffer = {ctor: 'ArrayBuffer'};
-var _evancz$elm_http$Http$BodyString = function (a) {
-	return {ctor: 'BodyString', _0: a};
-};
-var _evancz$elm_http$Http$string = _evancz$elm_http$Http$BodyString;
-var _evancz$elm_http$Http$Empty = {ctor: 'Empty'};
-var _evancz$elm_http$Http$empty = _evancz$elm_http$Http$Empty;
-var _evancz$elm_http$Http$FileData = F3(
-	function (a, b, c) {
-		return {ctor: 'FileData', _0: a, _1: b, _2: c};
-	});
-var _evancz$elm_http$Http$BlobData = F3(
-	function (a, b, c) {
-		return {ctor: 'BlobData', _0: a, _1: b, _2: c};
-	});
-var _evancz$elm_http$Http$blobData = _evancz$elm_http$Http$BlobData;
-var _evancz$elm_http$Http$StringData = F2(
-	function (a, b) {
-		return {ctor: 'StringData', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$stringData = _evancz$elm_http$Http$StringData;
-var _evancz$elm_http$Http$Blob = function (a) {
-	return {ctor: 'Blob', _0: a};
-};
-var _evancz$elm_http$Http$Text = function (a) {
-	return {ctor: 'Text', _0: a};
-};
-var _evancz$elm_http$Http$RawNetworkError = {ctor: 'RawNetworkError'};
-var _evancz$elm_http$Http$RawTimeout = {ctor: 'RawTimeout'};
-var _evancz$elm_http$Http$BadResponse = F2(
-	function (a, b) {
-		return {ctor: 'BadResponse', _0: a, _1: b};
-	});
-var _evancz$elm_http$Http$UnexpectedPayload = function (a) {
-	return {ctor: 'UnexpectedPayload', _0: a};
-};
-var _evancz$elm_http$Http$handleResponse = F2(
-	function (handle, response) {
-		if ((_elm_lang$core$Native_Utils.cmp(200, response.status) < 1) && (_elm_lang$core$Native_Utils.cmp(response.status, 300) < 0)) {
-			var _p3 = response.value;
-			if (_p3.ctor === 'Text') {
-				return handle(_p3._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload('Response body is a blob, expecting a string.'));
-			}
-		} else {
-			return _elm_lang$core$Task$fail(
-				A2(_evancz$elm_http$Http$BadResponse, response.status, response.statusText));
-		}
-	});
-var _evancz$elm_http$Http$NetworkError = {ctor: 'NetworkError'};
-var _evancz$elm_http$Http$Timeout = {ctor: 'Timeout'};
-var _evancz$elm_http$Http$promoteError = function (rawError) {
-	var _p4 = rawError;
-	if (_p4.ctor === 'RawTimeout') {
-		return _evancz$elm_http$Http$Timeout;
-	} else {
-		return _evancz$elm_http$Http$NetworkError;
-	}
-};
-var _evancz$elm_http$Http$getString = function (url) {
-	var request = {
-		verb: 'GET',
-		headers: _elm_lang$core$Native_List.fromArray(
-			[]),
-		url: url,
-		body: _evancz$elm_http$Http$empty
-	};
-	return A2(
-		_elm_lang$core$Task$andThen,
-		A2(
-			_elm_lang$core$Task$mapError,
-			_evancz$elm_http$Http$promoteError,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request)),
-		_evancz$elm_http$Http$handleResponse(_elm_lang$core$Task$succeed));
-};
-var _evancz$elm_http$Http$fromJson = F2(
-	function (decoder, response) {
-		var decode = function (str) {
-			var _p5 = A2(_elm_lang$core$Json_Decode$decodeString, decoder, str);
-			if (_p5.ctor === 'Ok') {
-				return _elm_lang$core$Task$succeed(_p5._0);
-			} else {
-				return _elm_lang$core$Task$fail(
-					_evancz$elm_http$Http$UnexpectedPayload(_p5._0));
-			}
-		};
-		return A2(
-			_elm_lang$core$Task$andThen,
-			A2(_elm_lang$core$Task$mapError, _evancz$elm_http$Http$promoteError, response),
-			_evancz$elm_http$Http$handleResponse(decode));
-	});
-var _evancz$elm_http$Http$get = F2(
-	function (decoder, url) {
-		var request = {
-			verb: 'GET',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: _evancz$elm_http$Http$empty
-		};
-		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
-	});
-var _evancz$elm_http$Http$post = F3(
-	function (decoder, url, body) {
-		var request = {
-			verb: 'POST',
-			headers: _elm_lang$core$Native_List.fromArray(
-				[]),
-			url: url,
-			body: body
-		};
-		return A2(
-			_evancz$elm_http$Http$fromJson,
-			decoder,
-			A2(_evancz$elm_http$Http$send, _evancz$elm_http$Http$defaultSettings, request));
-	});
-
-var _user$project$Components_DemoList$showView = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h3,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(model.name)
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list-item')
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.liveDemoUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Live Demo')
-									]))
-							])),
-						A2(
-						_elm_lang$html$Html$li,
-						_elm_lang$core$Native_List.fromArray(
-							[]),
-						_elm_lang$core$Native_List.fromArray(
-							[
-								A2(
-								_elm_lang$html$Html$a,
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html_Attributes$href(model.sourceCodeUrl)
-									]),
-								_elm_lang$core$Native_List.fromArray(
-									[
-										_elm_lang$html$Html$text('Source Code')
-									]))
-							]))
-					]))
-			]));
-};
-var _user$project$Components_DemoList$initialModel = {
-	demos: _elm_lang$core$Native_List.fromArray(
-		[])
-};
-var _user$project$Components_DemoList$Model = function (a) {
-	return {demos: a};
-};
-var _user$project$Components_DemoList$Demo = F3(
-	function (a, b, c) {
-		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
-	});
-var _user$project$Components_DemoList$decodeDemoData = A4(
-	_elm_lang$core$Json_Decode$object3,
-	_user$project$Components_DemoList$Demo,
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'name', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'liveDemoUrl', _elm_lang$core$Json_Decode$string),
-	A2(_elm_lang$core$Json_Decode_ops[':='], 'sourceCodeUrl', _elm_lang$core$Json_Decode$string));
-var _user$project$Components_DemoList$decodeDemoList = _elm_lang$core$Json_Decode$list(_user$project$Components_DemoList$decodeDemoData);
-var _user$project$Components_DemoList$decodeDemoFetch = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['data']),
-	_user$project$Components_DemoList$decodeDemoList);
-var _user$project$Components_DemoList$ShowView = function (a) {
-	return {ctor: 'ShowView', _0: a};
-};
-var _user$project$Components_DemoList$ListView = {ctor: 'ListView'};
-var _user$project$Components_DemoList$RouteToNewPage = function (a) {
-	return {ctor: 'RouteToNewPage', _0: a};
-};
-var _user$project$Components_DemoList$renderDemo = function (demo) {
-	return A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demo-list-item')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$a,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$href(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							'#demo/',
-							A2(_elm_lang$core$Basics_ops['++'], demo.name, '/show'))),
-						_elm_lang$html$Html_Events$onClick(
-						_user$project$Components_DemoList$RouteToNewPage(
-							_user$project$Components_DemoList$ShowView(demo)))
-					]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text(demo.name)
-					]))
-			]));
-};
-var _user$project$Components_DemoList$renderDemos = function (model) {
-	return A2(_elm_lang$core$List$map, _user$project$Components_DemoList$renderDemo, model.demos);
-};
-var _user$project$Components_DemoList$view = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demos')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h2,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Demos')
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list')
-					]),
-				_user$project$Components_DemoList$renderDemos(model))
-			]));
-};
-var _user$project$Components_DemoList$FetchFail = function (a) {
-	return {ctor: 'FetchFail', _0: a};
-};
-var _user$project$Components_DemoList$FetchSucceed = function (a) {
-	return {ctor: 'FetchSucceed', _0: a};
-};
-var _user$project$Components_DemoList$fetchDemos = function () {
-	var url = '/api/demos';
-	return A3(
-		_elm_lang$core$Task$perform,
-		_user$project$Components_DemoList$FetchFail,
-		_user$project$Components_DemoList$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Components_DemoList$decodeDemoFetch, url));
-}();
-var _user$project$Components_DemoList$update = F2(
-	function (msg, model) {
-		var _p0 = msg;
-		switch (_p0.ctor) {
-			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _user$project$Components_DemoList$fetchDemos};
-			case 'FetchSucceed':
-				return {
-					ctor: '_Tuple2',
-					_0: _user$project$Components_DemoList$Model(_p0._0),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			case 'FetchFail':
-				var _p1 = _p0._0;
-				if (_p1.ctor === 'UnexpectedPayload') {
-					return A2(
-						_elm_lang$core$Debug$log,
-						_p1._0,
-						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
-				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
-var _user$project$Components_DemoList$Fetch = {ctor: 'Fetch'};
-var _user$project$Components_DemoList$NoOp = {ctor: 'NoOp'};
-
 var _user$project$Components_PresentationList$view = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9777,7 +9227,7 @@ var _user$project$Main$urlFor = function (loc) {
 				return '/';
 			case 'Demos':
 				return '/demos';
-			case 'Demo':
+			case 'DemoShow':
 				return A2(_elm_lang$core$Basics_ops['++'], '/demos/', _p0._0);
 			case 'Resources':
 				return '/resources';
@@ -9817,6 +9267,12 @@ var _user$project$Main$notFoundView = A2(
 		]));
 var _user$project$Main$presentationsView = _user$project$Components_PresentationList$view;
 var _user$project$Main$resourcesView = _user$project$Components_ResourceList$view;
+var _user$project$Main$fakeDemosForNavTesting = _elm_lang$core$Native_List.fromArray(
+	[
+		{name: 'Demo 1', liveDemoUrl: '', sourceCodeUrl: ''},
+		{name: 'Demo 2', liveDemoUrl: '', sourceCodeUrl: ''},
+		{name: 'Demo 3', liveDemoUrl: '', sourceCodeUrl: ''}
+	]);
 var _user$project$Main$demoView = F2(
 	function (name, demos) {
 		var currentDemo = _elm_lang$core$List$head(
@@ -9985,20 +9441,6 @@ var _user$project$Main$navigationIcons = A2(
 						]))
 				]))
 		]));
-var _user$project$Main$navigationLink = function (_p3) {
-	var _p4 = _p3;
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$href(
-				_user$project$Main$urlFor(_p4._0))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(_p4._1)
-			]));
-};
 var _user$project$Main$navigationHome = A2(
 	_elm_lang$html$Html$a,
 	_elm_lang$core$Native_List.fromArray(
@@ -10021,70 +9463,39 @@ var _user$project$Main$navigationHome = A2(
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$Model = F3(
-	function (a, b, c) {
-		return {demoListModel: a, currentView: b, route: c};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p3 = msg;
+		if (_p3.ctor === 'NoOp') {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
 	});
-var _user$project$Main$DemoShowView = function (a) {
-	return {ctor: 'DemoShowView', _0: a};
-};
-var _user$project$Main$DemoListView = {ctor: 'DemoListView'};
 var _user$project$Main$init = function (location) {
 	var route = _user$project$Main$routeInit(location);
 	return {
 		ctor: '_Tuple2',
-		_0: {demoListModel: _user$project$Components_DemoList$initialModel, currentView: _user$project$Main$DemoListView, route: route},
+		_0: {
+			demos: _elm_lang$core$Native_List.fromArray(
+				[]),
+			route: route
+		},
 		_1: _elm_lang$core$Platform_Cmd$none
 	};
 };
+var _user$project$Main$Model = F2(
+	function (a, b) {
+		return {demos: a, route: b};
+	});
+var _user$project$Main$Demo = F3(
+	function (a, b, c) {
+		return {name: a, liveDemoUrl: b, sourceCodeUrl: c};
+	});
 var _user$project$Main$Presentations = {ctor: 'Presentations'};
 var _user$project$Main$Resources = {ctor: 'Resources'};
-var _user$project$Main$Demo = function (a) {
-	return {ctor: 'Demo', _0: a};
-};
-var _user$project$Main$demoListItemView = function (demo) {
-	return A2(
-		_elm_lang$html$Html$li,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demo-list-item')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$navigationLink(
-				{
-					ctor: '_Tuple2',
-					_0: _user$project$Main$Demo(demo.name),
-					_1: demo.name
-				})
-			]));
-};
-var _user$project$Main$demosView = function (model) {
-	var demoList = model.demoListModel;
-	return A2(
-		_elm_lang$html$Html$div,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('demos')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$h2,
-				_elm_lang$core$Native_List.fromArray(
-					[]),
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html$text('Demos')
-					])),
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('demo-list')
-					]),
-				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, demoList.demos))
-			]));
+var _user$project$Main$DemoShow = function (a) {
+	return {ctor: 'DemoShow', _0: a};
 };
 var _user$project$Main$Demos = {ctor: 'Demos'};
 var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
@@ -10093,6 +9504,62 @@ var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
 		{ctor: '_Tuple2', _0: _user$project$Main$Resources, _1: 'Resources'},
 		{ctor: '_Tuple2', _0: _user$project$Main$Presentations, _1: 'Presentations'}
 	]);
+var _user$project$Main$Home = {ctor: 'Home'};
+var _user$project$Main$locationFor = function (path) {
+	var segments = A2(
+		_elm_lang$core$List$filter,
+		function (seg) {
+			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
+		},
+		A2(_elm_lang$core$String$split, '/', path.hash));
+	var _p4 = segments;
+	_v3_5:
+	do {
+		if (_p4.ctor === '[]') {
+			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
+		} else {
+			if (_p4._1.ctor === '::') {
+				if ((_p4._0 === 'demos') && (_p4._1._1.ctor === '[]')) {
+					return _elm_lang$core$Maybe$Just(
+						_user$project$Main$DemoShow(_p4._1._0));
+				} else {
+					break _v3_5;
+				}
+			} else {
+				switch (_p4._0) {
+					case 'demos':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
+					case 'resources':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
+					case 'presentations':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
+					default:
+						break _v3_5;
+				}
+			}
+		}
+	} while(false);
+	return _elm_lang$core$Maybe$Nothing;
+};
+var _user$project$Main$FetchDemos = {ctor: 'FetchDemos'};
+var _user$project$Main$NoOp = {ctor: 'NoOp'};
+var _user$project$Main$navigationLink = function (_p5) {
+	var _p6 = _p5;
+	var _p7 = _p6._0;
+	var demoLoader = _elm_lang$core$Native_Utils.eq(_p7, _user$project$Main$Demos) ? _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp) : _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp);
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				demoLoader,
+				_elm_lang$html$Html_Attributes$href(
+				_user$project$Main$urlFor(_p7))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(_p6._1)
+			]));
+};
 var _user$project$Main$navigationView = function (model) {
 	var linkListItem = function (linkData) {
 		return A2(
@@ -10135,18 +9602,60 @@ var _user$project$Main$header = function (model) {
 				_user$project$Main$navigationIcons
 			]));
 };
+var _user$project$Main$demoListItemView = function (demo) {
+	return A2(
+		_elm_lang$html$Html$li,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('demo-list-item')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$navigationLink(
+				{
+					ctor: '_Tuple2',
+					_0: _user$project$Main$DemoShow(demo.name),
+					_1: demo.name
+				})
+			]));
+};
+var _user$project$Main$demosView = function (model) {
+	return A2(
+		_elm_lang$html$Html$div,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('demos')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$h2,
+				_elm_lang$core$Native_List.fromArray(
+					[]),
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html$text('Demos')
+					])),
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('demo-list')
+					]),
+				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, _user$project$Main$fakeDemosForNavTesting))
+			]));
+};
 var _user$project$Main$view = function (model) {
-	var demosModel = model.demoListModel;
 	var body = function () {
-		var _p5 = model.route;
-		if (_p5.ctor === 'Just') {
-			switch (_p5._0.ctor) {
+		var _p8 = model.route;
+		if (_p8.ctor === 'Just') {
+			switch (_p8._0.ctor) {
 				case 'Home':
 					return _user$project$Main$homeView;
 				case 'Demos':
 					return _user$project$Main$demosView(model);
-				case 'Demo':
-					return A2(_user$project$Main$demoView, _p5._0._0, demosModel.demos);
+				case 'DemoShow':
+					return A2(_user$project$Main$demoView, _p8._0._0, _user$project$Main$fakeDemosForNavTesting);
 				case 'Resources':
 					return _user$project$Main$resourcesView;
 				default:
@@ -10168,139 +9677,12 @@ var _user$project$Main$view = function (model) {
 				body
 			]));
 };
-var _user$project$Main$Home = {ctor: 'Home'};
-var _user$project$Main$locationFor = function (path) {
-	var segments = A2(
-		_elm_lang$core$List$filter,
-		function (seg) {
-			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
-		},
-		A2(_elm_lang$core$String$split, '/', path.hash));
-	var _p6 = segments;
-	_v4_5:
-	do {
-		if (_p6.ctor === '[]') {
-			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
-		} else {
-			if (_p6._1.ctor === '::') {
-				if ((_p6._0 === 'demos') && (_p6._1._1.ctor === '[]')) {
-					return _elm_lang$core$Maybe$Just(
-						_user$project$Main$Demo(_p6._1._0));
-				} else {
-					break _v4_5;
-				}
-			} else {
-				switch (_p6._0) {
-					case 'demos':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
-					case 'resources':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
-					case 'presentations':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
-					default:
-						break _v4_5;
-				}
-			}
-		}
-	} while(false);
-	return _elm_lang$core$Maybe$Nothing;
-};
-var _user$project$Main$DemoShowMsg = function (a) {
-	return {ctor: 'DemoShowMsg', _0: a};
-};
-var _user$project$Main$demoShowView = function (demo) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoShowMsg,
-		_user$project$Components_DemoList$showView(demo));
-};
-var _user$project$Main$DemoListMsg = function (a) {
-	return {ctor: 'DemoListMsg', _0: a};
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p7 = msg;
-		switch (_p7.ctor) {
-			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			case 'DemoListMsg':
-				var _p11 = _p7._0;
-				var _p8 = _p11;
-				if (_p8.ctor === 'RouteToNewPage') {
-					var _p9 = _p8._0;
-					if (_p9.ctor === 'ShowView') {
-						return {
-							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{
-									currentView: _user$project$Main$DemoShowView(_p9._0)
-								}),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
-						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				} else {
-					var _p10 = A2(_user$project$Components_DemoList$update, _p11, model.demoListModel);
-					var updatedModel = _p10._0;
-					var cmd = _p10._1;
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{demoListModel: updatedModel}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, cmd)
-					};
-				}
-			case 'UpdateView':
-				var _p13 = _p7._0;
-				var _p12 = _p13;
-				if (_p12.ctor === 'DemoListView') {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p13}),
-						_1: A2(_elm_lang$core$Platform_Cmd$map, _user$project$Main$DemoListMsg, _user$project$Components_DemoList$fetchDemos)
-					};
-				} else {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							model,
-							{currentView: _p13}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				}
-			default:
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-		}
-	});
 var _user$project$Main$main = {
 	main: A2(
 		_elm_lang$navigation$Navigation$program,
 		_elm_lang$navigation$Navigation$makeParser(_user$project$Main$locationFor),
 		{init: _user$project$Main$init, update: _user$project$Main$update, urlUpdate: _user$project$Main$updateRoute, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions})
 };
-var _user$project$Main$demoListView = function (model) {
-	return A2(
-		_elm_lang$html$Html_App$map,
-		_user$project$Main$DemoListMsg,
-		_user$project$Components_DemoList$view(model.demoListModel));
-};
-var _user$project$Main$pageView = function (model) {
-	var _p14 = model.currentView;
-	if (_p14.ctor === 'DemoListView') {
-		return _user$project$Main$demoListView(model);
-	} else {
-		return _user$project$Main$demoShowView(_p14._0);
-	}
-};
-var _user$project$Main$UpdateView = function (a) {
-	return {ctor: 'UpdateView', _0: a};
-};
-var _user$project$Main$NoOp = {ctor: 'NoOp'};
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};

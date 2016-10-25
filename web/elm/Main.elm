@@ -1,10 +1,8 @@
 module Main exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Components.DemoList as DemoList
 import Components.ResourceList as ResourceList
 import Components.PresentationList as PresentationList
 import Navigation
@@ -30,21 +28,22 @@ main =
 
 
 type alias Model =
-    { demoListModel : DemoList.Model
-    , currentView : Page
+    { demos : List Demo
     , route : Maybe Location
     }
 
 
-type Page
-    = DemoListView
-    | DemoShowView DemoList.Demo
+type alias Demo =
+    { name : String
+    , liveDemoUrl : String
+    , sourceCodeUrl : String
+    }
 
 
 type Location
     = Home
     | Demos
-    | Demo String
+    | DemoShow String
     | Resources
     | Presentations
 
@@ -55,8 +54,7 @@ init location =
         route =
             routeInit location
     in
-        ( { demoListModel = DemoList.initialModel
-          , currentView = DemoListView
+        ( { demos = []
           , route = route
           }
         , Cmd.none
@@ -69,9 +67,7 @@ init location =
 
 type Msg
     = NoOp
-    | UpdateView Page
-    | DemoListMsg DemoList.Msg
-    | DemoShowMsg DemoList.Msg
+    | FetchDemos
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -80,32 +76,7 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        DemoListMsg demoMsg ->
-            case demoMsg of
-                DemoList.RouteToNewPage page ->
-                    case page of
-                        DemoList.ShowView demo ->
-                            ( { model | currentView = (DemoShowView demo) }, Cmd.none )
-
-                        _ ->
-                            ( model, Cmd.none )
-
-                _ ->
-                    let
-                        ( updatedModel, cmd ) =
-                            DemoList.update demoMsg model.demoListModel
-                    in
-                        ( { model | demoListModel = updatedModel }, Cmd.map DemoListMsg cmd )
-
-        UpdateView page ->
-            case page of
-                DemoListView ->
-                    ( { model | currentView = page }, Cmd.map DemoListMsg DemoList.fetchDemos )
-
-                _ ->
-                    ( { model | currentView = page }, Cmd.none )
-
-        DemoShowMsg demoMsg ->
+        FetchDemos ->
             ( model, Cmd.none )
 
 
@@ -125,9 +96,6 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     let
-        demosModel =
-            model.demoListModel
-
         body =
             case model.route of
                 Just Home ->
@@ -136,8 +104,8 @@ view model =
                 Just Demos ->
                     demosView model
 
-                Just (Demo name) ->
-                    demoView name demosModel.demos
+                Just (DemoShow name) ->
+                    demoView name fakeDemosForNavTesting
 
                 Just Resources ->
                     resourcesView
@@ -182,7 +150,15 @@ navigationView model =
 
 navigationLink : ( Location, String ) -> Html Msg
 navigationLink ( location, label ) =
-    a [ href <| urlFor location ] [ text label ]
+    let
+        demoLoader =
+            if location == Demos then
+                -- replace NoOp with FetchDemos
+                onClick NoOp
+            else
+                onClick NoOp
+    in
+        a [ demoLoader, (href <| urlFor location) ] [ text label ]
 
 
 navigationLinks : List ( Location, String )
@@ -209,49 +185,25 @@ homeView =
     div [] []
 
 
-pageView : Model -> Html Msg
-pageView model =
-    case model.currentView of
-        DemoListView ->
-            demoListView model
-
-        DemoShowView demo ->
-            demoShowView demo
-
-
-demoListView : Model -> Html Msg
-demoListView model =
-    App.map DemoListMsg (DemoList.view model.demoListModel)
-
-
-demoShowView : DemoList.Demo -> Html Msg
-demoShowView demo =
-    App.map DemoShowMsg (DemoList.showView demo)
-
-
 demosView : Model -> Html Msg
 demosView model =
-    let
-        demoList =
-            model.demoListModel
-    in
-        div [ class "demos" ]
-            [ h2 [] [ text "Demos" ]
-            , ul [ class "demo-list" ]
-                (List.map demoListItemView demoList.demos)
-            ]
+    div [ class "demos" ]
+        [ h2 [] [ text "Demos" ]
+        , ul [ class "demo-list" ]
+            (List.map demoListItemView fakeDemosForNavTesting)
+        ]
 
 
-demoListItemView : DemoList.Demo -> Html Msg
+demoListItemView : Demo -> Html Msg
 demoListItemView demo =
     li
         [ class "demo-list-item"
           --, onClick (RouteToNewPage (ShowView demo))
         ]
-        [ navigationLink ( Demo demo.name, demo.name ) ]
+        [ navigationLink ( DemoShow demo.name, demo.name ) ]
 
 
-demoView : String -> List DemoList.Demo -> Html msg
+demoView : String -> List Demo -> Html msg
 demoView name demos =
     let
         currentDemo =
@@ -270,6 +222,14 @@ demoView name demos =
                         , li [] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
                         ]
                     ]
+
+
+fakeDemosForNavTesting : List Demo
+fakeDemosForNavTesting =
+    [ { name = "Demo 1", liveDemoUrl = "", sourceCodeUrl = "" }
+    , { name = "Demo 2", liveDemoUrl = "", sourceCodeUrl = "" }
+    , { name = "Demo 3", liveDemoUrl = "", sourceCodeUrl = "" }
+    ]
 
 
 resourcesView : Html Msg
@@ -312,7 +272,7 @@ urlFor loc =
                 Demos ->
                     "/demos"
 
-                Demo name ->
+                DemoShow name ->
                     "/demos/" ++ name
 
                 Resources ->
@@ -340,7 +300,7 @@ locationFor path =
                 Just Demos
 
             [ "demos", name ] ->
-                Just (Demo name)
+                Just (DemoShow name)
 
             [ "resources" ] ->
                 Just Resources
