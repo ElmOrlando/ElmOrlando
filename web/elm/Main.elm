@@ -3,8 +3,6 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Components.ResourceList as ResourceList
-import Components.PresentationList as PresentationList
 import Navigation
 import String
 
@@ -234,12 +232,50 @@ fakeDemosForNavTesting =
 
 resourcesView : Html Msg
 resourcesView =
-    ResourceList.view
+    div [ class "resources" ]
+        [ h2 [] [ text "Resources" ]
+        , h3 [] [ text "Books" ]
+        , ul []
+            [ li [] [ a [ href "http://guide.elm-lang.org" ] [ text "An Introduction to Elm" ] ]
+            , li [] [ a [ href "https://raorao.gitbooks.io/elmbridge-curriculum/content" ] [ text "ElmBridge Curriculum" ] ]
+            ]
+        , h3 [] [ text "Courses" ]
+        , ul []
+            [ li [] [ a [ href "http://courses.knowthen.com/courses/elm-for-beginners" ] [ text "Elm for Beginners" ] ]
+            , li [] [ a [ href "https://www.dailydrip.com/topics/elm" ] [ text "DailyDrip Elm" ] ]
+            ]
+        , h3 [] [ text "Community" ]
+        , ul []
+            [ li [] [ a [ href "http://elmlang.herokuapp.com" ] [ text "Elm Slack" ] ]
+            , li [] [ a [ href "https://twitter.com/elmlang" ] [ text "Elm Twitter" ] ]
+            , li [] [ a [ href "http://www.elmweekly.nl" ] [ text "Elm Weekly" ] ]
+            ]
+        , h3 [] [ text "Elm and Phoenix" ]
+        , ul []
+            [ li [] [ a [ href "https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2" ] [ text "Setting Up Elm with Phoenix" ] ]
+            , li [] [ a [ href "https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499" ] [ text "Writing a Full Site in Phoenix and Elm" ] ]
+            , li [] [ a [ href "http://www.cultivatehq.com/posts/phoenix-elm-1" ] [ text "Phoenix with Elm" ] ]
+            ]
+        ]
 
 
 presentationsView : Html Msg
 presentationsView =
-    PresentationList.view
+    div [ class "presentations" ]
+        [ h2 [] [ text "Presentations" ]
+        , h3 [] [ text "September 2016" ]
+        , ul []
+            [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ]
+            ]
+        , h3 [] [ text "October 2016" ]
+        , ul []
+            [ li [] [ text "Elm and React (Coming Soon)" ]
+            ]
+        , h3 [] [ text "November 2016" ]
+        , ul []
+            [ li [] [ text "Solving a Problem with Elm (Coming Soon)" ]
+            ]
+        ]
 
 
 notFoundView : Html Msg

@@ -8875,7 +8875,53 @@ var _elm_lang$navigation$Navigation$subMap = F2(
 	});
 _elm_lang$core$Native_Platform.effectManagers['Navigation'] = {pkg: 'elm-lang/navigation', init: _elm_lang$navigation$Navigation$init, onEffects: _elm_lang$navigation$Navigation$onEffects, onSelfMsg: _elm_lang$navigation$Navigation$onSelfMsg, tag: 'fx', cmdMap: _elm_lang$navigation$Navigation$cmdMap, subMap: _elm_lang$navigation$Navigation$subMap};
 
-var _user$project$Components_PresentationList$view = A2(
+var _user$project$Main$urlFor = function (loc) {
+	var url = function () {
+		var _p0 = loc;
+		switch (_p0.ctor) {
+			case 'Home':
+				return '/';
+			case 'Demos':
+				return '/demos';
+			case 'DemoShow':
+				return A2(_elm_lang$core$Basics_ops['++'], '/demos/', _p0._0);
+			case 'Resources':
+				return '/resources';
+			default:
+				return '/presentations';
+		}
+	}();
+	return A2(_elm_lang$core$Basics_ops['++'], '#', url);
+};
+var _user$project$Main$routeInit = function (location) {
+	return location;
+};
+var _user$project$Main$updateRoute = F2(
+	function (route, model) {
+		return {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				model,
+				{route: route}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	});
+var _user$project$Main$notFoundView = A2(
+	_elm_lang$html$Html$div,
+	_elm_lang$core$Native_List.fromArray(
+		[]),
+	_elm_lang$core$Native_List.fromArray(
+		[
+			A2(
+			_elm_lang$html$Html$p,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('Page not found. Return from whence ye came.')
+				]))
+		]));
+var _user$project$Main$presentationsView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -8970,8 +9016,7 @@ var _user$project$Components_PresentationList$view = A2(
 						]))
 				]))
 		]));
-
-var _user$project$Components_ResourceList$view = A2(
+var _user$project$Main$resourcesView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
 		[
@@ -9218,55 +9263,6 @@ var _user$project$Components_ResourceList$view = A2(
 						]))
 				]))
 		]));
-
-var _user$project$Main$urlFor = function (loc) {
-	var url = function () {
-		var _p0 = loc;
-		switch (_p0.ctor) {
-			case 'Home':
-				return '/';
-			case 'Demos':
-				return '/demos';
-			case 'DemoShow':
-				return A2(_elm_lang$core$Basics_ops['++'], '/demos/', _p0._0);
-			case 'Resources':
-				return '/resources';
-			default:
-				return '/presentations';
-		}
-	}();
-	return A2(_elm_lang$core$Basics_ops['++'], '#', url);
-};
-var _user$project$Main$routeInit = function (location) {
-	return location;
-};
-var _user$project$Main$updateRoute = F2(
-	function (route, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
-				model,
-				{route: route}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	});
-var _user$project$Main$notFoundView = A2(
-	_elm_lang$html$Html$div,
-	_elm_lang$core$Native_List.fromArray(
-		[]),
-	_elm_lang$core$Native_List.fromArray(
-		[
-			A2(
-			_elm_lang$html$Html$p,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text('Page not found. Return from whence ye came.')
-				]))
-		]));
-var _user$project$Main$presentationsView = _user$project$Components_PresentationList$view;
-var _user$project$Main$resourcesView = _user$project$Components_ResourceList$view;
 var _user$project$Main$fakeDemosForNavTesting = _elm_lang$core$Native_List.fromArray(
 	[
 		{name: 'Demo 1', liveDemoUrl: '', sourceCodeUrl: ''},
