@@ -10054,7 +10054,7 @@ var _user$project$Main$view = function (model) {
 				case 'Demos':
 					return _user$project$Main$demosView(model);
 				case 'DemoShow':
-					return A2(_user$project$Main$demoView, _p9._0._0, _user$project$Main$fakeDemosForNavTesting);
+					return A2(_user$project$Main$demoView, _p9._0._0, model.demos);
 				case 'Resources':
 					return _user$project$Main$resourcesView;
 				default:

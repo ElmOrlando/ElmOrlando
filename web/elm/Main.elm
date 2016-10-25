@@ -148,7 +148,7 @@ view model =
                     demosView model
 
                 Just (DemoShow name) ->
-                    demoView name fakeDemosForNavTesting
+                    demoView name model.demos
 
                 Just Resources ->
                     resourcesView
