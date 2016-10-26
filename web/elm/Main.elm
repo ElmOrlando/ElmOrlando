@@ -134,8 +134,8 @@ header : Model -> Html Msg
 header model =
     Html.header [ class "header" ]
         [ navigationHome
-        , navigationView model
         , navigationIcons
+        , navigationView model
         ]
 
 

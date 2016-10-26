@@ -9664,8 +9664,8 @@ var _user$project$Main$header = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$Main$navigationHome,
-				_user$project$Main$navigationView(model),
-				_user$project$Main$navigationIcons
+				_user$project$Main$navigationIcons,
+				_user$project$Main$navigationView(model)
 			]));
 };
 var _user$project$Main$view = function (model) {
