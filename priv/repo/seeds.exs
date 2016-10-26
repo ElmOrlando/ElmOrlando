@@ -26,6 +26,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ScoreKeeper", liveDemoUrl: "/dem
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "TodoList", liveDemoUrl: "/demos/TodoList.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/TodoList.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "TodoPorts", liveDemoUrl: "/demos/TodoPorts.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/TodoPorts.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GraphicsShapes", liveDemoUrl: "/demos/GraphicsShapes.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GraphicsShapes.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GraphicsStamps", liveDemoUrl: "/demos/GraphicsStamps.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GraphicsStamps.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmojiTranslator", liveDemoUrl: "/demos/ElmojiTranslator.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmojiTranslator.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Routing", liveDemoUrl: "/demos/Routing.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Routing.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmMario", liveDemoUrl: "/demos/ElmMario.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmMario.elm"})
