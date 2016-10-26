@@ -17,7 +17,9 @@ h1, h2, h3 {
 }
 
 /* Phoenix flash messages */
-.alert:empty { display: none; }
+.alert:empty {
+  display: none;
+}
 
 /* Phoenix inline forms in links and buttons */
 form.link, form.button {
@@ -26,27 +28,37 @@ form.link, form.button {
 
 /* Header */
 .header {
-  width: 300px;
-  margin: 0 auto;
-  display: block;
-  text-align: center;
+  width: 600px;
 }
 
 .header-text {
-  font-size: 3.5em;
+  display: inline;
+  float: left;
+  font-size: 3.8em;
+  margin-top: 27px;
 }
 
-.nav {
-  margin-left: 10px;
+.nav-pills {
+  display: inline;
+  float: right;
 }
 
 .nav-pills img {
-  height: 60px;
   border-radius: 15px;
+  height: 50px;
+}
+
+.nav-list {
+  clear: both;
+  display: flex;
+  font-size: 2em;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-top: 20px;
 }
 
 .demo-list {
-  height: 400px;
+  height: 380px;
   display: flex;
   flex-flow: column;
   flex-wrap: wrap;

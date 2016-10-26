@@ -41,6 +41,14 @@ type alias Model =
 type Location
     = Home
     | Topics
+    | TopicItem String
+
+
+type alias Topic =
+    { id : Int
+    , title : String
+    , slug : String
+    }
 
 
 init : Maybe Location -> ( Model, Cmd Msg )
@@ -52,6 +60,13 @@ init location =
         { route = route
         }
             ! []
+
+
+fakeTopics : List Topic
+fakeTopics =
+    [ { id = 1, title = "Elixir", slug = "elixir" }
+    , { id = 2, title = "Elm", slug = "elm" }
+    ]
 
 
 
@@ -91,7 +106,10 @@ view model =
                     homeView
 
                 Just Topics ->
-                    topicsView
+                    topicsView fakeTopics
+
+                Just (TopicItem slug) ->
+                    viewTopic slug fakeTopics
 
                 Nothing ->
                     notFoundView
@@ -131,9 +149,30 @@ homeView =
     text "This is the Home page."
 
 
-topicsView : Html msg
-topicsView =
-    text "This is the Topics page."
+topicsView : List Topic -> Html Msg
+topicsView topics =
+    ul []
+        (List.map topicListItemView topics)
+
+
+topicListItemView : Topic -> Html Msg
+topicListItemView topic =
+    li [] [ navigationLink ( TopicItem topic.slug, topic.title ) ]
+
+
+viewTopic : String -> List Topic -> Html msg
+viewTopic slug topics =
+    let
+        currentTopic =
+            List.filter (\t -> t.slug == slug) topics
+                |> List.head
+    in
+        case currentTopic of
+            Nothing ->
+                text "Topic not found!"
+
+            Just topic ->
+                text ("This is the " ++ topic.slug ++ " topic")
 
 
 notFoundView : Html msg
@@ -165,6 +204,9 @@ urlFor loc =
 
                 Topics ->
                     "/topics"
+
+                TopicItem slug ->
+                    "/topics/" ++ slug
     in
         "#" ++ url
 
@@ -185,6 +227,9 @@ locFor path =
             -- "/topics" means we're on the topics page
             [ "topics" ] ->
                 Just Topics
+
+            [ "topics", slug ] ->
+                Just (TopicItem slug)
 
             -- Otherwise, return `Nothing` and let our "not found" view take over
             _ ->
