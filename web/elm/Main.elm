@@ -52,15 +52,7 @@ type Location
 
 init : Maybe Location -> ( Model, Cmd Msg )
 init location =
-    let
-        route =
-            routeInit location
-    in
-        ( { demos = []
-          , route = route
-          }
-        , Cmd.none
-        )
+    { demos = [], route = routeInit location } ! []
 
 
 
@@ -78,22 +70,21 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            ( model, Cmd.none )
+            model ! []
 
         Fetch ->
-            ( model, fetchDemos )
+            model ! [ fetchDemos ]
 
         FetchSucceed demoList ->
-            ( { model | demos = demoList }, Cmd.none )
+            { model | demos = demoList } ! []
 
         FetchFail error ->
             case error of
                 Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage
-                        ( model, Cmd.none )
+                    Debug.log errorMessage model ! []
 
                 _ ->
-                    ( model, Cmd.none )
+                    model ! []
 
 
 fetchDemos : Cmd Msg
@@ -200,7 +191,7 @@ navigationLink ( location, label ) =
             else
                 onClick NoOp
     in
-        a [ demoLoader, (href <| urlFor location) ] [ text label ]
+        a [ demoLoader, href <| urlFor location ] [ text label ]
 
 
 navigationLinks : List ( Location, String )
@@ -250,9 +241,6 @@ demoView name demos =
                 |> List.head
     in
         case currentDemo of
-            Nothing ->
-                text "Demo not found!"
-
             Just demo ->
                 div []
                     [ h3 [] [ text demo.name ]
@@ -262,13 +250,8 @@ demoView name demos =
                         ]
                     ]
 
-
-fakeDemosForNavTesting : List Demo
-fakeDemosForNavTesting =
-    [ { name = "Demo 1", liveDemoUrl = "", sourceCodeUrl = "" }
-    , { name = "Demo 2", liveDemoUrl = "", sourceCodeUrl = "" }
-    , { name = "Demo 3", liveDemoUrl = "", sourceCodeUrl = "" }
-    ]
+            Nothing ->
+                text "Demo not found!"
 
 
 resourcesView : Html Msg
@@ -330,7 +313,7 @@ notFoundView =
 
 updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )
 updateRoute route model =
-    ( { model | route = route }, Cmd.none )
+    { model | route = route } ! []
 
 
 routeInit : Maybe Location -> Maybe Location
@@ -371,6 +354,9 @@ locationFor path =
     in
         case segments of
             [] ->
+                Just Home
+
+            [ "home" ] ->
                 Just Home
 
             [ "demos" ] ->

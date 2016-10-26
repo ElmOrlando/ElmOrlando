@@ -9256,13 +9256,13 @@ var _user$project$Main$routeInit = function (location) {
 };
 var _user$project$Main$updateRoute = F2(
 	function (route, model) {
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Native_Utils.update(
+		return A2(
+			_elm_lang$core$Platform_Cmd_ops['!'],
+			_elm_lang$core$Native_Utils.update(
 				model,
 				{route: route}),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
+			_elm_lang$core$Native_List.fromArray(
+				[]));
 	});
 var _user$project$Main$notFoundView = A2(
 	_elm_lang$html$Html$div,
@@ -9621,12 +9621,6 @@ var _user$project$Main$resourcesView = A2(
 						]))
 				]))
 		]));
-var _user$project$Main$fakeDemosForNavTesting = _elm_lang$core$Native_List.fromArray(
-	[
-		{name: 'Demo 1', liveDemoUrl: '', sourceCodeUrl: ''},
-		{name: 'Demo 2', liveDemoUrl: '', sourceCodeUrl: ''},
-		{name: 'Demo 3', liveDemoUrl: '', sourceCodeUrl: ''}
-	]);
 var _user$project$Main$demoView = F2(
 	function (name, demos) {
 		var currentDemo = _elm_lang$core$List$head(
@@ -9637,9 +9631,7 @@ var _user$project$Main$demoView = F2(
 				},
 				demos));
 		var _p1 = currentDemo;
-		if (_p1.ctor === 'Nothing') {
-			return _elm_lang$html$Html$text('Demo not found!');
-		} else {
+		if (_p1.ctor === 'Just') {
 			var _p2 = _p1._0;
 			return A2(
 				_elm_lang$html$Html$div,
@@ -9699,6 +9691,8 @@ var _user$project$Main$demoView = F2(
 									]))
 							]))
 					]));
+		} else {
+			return _elm_lang$html$Html$text('Demo not found!');
 		}
 	});
 var _user$project$Main$homeView = A2(
@@ -9818,16 +9812,15 @@ var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _user$project$Main$init = function (location) {
-	var route = _user$project$Main$routeInit(location);
-	return {
-		ctor: '_Tuple2',
-		_0: {
+	return A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		{
 			demos: _elm_lang$core$Native_List.fromArray(
 				[]),
-			route: route
+			route: _user$project$Main$routeInit(location)
 		},
-		_1: _elm_lang$core$Platform_Cmd$none
-	};
+		_elm_lang$core$Native_List.fromArray(
+			[]));
 };
 var _user$project$Main$Model = F2(
 	function (a, b) {
@@ -9870,7 +9863,7 @@ var _user$project$Main$locationFor = function (path) {
 		},
 		A2(_elm_lang$core$String$split, '/', path.hash));
 	var _p3 = segments;
-	_v2_5:
+	_v2_6:
 	do {
 		if (_p3.ctor === '[]') {
 			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
@@ -9880,10 +9873,12 @@ var _user$project$Main$locationFor = function (path) {
 					return _elm_lang$core$Maybe$Just(
 						_user$project$Main$DemoShow(_p3._1._0));
 				} else {
-					break _v2_5;
+					break _v2_6;
 				}
 			} else {
 				switch (_p3._0) {
+					case 'home':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
 					case 'demos':
 						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
 					case 'resources':
@@ -9891,7 +9886,7 @@ var _user$project$Main$locationFor = function (path) {
 					case 'presentations':
 						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
 					default:
-						break _v2_5;
+						break _v2_6;
 				}
 			}
 		}
@@ -9917,26 +9912,39 @@ var _user$project$Main$update = F2(
 		var _p4 = msg;
 		switch (_p4.ctor) {
 			case 'NoOp':
-				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 			case 'Fetch':
-				return {ctor: '_Tuple2', _0: model, _1: _user$project$Main$fetchDemos};
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					_elm_lang$core$Native_List.fromArray(
+						[_user$project$Main$fetchDemos]));
 			case 'FetchSucceed':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
 						model,
 						{demos: _p4._0}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+					_elm_lang$core$Native_List.fromArray(
+						[]));
 			default:
 				var _p5 = _p4._0;
 				if (_p5.ctor === 'UnexpectedPayload') {
 					return A2(
-						_elm_lang$core$Debug$log,
-						_p5._0,
-						{ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none});
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						A2(_elm_lang$core$Debug$log, _p5._0, model),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
 				} else {
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						model,
+						_elm_lang$core$Native_List.fromArray(
+							[]));
 				}
 		}
 	});
