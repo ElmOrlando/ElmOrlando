@@ -3,7 +3,6 @@ module Main exposing (..)
 import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (onClick)
 import Json.Decode as Json exposing ((:=))
 import Http
 import Navigation
@@ -52,7 +51,7 @@ type Location
 
 init : Maybe Location -> ( Model, Cmd Msg )
 init location =
-    { demos = [], route = routeInit location } ! []
+    { demos = [], route = routeInit location } ! [ fetchDemos ]
 
 
 
@@ -89,11 +88,7 @@ update msg model =
 
 fetchDemos : Cmd Msg
 fetchDemos =
-    let
-        url =
-            "/api/demos"
-    in
-        Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch url)
+    Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch "/api/demos")
 
 
 decodeDemoFetch : Json.Decoder (List Demo)
@@ -150,7 +145,7 @@ view model =
                 Nothing ->
                     notFoundView
     in
-        div [ class "elm-app" ]
+        div []
             [ header model
             , body
             ]
@@ -184,14 +179,7 @@ navigationView model =
 
 navigationLink : ( Location, String ) -> Html Msg
 navigationLink ( location, label ) =
-    let
-        demoLoader =
-            if location == Demos then
-                onClick Fetch
-            else
-                onClick NoOp
-    in
-        a [ demoLoader, href <| urlFor location ] [ text label ]
+    a [ href <| urlFor location ] [ text label ]
 
 
 navigationLinks : List ( Location, String )

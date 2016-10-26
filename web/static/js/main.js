@@ -8427,107 +8427,6 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
-var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode_ops[':='], 'keyCode', _elm_lang$core$Json_Decode$int);
-var _elm_lang$html$Html_Events$targetChecked = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['target', 'checked']),
-	_elm_lang$core$Json_Decode$bool);
-var _elm_lang$html$Html_Events$targetValue = A2(
-	_elm_lang$core$Json_Decode$at,
-	_elm_lang$core$Native_List.fromArray(
-		['target', 'value']),
-	_elm_lang$core$Json_Decode$string);
-var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
-var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
-var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
-var _elm_lang$html$Html_Events$onFocus = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'focus',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onBlur = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'blur',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
-	_elm_lang$html$Html_Events$defaultOptions,
-	{preventDefault: true});
-var _elm_lang$html$Html_Events$onSubmit = function (msg) {
-	return A3(
-		_elm_lang$html$Html_Events$onWithOptions,
-		'submit',
-		_elm_lang$html$Html_Events$onSubmitOptions,
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onCheck = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'change',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
-};
-var _elm_lang$html$Html_Events$onInput = function (tagger) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'input',
-		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
-};
-var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseout',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseover',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseleave',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseenter',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mouseup',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'mousedown',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'dblclick',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$onClick = function (msg) {
-	return A2(
-		_elm_lang$html$Html_Events$on,
-		'click',
-		_elm_lang$core$Json_Decode$succeed(msg));
-};
-var _elm_lang$html$Html_Events$Options = F2(
-	function (a, b) {
-		return {stopPropagation: a, preventDefault: b};
-	});
-
 var _elm_lang$navigation$Native_Navigation = function() {
 
 function go(n)
@@ -9789,6 +9688,20 @@ var _user$project$Main$navigationIcons = A2(
 						]))
 				]))
 		]));
+var _user$project$Main$navigationLink = function (_p3) {
+	var _p4 = _p3;
+	return A2(
+		_elm_lang$html$Html$a,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$href(
+				_user$project$Main$urlFor(_p4._0))
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html$text(_p4._1)
+			]));
+};
 var _user$project$Main$navigationHome = A2(
 	_elm_lang$html$Html$a,
 	_elm_lang$core$Native_List.fromArray(
@@ -9810,17 +9723,6 @@ var _user$project$Main$navigationHome = A2(
 		]));
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
-};
-var _user$project$Main$init = function (location) {
-	return A2(
-		_elm_lang$core$Platform_Cmd_ops['!'],
-		{
-			demos: _elm_lang$core$Native_List.fromArray(
-				[]),
-			route: _user$project$Main$routeInit(location)
-		},
-		_elm_lang$core$Native_List.fromArray(
-			[]));
 };
 var _user$project$Main$Model = F2(
 	function (a, b) {
@@ -9846,168 +9748,6 @@ var _user$project$Main$Presentations = {ctor: 'Presentations'};
 var _user$project$Main$Resources = {ctor: 'Resources'};
 var _user$project$Main$DemoShow = function (a) {
 	return {ctor: 'DemoShow', _0: a};
-};
-var _user$project$Main$Demos = {ctor: 'Demos'};
-var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
-	[
-		{ctor: '_Tuple2', _0: _user$project$Main$Demos, _1: 'Demos'},
-		{ctor: '_Tuple2', _0: _user$project$Main$Resources, _1: 'Resources'},
-		{ctor: '_Tuple2', _0: _user$project$Main$Presentations, _1: 'Presentations'}
-	]);
-var _user$project$Main$Home = {ctor: 'Home'};
-var _user$project$Main$locationFor = function (path) {
-	var segments = A2(
-		_elm_lang$core$List$filter,
-		function (seg) {
-			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
-		},
-		A2(_elm_lang$core$String$split, '/', path.hash));
-	var _p3 = segments;
-	_v2_6:
-	do {
-		if (_p3.ctor === '[]') {
-			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
-		} else {
-			if (_p3._1.ctor === '::') {
-				if ((_p3._0 === 'demos') && (_p3._1._1.ctor === '[]')) {
-					return _elm_lang$core$Maybe$Just(
-						_user$project$Main$DemoShow(_p3._1._0));
-				} else {
-					break _v2_6;
-				}
-			} else {
-				switch (_p3._0) {
-					case 'home':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
-					case 'demos':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
-					case 'resources':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
-					case 'presentations':
-						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
-					default:
-						break _v2_6;
-				}
-			}
-		}
-	} while(false);
-	return _elm_lang$core$Maybe$Nothing;
-};
-var _user$project$Main$FetchFail = function (a) {
-	return {ctor: 'FetchFail', _0: a};
-};
-var _user$project$Main$FetchSucceed = function (a) {
-	return {ctor: 'FetchSucceed', _0: a};
-};
-var _user$project$Main$fetchDemos = function () {
-	var url = '/api/demos';
-	return A3(
-		_elm_lang$core$Task$perform,
-		_user$project$Main$FetchFail,
-		_user$project$Main$FetchSucceed,
-		A2(_evancz$elm_http$Http$get, _user$project$Main$decodeDemoFetch, url));
-}();
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p4 = msg;
-		switch (_p4.ctor) {
-			case 'NoOp':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					model,
-					_elm_lang$core$Native_List.fromArray(
-						[]));
-			case 'Fetch':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					model,
-					_elm_lang$core$Native_List.fromArray(
-						[_user$project$Main$fetchDemos]));
-			case 'FetchSucceed':
-				return A2(
-					_elm_lang$core$Platform_Cmd_ops['!'],
-					_elm_lang$core$Native_Utils.update(
-						model,
-						{demos: _p4._0}),
-					_elm_lang$core$Native_List.fromArray(
-						[]));
-			default:
-				var _p5 = _p4._0;
-				if (_p5.ctor === 'UnexpectedPayload') {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
-						A2(_elm_lang$core$Debug$log, _p5._0, model),
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				} else {
-					return A2(
-						_elm_lang$core$Platform_Cmd_ops['!'],
-						model,
-						_elm_lang$core$Native_List.fromArray(
-							[]));
-				}
-		}
-	});
-var _user$project$Main$Fetch = {ctor: 'Fetch'};
-var _user$project$Main$NoOp = {ctor: 'NoOp'};
-var _user$project$Main$navigationLink = function (_p6) {
-	var _p7 = _p6;
-	var _p8 = _p7._0;
-	var demoLoader = _elm_lang$core$Native_Utils.eq(_p8, _user$project$Main$Demos) ? _elm_lang$html$Html_Events$onClick(_user$project$Main$Fetch) : _elm_lang$html$Html_Events$onClick(_user$project$Main$NoOp);
-	return A2(
-		_elm_lang$html$Html$a,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				demoLoader,
-				_elm_lang$html$Html_Attributes$href(
-				_user$project$Main$urlFor(_p8))
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html$text(_p7._1)
-			]));
-};
-var _user$project$Main$navigationView = function (model) {
-	var linkListItem = function (linkData) {
-		return A2(
-			_elm_lang$html$Html$li,
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html_Attributes$class('nav-list-item')
-				]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_user$project$Main$navigationLink(linkData)
-				]));
-	};
-	return A2(
-		_elm_lang$html$Html$nav,
-		_elm_lang$core$Native_List.fromArray(
-			[]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				A2(
-				_elm_lang$html$Html$ul,
-				_elm_lang$core$Native_List.fromArray(
-					[
-						_elm_lang$html$Html_Attributes$class('nav-list')
-					]),
-				A2(_elm_lang$core$List$map, linkListItem, _user$project$Main$navigationLinks))
-			]));
-};
-var _user$project$Main$header = function (model) {
-	return A2(
-		_elm_lang$html$Html$header,
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('header')
-			]),
-		_elm_lang$core$Native_List.fromArray(
-			[
-				_user$project$Main$navigationHome,
-				_user$project$Main$navigationView(model),
-				_user$project$Main$navigationIcons
-			]));
 };
 var _user$project$Main$demoListItemView = function (demo) {
 	return A2(
@@ -10052,17 +9792,66 @@ var _user$project$Main$demosView = function (model) {
 				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, model.demos))
 			]));
 };
+var _user$project$Main$Demos = {ctor: 'Demos'};
+var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
+	[
+		{ctor: '_Tuple2', _0: _user$project$Main$Demos, _1: 'Demos'},
+		{ctor: '_Tuple2', _0: _user$project$Main$Resources, _1: 'Resources'},
+		{ctor: '_Tuple2', _0: _user$project$Main$Presentations, _1: 'Presentations'}
+	]);
+var _user$project$Main$navigationView = function (model) {
+	var linkListItem = function (linkData) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html_Attributes$class('nav-list-item')
+				]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_user$project$Main$navigationLink(linkData)
+				]));
+	};
+	return A2(
+		_elm_lang$html$Html$nav,
+		_elm_lang$core$Native_List.fromArray(
+			[]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				A2(
+				_elm_lang$html$Html$ul,
+				_elm_lang$core$Native_List.fromArray(
+					[
+						_elm_lang$html$Html_Attributes$class('nav-list')
+					]),
+				A2(_elm_lang$core$List$map, linkListItem, _user$project$Main$navigationLinks))
+			]));
+};
+var _user$project$Main$header = function (model) {
+	return A2(
+		_elm_lang$html$Html$header,
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_elm_lang$html$Html_Attributes$class('header')
+			]),
+		_elm_lang$core$Native_List.fromArray(
+			[
+				_user$project$Main$navigationHome,
+				_user$project$Main$navigationView(model),
+				_user$project$Main$navigationIcons
+			]));
+};
 var _user$project$Main$view = function (model) {
 	var body = function () {
-		var _p9 = model.route;
-		if (_p9.ctor === 'Just') {
-			switch (_p9._0.ctor) {
+		var _p5 = model.route;
+		if (_p5.ctor === 'Just') {
+			switch (_p5._0.ctor) {
 				case 'Home':
 					return _user$project$Main$homeView;
 				case 'Demos':
 					return _user$project$Main$demosView(model);
 				case 'DemoShow':
-					return A2(_user$project$Main$demoView, _p9._0._0, model.demos);
+					return A2(_user$project$Main$demoView, _p5._0._0, model.demos);
 				case 'Resources':
 					return _user$project$Main$resourcesView;
 				default:
@@ -10075,21 +9864,123 @@ var _user$project$Main$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
-			[
-				_elm_lang$html$Html_Attributes$class('elm-app')
-			]),
+			[]),
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$Main$header(model),
 				body
 			]));
 };
+var _user$project$Main$Home = {ctor: 'Home'};
+var _user$project$Main$locationFor = function (path) {
+	var segments = A2(
+		_elm_lang$core$List$filter,
+		function (seg) {
+			return (!_elm_lang$core$Native_Utils.eq(seg, '')) && (!_elm_lang$core$Native_Utils.eq(seg, '#'));
+		},
+		A2(_elm_lang$core$String$split, '/', path.hash));
+	var _p6 = segments;
+	_v4_6:
+	do {
+		if (_p6.ctor === '[]') {
+			return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
+		} else {
+			if (_p6._1.ctor === '::') {
+				if ((_p6._0 === 'demos') && (_p6._1._1.ctor === '[]')) {
+					return _elm_lang$core$Maybe$Just(
+						_user$project$Main$DemoShow(_p6._1._0));
+				} else {
+					break _v4_6;
+				}
+			} else {
+				switch (_p6._0) {
+					case 'home':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Home);
+					case 'demos':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Demos);
+					case 'resources':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Resources);
+					case 'presentations':
+						return _elm_lang$core$Maybe$Just(_user$project$Main$Presentations);
+					default:
+						break _v4_6;
+				}
+			}
+		}
+	} while(false);
+	return _elm_lang$core$Maybe$Nothing;
+};
+var _user$project$Main$FetchFail = function (a) {
+	return {ctor: 'FetchFail', _0: a};
+};
+var _user$project$Main$FetchSucceed = function (a) {
+	return {ctor: 'FetchSucceed', _0: a};
+};
+var _user$project$Main$fetchDemos = A3(
+	_elm_lang$core$Task$perform,
+	_user$project$Main$FetchFail,
+	_user$project$Main$FetchSucceed,
+	A2(_evancz$elm_http$Http$get, _user$project$Main$decodeDemoFetch, '/api/demos'));
+var _user$project$Main$init = function (location) {
+	return A2(
+		_elm_lang$core$Platform_Cmd_ops['!'],
+		{
+			demos: _elm_lang$core$Native_List.fromArray(
+				[]),
+			route: _user$project$Main$routeInit(location)
+		},
+		_elm_lang$core$Native_List.fromArray(
+			[_user$project$Main$fetchDemos]));
+};
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p7 = msg;
+		switch (_p7.ctor) {
+			case 'NoOp':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			case 'Fetch':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					model,
+					_elm_lang$core$Native_List.fromArray(
+						[_user$project$Main$fetchDemos]));
+			case 'FetchSucceed':
+				return A2(
+					_elm_lang$core$Platform_Cmd_ops['!'],
+					_elm_lang$core$Native_Utils.update(
+						model,
+						{demos: _p7._0}),
+					_elm_lang$core$Native_List.fromArray(
+						[]));
+			default:
+				var _p8 = _p7._0;
+				if (_p8.ctor === 'UnexpectedPayload') {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						A2(_elm_lang$core$Debug$log, _p8._0, model),
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				} else {
+					return A2(
+						_elm_lang$core$Platform_Cmd_ops['!'],
+						model,
+						_elm_lang$core$Native_List.fromArray(
+							[]));
+				}
+		}
+	});
 var _user$project$Main$main = {
 	main: A2(
 		_elm_lang$navigation$Navigation$program,
 		_elm_lang$navigation$Navigation$makeParser(_user$project$Main$locationFor),
 		{init: _user$project$Main$init, update: _user$project$Main$update, urlUpdate: _user$project$Main$updateRoute, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions})
 };
+var _user$project$Main$Fetch = {ctor: 'Fetch'};
+var _user$project$Main$NoOp = {ctor: 'NoOp'};
 
 var Elm = {};
 Elm['Main'] = Elm['Main'] || {};
