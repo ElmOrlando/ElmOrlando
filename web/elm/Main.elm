@@ -141,7 +141,7 @@ header model =
 
 navigationHome : Html Msg
 navigationHome =
-    a [ href "/" ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+    a [ href "#/" ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
 navigationView : Model -> Html Msg
@@ -269,16 +269,23 @@ presentationsView =
             [ presentationView "http://prezi.com/wofdk8e6uuy3" "Getting to Know Elm" ]
         , h3 [] [ text "October 2016" ]
         , ul []
-            [ presentationView "#" "Elm and React (Coming Soon)" ]
+            [ presentationView "#" "Elm and React" ]
         , h3 [] [ text "November 2016" ]
         , ul []
-            [ presentationView "#" "Solving a Problem with Elm (Coming Soon)" ]
+            [ presentationView "#" "Solving a Problem with Elm" ]
         ]
 
 
 presentationView : String -> String -> Html Msg
 presentationView url title =
-    li [] [ a [ href url ] [ text title ] ]
+    let
+        presentationListItem =
+            if url == "#" then
+                li [] [ text title, em [] [ text " (Coming Soon)" ] ]
+            else
+                li [] [ a [ href url ] [ text title ] ]
+    in
+        presentationListItem
 
 
 notFoundView : Html Msg

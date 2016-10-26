@@ -9180,7 +9180,22 @@ var _user$project$Main$notFoundView = A2(
 		]));
 var _user$project$Main$presentationView = F2(
 	function (url, title) {
-		return A2(
+		var presentationListItem = _elm_lang$core$Native_Utils.eq(url, '#') ? A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text(title),
+					A2(
+					_elm_lang$html$Html$em,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(' (Coming Soon)')
+						]))
+				])) : A2(
 			_elm_lang$html$Html$li,
 			_elm_lang$core$Native_List.fromArray(
 				[]),
@@ -9197,6 +9212,7 @@ var _user$project$Main$presentationView = F2(
 							_elm_lang$html$Html$text(title)
 						]))
 				]));
+		return presentationListItem;
 	});
 var _user$project$Main$presentationsView = A2(
 	_elm_lang$html$Html$div,
@@ -9244,7 +9260,7 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Main$presentationView, '#', 'Elm and React (Coming Soon)')
+					A2(_user$project$Main$presentationView, '#', 'Elm and React')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9260,7 +9276,7 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Main$presentationView, '#', 'Solving a Problem with Elm (Coming Soon)')
+					A2(_user$project$Main$presentationView, '#', 'Solving a Problem with Elm')
 				]))
 		]));
 var _user$project$Main$resourceView = F2(
@@ -9514,7 +9530,7 @@ var _user$project$Main$navigationHome = A2(
 	_elm_lang$html$Html$a,
 	_elm_lang$core$Native_List.fromArray(
 		[
-			_elm_lang$html$Html_Attributes$href('/')
+			_elm_lang$html$Html_Attributes$href('#/')
 		]),
 	_elm_lang$core$Native_List.fromArray(
 		[
