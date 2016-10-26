@@ -124,31 +124,10 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    let
-        body =
-            case model.route of
-                Just Home ->
-                    homeView
-
-                Just Demos ->
-                    demosView model
-
-                Just (DemoShow name) ->
-                    demoView name model.demos
-
-                Just Resources ->
-                    resourcesView
-
-                Just Presentations ->
-                    presentationsView
-
-                Nothing ->
-                    notFoundView
-    in
-        div []
-            [ header model
-            , body
-            ]
+    div []
+        [ header model
+        , routing model
+        ]
 
 
 header : Model -> Html Msg
@@ -194,11 +173,16 @@ navigationIcons : Html Msg
 navigationIcons =
     nav []
         [ ul [ class "nav nav-pills" ]
-            [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
-            , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
-            , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+            [ navigationIconItem "https://www.meetup.com/ElmOrlando" "/images/meetup.png"
+            , navigationIconItem "https://github.com/ElmOrlando" "/images/github.png"
+            , navigationIconItem "https://twitter.com/ElmOrlandoGroup" "/images/twitter.png"
             ]
         ]
+
+
+navigationIconItem : String -> String -> Html Msg
+navigationIconItem url imgSrc =
+    li [] [ a [ href url ] [ img [ src imgSrc ] [] ] ]
 
 
 homeView : Html Msg
@@ -248,27 +232,32 @@ resourcesView =
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
         , ul []
-            [ li [] [ a [ href "http://guide.elm-lang.org" ] [ text "An Introduction to Elm" ] ]
-            , li [] [ a [ href "https://raorao.gitbooks.io/elmbridge-curriculum/content" ] [ text "ElmBridge Curriculum" ] ]
+            [ resourceView "http://guide.elm-lang.org" "An Introduction to Elm"
+            , resourceView "https://raorao.gitbooks.io/elmbridge-curriculum/content" "ElmBridge Curriculum"
             ]
         , h3 [] [ text "Courses" ]
         , ul []
-            [ li [] [ a [ href "http://courses.knowthen.com/courses/elm-for-beginners" ] [ text "Elm for Beginners" ] ]
-            , li [] [ a [ href "https://www.dailydrip.com/topics/elm" ] [ text "DailyDrip Elm" ] ]
+            [ resourceView "http://courses.knowthen.com/courses/elm-for-beginners" "Elm for Beginners"
+            , resourceView "https://www.dailydrip.com/topics/elm" "DailyDrip Elm"
             ]
         , h3 [] [ text "Community" ]
         , ul []
-            [ li [] [ a [ href "http://elmlang.herokuapp.com" ] [ text "Elm Slack" ] ]
-            , li [] [ a [ href "https://twitter.com/elmlang" ] [ text "Elm Twitter" ] ]
-            , li [] [ a [ href "http://www.elmweekly.nl" ] [ text "Elm Weekly" ] ]
+            [ resourceView "http://elmlang.herokuapp.com" "Elm Slack"
+            , resourceView "https://twitter.com/elmlang" "Elm Twitter"
+            , resourceView "http://www.elmweekly.nl" "Elm Weekly"
             ]
         , h3 [] [ text "Elm and Phoenix" ]
         , ul []
-            [ li [] [ a [ href "https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2" ] [ text "Setting Up Elm with Phoenix" ] ]
-            , li [] [ a [ href "https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499" ] [ text "Writing a Full Site in Phoenix and Elm" ] ]
-            , li [] [ a [ href "http://www.cultivatehq.com/posts/phoenix-elm-1" ] [ text "Phoenix with Elm" ] ]
+            [ resourceView "https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2" "Setting Up Elm with Phoenix"
+            , resourceView "https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499" "Writing a Full Site in Phoenix and Elm"
+            , resourceView "http://www.cultivatehq.com/posts/phoenix-elm-1" "Phoenix with Elm"
             ]
         ]
+
+
+resourceView : String -> String -> Html Msg
+resourceView url title =
+    li [] [ a [ href url ] [ text title ] ]
 
 
 presentationsView : Html Msg
@@ -277,17 +266,19 @@ presentationsView =
         [ h2 [] [ text "Presentations" ]
         , h3 [] [ text "September 2016" ]
         , ul []
-            [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ]
-            ]
+            [ presentationView "http://prezi.com/wofdk8e6uuy3" "Getting to Know Elm" ]
         , h3 [] [ text "October 2016" ]
         , ul []
-            [ li [] [ text "Elm and React (Coming Soon)" ]
-            ]
+            [ presentationView "#" "Elm and React (Coming Soon)" ]
         , h3 [] [ text "November 2016" ]
         , ul []
-            [ li [] [ text "Solving a Problem with Elm (Coming Soon)" ]
-            ]
+            [ presentationView "#" "Solving a Problem with Elm (Coming Soon)" ]
         ]
+
+
+presentationView : String -> String -> Html Msg
+presentationView url title =
+    li [] [ a [ href url ] [ text title ] ]
 
 
 notFoundView : Html Msg
@@ -297,6 +288,28 @@ notFoundView =
 
 
 -- NAVIGATION
+
+
+routing : Model -> Html Msg
+routing model =
+    case model.route of
+        Just Home ->
+            homeView
+
+        Just Demos ->
+            demosView model
+
+        Just (DemoShow name) ->
+            demoView name model.demos
+
+        Just Resources ->
+            resourcesView
+
+        Just Presentations ->
+            presentationsView
+
+        Nothing ->
+            notFoundView
 
 
 updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )

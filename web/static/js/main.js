@@ -9178,6 +9178,26 @@ var _user$project$Main$notFoundView = A2(
 					_elm_lang$html$Html$text('Page not found. Return from whence ye came.')
 				]))
 		]));
+var _user$project$Main$presentationView = F2(
+	function (url, title) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href(url)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(title)
+						]))
+				]));
+	});
 var _user$project$Main$presentationsView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9208,23 +9228,7 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://prezi.com/wofdk8e6uuy3')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Getting to Know Elm')
-								]))
-						]))
+					A2(_user$project$Main$presentationView, 'http://prezi.com/wofdk8e6uuy3', 'Getting to Know Elm')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9240,14 +9244,7 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Elm and React (Coming Soon)')
-						]))
+					A2(_user$project$Main$presentationView, '#', 'Elm and React (Coming Soon)')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9263,16 +9260,29 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text('Solving a Problem with Elm (Coming Soon)')
-						]))
+					A2(_user$project$Main$presentationView, '#', 'Solving a Problem with Elm (Coming Soon)')
 				]))
 		]));
+var _user$project$Main$resourceView = F2(
+	function (url, title) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href(url)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text(title)
+						]))
+				]));
+	});
 var _user$project$Main$resourcesView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9303,40 +9313,8 @@ var _user$project$Main$resourcesView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://guide.elm-lang.org')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('An Introduction to Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://raorao.gitbooks.io/elmbridge-curriculum/content')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('ElmBridge Curriculum')
-								]))
-						]))
+					A2(_user$project$Main$resourceView, 'http://guide.elm-lang.org', 'An Introduction to Elm'),
+					A2(_user$project$Main$resourceView, 'https://raorao.gitbooks.io/elmbridge-curriculum/content', 'ElmBridge Curriculum')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9352,40 +9330,8 @@ var _user$project$Main$resourcesView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://courses.knowthen.com/courses/elm-for-beginners')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm for Beginners')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://www.dailydrip.com/topics/elm')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('DailyDrip Elm')
-								]))
-						]))
+					A2(_user$project$Main$resourceView, 'http://courses.knowthen.com/courses/elm-for-beginners', 'Elm for Beginners'),
+					A2(_user$project$Main$resourceView, 'https://www.dailydrip.com/topics/elm', 'DailyDrip Elm')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9401,57 +9347,9 @@ var _user$project$Main$resourcesView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://elmlang.herokuapp.com')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Slack')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://twitter.com/elmlang')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Twitter')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.elmweekly.nl')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Elm Weekly')
-								]))
-						]))
+					A2(_user$project$Main$resourceView, 'http://elmlang.herokuapp.com', 'Elm Slack'),
+					A2(_user$project$Main$resourceView, 'https://twitter.com/elmlang', 'Elm Twitter'),
+					A2(_user$project$Main$resourceView, 'http://www.elmweekly.nl', 'Elm Weekly')
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9467,57 +9365,9 @@ var _user$project$Main$resourcesView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Setting Up Elm with Phoenix')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Writing a Full Site in Phoenix and Elm')
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('http://www.cultivatehq.com/posts/phoenix-elm-1')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html$text('Phoenix with Elm')
-								]))
-						]))
+					A2(_user$project$Main$resourceView, 'https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2', 'Setting Up Elm with Phoenix'),
+					A2(_user$project$Main$resourceView, 'https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499', 'Writing a Full Site in Phoenix and Elm'),
+					A2(_user$project$Main$resourceView, 'http://www.cultivatehq.com/posts/phoenix-elm-1', 'Phoenix with Elm')
 				]))
 		]));
 var _user$project$Main$demoView = F2(
@@ -9600,6 +9450,33 @@ var _user$project$Main$homeView = A2(
 		[]),
 	_elm_lang$core$Native_List.fromArray(
 		[]));
+var _user$project$Main$navigationIconItem = F2(
+	function (url, imgSrc) {
+		return A2(
+			_elm_lang$html$Html$li,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$a,
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html_Attributes$href(url)
+						]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$img,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$src(imgSrc)
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[]))
+						]))
+				]));
+	});
 var _user$project$Main$navigationIcons = A2(
 	_elm_lang$html$Html$nav,
 	_elm_lang$core$Native_List.fromArray(
@@ -9614,78 +9491,9 @@ var _user$project$Main$navigationIcons = A2(
 				]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://www.meetup.com/ElmOrlando')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$img,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$src('/images/meetup.png')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[]))
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://github.com/ElmOrlando')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$img,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$src('/images/github.png')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[]))
-								]))
-						])),
-					A2(
-					_elm_lang$html$Html$li,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							A2(
-							_elm_lang$html$Html$a,
-							_elm_lang$core$Native_List.fromArray(
-								[
-									_elm_lang$html$Html_Attributes$href('https://twitter.com/ElmOrlandoGroup')
-								]),
-							_elm_lang$core$Native_List.fromArray(
-								[
-									A2(
-									_elm_lang$html$Html$img,
-									_elm_lang$core$Native_List.fromArray(
-										[
-											_elm_lang$html$Html_Attributes$src('/images/twitter.png')
-										]),
-									_elm_lang$core$Native_List.fromArray(
-										[]))
-								]))
-						]))
+					A2(_user$project$Main$navigationIconItem, 'https://www.meetup.com/ElmOrlando', '/images/meetup.png'),
+					A2(_user$project$Main$navigationIconItem, 'https://github.com/ElmOrlando', '/images/github.png'),
+					A2(_user$project$Main$navigationIconItem, 'https://twitter.com/ElmOrlandoGroup', '/images/twitter.png')
 				]))
 		]));
 var _user$project$Main$navigationLink = function (_p3) {
@@ -9792,6 +9600,25 @@ var _user$project$Main$demosView = function (model) {
 				A2(_elm_lang$core$List$map, _user$project$Main$demoListItemView, model.demos))
 			]));
 };
+var _user$project$Main$routing = function (model) {
+	var _p5 = model.route;
+	if (_p5.ctor === 'Just') {
+		switch (_p5._0.ctor) {
+			case 'Home':
+				return _user$project$Main$homeView;
+			case 'Demos':
+				return _user$project$Main$demosView(model);
+			case 'DemoShow':
+				return A2(_user$project$Main$demoView, _p5._0._0, model.demos);
+			case 'Resources':
+				return _user$project$Main$resourcesView;
+			default:
+				return _user$project$Main$presentationsView;
+		}
+	} else {
+		return _user$project$Main$notFoundView;
+	}
+};
 var _user$project$Main$Demos = {ctor: 'Demos'};
 var _user$project$Main$navigationLinks = _elm_lang$core$Native_List.fromArray(
 	[
@@ -9842,25 +9669,6 @@ var _user$project$Main$header = function (model) {
 			]));
 };
 var _user$project$Main$view = function (model) {
-	var body = function () {
-		var _p5 = model.route;
-		if (_p5.ctor === 'Just') {
-			switch (_p5._0.ctor) {
-				case 'Home':
-					return _user$project$Main$homeView;
-				case 'Demos':
-					return _user$project$Main$demosView(model);
-				case 'DemoShow':
-					return A2(_user$project$Main$demoView, _p5._0._0, model.demos);
-				case 'Resources':
-					return _user$project$Main$resourcesView;
-				default:
-					return _user$project$Main$presentationsView;
-			}
-		} else {
-			return _user$project$Main$notFoundView;
-		}
-	}();
 	return A2(
 		_elm_lang$html$Html$div,
 		_elm_lang$core$Native_List.fromArray(
@@ -9868,7 +9676,7 @@ var _user$project$Main$view = function (model) {
 		_elm_lang$core$Native_List.fromArray(
 			[
 				_user$project$Main$header(model),
-				body
+				_user$project$Main$routing(model)
 			]));
 };
 var _user$project$Main$Home = {ctor: 'Home'};
