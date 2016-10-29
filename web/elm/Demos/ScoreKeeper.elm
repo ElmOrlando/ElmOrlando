@@ -11,16 +11,15 @@
 
 module ScoreKeeper exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import String
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = model
         , view = view
         , update = update
@@ -209,7 +208,7 @@ add model =
 view : Model -> Html Msg
 view model =
     div [ class "scoreboard" ]
-        [ node "style" [ type' "text/css" ] [ text styles ]
+        [ node "style" [ type_ "text/css" ] [ text styles ]
         , h1 [] [ text "ScoreKeeper" ]
         , playerSection model
         , playerForm model
@@ -279,8 +278,8 @@ player player =
     li []
         [ i [ class "edit", onClick (Edit player) ] []
         , div [] [ text player.name ]
-        , button [ type' "button", onClick (Score player 2) ] [ text "2pt" ]
-        , button [ type' "button", onClick (Score player 3) ] [ text "3pt" ]
+        , button [ type_ "button", onClick (Score player 2) ] [ text "2pt" ]
+        , button [ type_ "button", onClick (Score player 3) ] [ text "3pt" ]
         , div [] [ text (toString player.points) ]
         ]
 
@@ -302,14 +301,14 @@ playerForm : Model -> Html Msg
 playerForm model =
     Html.form [ onSubmit Save ]
         [ input
-            [ type' "text"
+            [ type_ "text"
             , placeholder "Add/Edit Player"
             , onInput Input
             , value model.name
             ]
             []
-        , button [ type' "submit" ] [ text "Save" ]
-        , button [ type' "button", onClick Cancel ] [ text "Cancel" ]
+        , button [ type_ "submit" ] [ text "Save" ]
+        , button [ type_ "button", onClick Cancel ] [ text "Cancel" ]
         ]
 
 
