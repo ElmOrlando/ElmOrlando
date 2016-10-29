@@ -9,7 +9,6 @@
 
 module ElmOrlando exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
@@ -20,9 +19,9 @@ import Key exposing (..)
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    Html.program
         { init = init
         , view = view
         , update = update
