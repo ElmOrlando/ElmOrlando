@@ -78,12 +78,7 @@ update msg model =
             { model | demos = demoList } ! []
 
         FetchFail error ->
-            case error of
-                Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage model ! []
-
-                _ ->
-                    model ! []
+            model ! []
 
 
 fetchDemos : Cmd Msg
