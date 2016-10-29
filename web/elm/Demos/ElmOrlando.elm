@@ -125,7 +125,7 @@ view model =
                 , Svg.Attributes.height "50"
                 ]
                 []
-            , Svg.text'
+            , Svg.text_
                 [ Svg.Attributes.x "115"
                 , Svg.Attributes.y "295"
                 , Svg.Attributes.fontFamily "Baumans, cursive"
