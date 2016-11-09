@@ -9178,42 +9178,6 @@ var _user$project$Main$notFoundView = A2(
 					_elm_lang$html$Html$text('Page not found. Return from whence ye came.')
 				]))
 		]));
-var _user$project$Main$presentationView = F2(
-	function (url, title) {
-		var presentationListItem = _elm_lang$core$Native_Utils.eq(url, '#') ? A2(
-			_elm_lang$html$Html$li,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					_elm_lang$html$Html$text(title),
-					A2(
-					_elm_lang$html$Html$em,
-					_elm_lang$core$Native_List.fromArray(
-						[]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text(' (Coming Soon)')
-						]))
-				])) : A2(
-			_elm_lang$html$Html$li,
-			_elm_lang$core$Native_List.fromArray(
-				[]),
-			_elm_lang$core$Native_List.fromArray(
-				[
-					A2(
-					_elm_lang$html$Html$a,
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html_Attributes$href(url)
-						]),
-					_elm_lang$core$Native_List.fromArray(
-						[
-							_elm_lang$html$Html$text(title)
-						]))
-				]));
-		return presentationListItem;
-	});
 var _user$project$Main$presentationsView = A2(
 	_elm_lang$html$Html$div,
 	_elm_lang$core$Native_List.fromArray(
@@ -9244,7 +9208,23 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Main$presentationView, 'http://prezi.com/wofdk8e6uuy3', 'Getting to Know Elm')
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('http://prezi.com/wofdk8e6uuy3')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Getting to Know Elm')
+								]))
+						]))
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9260,7 +9240,14 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Main$presentationView, '#', 'Elm and React')
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							_elm_lang$html$Html$text('Elm and React')
+						]))
 				])),
 			A2(
 			_elm_lang$html$Html$h3,
@@ -9276,7 +9263,23 @@ var _user$project$Main$presentationsView = A2(
 				[]),
 			_elm_lang$core$Native_List.fromArray(
 				[
-					A2(_user$project$Main$presentationView, '#', 'Solving a Problem with Elm')
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('https://prezi.com/f0lpwk_xlj4p')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Solving a Problem with Elm')
+								]))
+						]))
 				]))
 		]));
 var _user$project$Main$resourceView = F2(

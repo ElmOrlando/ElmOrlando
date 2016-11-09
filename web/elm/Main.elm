@@ -265,27 +265,12 @@ presentationsView =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
         , h3 [] [ text "September 2016" ]
-        , ul []
-            [ presentationView "http://prezi.com/wofdk8e6uuy3" "Getting to Know Elm" ]
+        , ul [] [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ] ]
         , h3 [] [ text "October 2016" ]
-        , ul []
-            [ presentationView "#" "Elm and React" ]
+        , ul [] [ li [] [ text "Elm and React" ] ]
         , h3 [] [ text "November 2016" ]
-        , ul []
-            [ presentationView "#" "Solving a Problem with Elm" ]
+        , ul [] [ li [] [ a [ href "https://prezi.com/f0lpwk_xlj4p" ] [ text "Solving a Problem with Elm" ] ] ]
         ]
-
-
-presentationView : String -> String -> Html Msg
-presentationView url title =
-    let
-        presentationListItem =
-            if url == "#" then
-                li [] [ text title, em [] [ text " (Coming Soon)" ] ]
-            else
-                li [] [ a [ href url ] [ text title ] ]
-    in
-        presentationListItem
 
 
 notFoundView : Html Msg
