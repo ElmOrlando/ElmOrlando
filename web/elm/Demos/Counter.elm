@@ -8,7 +8,6 @@
 
 module Counter exposing (..)
 
-import Html.App as App
 import Html exposing (Html, button, div, h1, text)
 import Html.Attributes exposing (style)
 import Html.Events exposing (onClick)
@@ -17,9 +16,9 @@ import Html.Events exposing (onClick)
 -- MAIN
 
 
-main : Program Never
+main : Program Never Int Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = model
         , view = view
         , update = update

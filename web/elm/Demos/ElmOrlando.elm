@@ -9,7 +9,6 @@
 
 module ElmOrlando exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Svg exposing (..)
 import Svg.Attributes exposing (..)
@@ -20,9 +19,9 @@ import Key exposing (..)
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    Html.program
         { init = init
         , view = view
         , update = update
@@ -126,7 +125,7 @@ view model =
                 , Svg.Attributes.height "50"
                 ]
                 []
-            , Svg.text'
+            , Svg.text_
                 [ Svg.Attributes.x "115"
                 , Svg.Attributes.y "295"
                 , Svg.Attributes.fontFamily "Baumans, cursive"

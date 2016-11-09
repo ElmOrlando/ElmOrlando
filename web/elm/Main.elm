@@ -3,7 +3,7 @@ module Main exposing (..)
 import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Json.Decode as Json exposing ((:=))
+import Json.Decode as Json exposing (field)
 import Http
 import Navigation
 import String
@@ -78,12 +78,7 @@ update msg model =
             { model | demos = demoList } ! []
 
         FetchFail error ->
-            case error of
-                Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage model ! []
-
-                _ ->
-                    model ! []
+            model ! []
 
 
 fetchDemos : Cmd Msg
@@ -103,10 +98,10 @@ decodeDemoList =
 
 decodeDemoData : Json.Decoder Demo
 decodeDemoData =
-    Json.object3 Demo
-        ("name" := Json.string)
-        ("liveDemoUrl" := Json.string)
-        ("sourceCodeUrl" := Json.string)
+    Json.map3 Demo
+        ("name" field Json.string)
+        ("liveDemoUrl" field Json.string)
+        ("sourceCodeUrl" field Json.string)
 
 
 

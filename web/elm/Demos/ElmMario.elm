@@ -10,7 +10,6 @@
 
 module ElmMario exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -21,9 +20,9 @@ import Key exposing (..)
 import Time exposing (..)
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    Html.program
         { init = init
         , view = view
         , update = update
@@ -197,7 +196,7 @@ viewDivNameInput =
         [ Html.Attributes.style
             [ ( "margin-left", "40px" )
             ]
-        , Html.Attributes.type' "text"
+        , Html.Attributes.type_ "text"
         , placeholder "Name"
         , onInput Name
         ]
