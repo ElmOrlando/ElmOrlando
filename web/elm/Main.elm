@@ -270,6 +270,8 @@ presentationsView =
         , ul [] [ li [] [ text "Elm and React" ] ]
         , h3 [] [ text "November 2016" ]
         , ul [] [ li [] [ a [ href "https://prezi.com/f0lpwk_xlj4p" ] [ text "Solving a Problem with Elm" ] ] ]
+        , h3 [] [ text "December 2016" ]
+        , ul [] [ li [] [ a [ href "https://cl.ly/0U2n0R3J3A2t/download/input_and_subscriptions.pdf" ] [ text "Input and Subscriptions" ] ] ]
         ]
 
 

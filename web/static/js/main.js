@@ -9280,6 +9280,38 @@ var _user$project$Main$presentationsView = A2(
 									_elm_lang$html$Html$text('Solving a Problem with Elm')
 								]))
 						]))
+				])),
+			A2(
+			_elm_lang$html$Html$h3,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					_elm_lang$html$Html$text('December 2016')
+				])),
+			A2(
+			_elm_lang$html$Html$ul,
+			_elm_lang$core$Native_List.fromArray(
+				[]),
+			_elm_lang$core$Native_List.fromArray(
+				[
+					A2(
+					_elm_lang$html$Html$li,
+					_elm_lang$core$Native_List.fromArray(
+						[]),
+					_elm_lang$core$Native_List.fromArray(
+						[
+							A2(
+							_elm_lang$html$Html$a,
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html_Attributes$href('https://cl.ly/0U2n0R3J3A2t/download/input_and_subscriptions.pdf')
+								]),
+							_elm_lang$core$Native_List.fromArray(
+								[
+									_elm_lang$html$Html$text('Input and Subscriptions')
+								]))
+						]))
 				]))
 		]));
 var _user$project$Main$resourceView = F2(
