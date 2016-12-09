@@ -9365,6 +9365,7 @@ var _user$project$Main$resourcesView = A2(
 			_elm_lang$core$Native_List.fromArray(
 				[
 					A2(_user$project$Main$resourceView, 'http://guide.elm-lang.org', 'An Introduction to Elm'),
+					A2(_user$project$Main$resourceView, 'http://elmprogramming.com/', 'Beginning Elm'),
 					A2(_user$project$Main$resourceView, 'https://raorao.gitbooks.io/elmbridge-curriculum/content', 'ElmBridge Curriculum')
 				])),
 			A2(

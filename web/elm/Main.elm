@@ -233,6 +233,7 @@ resourcesView =
         , h3 [] [ text "Books" ]
         , ul []
             [ resourceView "http://guide.elm-lang.org" "An Introduction to Elm"
+            , resourceView "http://elmprogramming.com/" "Beginning Elm"
             , resourceView "https://raorao.gitbooks.io/elmbridge-curriculum/content" "ElmBridge Curriculum"
             ]
         , h3 [] [ text "Courses" ]
