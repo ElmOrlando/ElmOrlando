@@ -9,7 +9,6 @@
 
 module CalorieCounter exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -19,9 +18,9 @@ import String
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = initModel
         , view = view
         , update = update
@@ -103,7 +102,7 @@ view model =
             ]
             [ h1 [] [ text header ]
             , input
-                [ type' "text "
+                [ type_ "text "
                 , placeholder "Calories..."
                 , onInput Input
                 , value
