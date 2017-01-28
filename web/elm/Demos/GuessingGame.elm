@@ -9,7 +9,6 @@
 
 module GuessingGame exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -18,9 +17,9 @@ import Html.Events exposing (..)
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.program
+    Html.program
         { init = init
         , view = view
         , update = update

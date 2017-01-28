@@ -9,7 +9,6 @@
 
 module HelloWorld exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -19,9 +18,9 @@ import Debug
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = model
         , view = view
         , update = update
@@ -75,6 +74,6 @@ view model =
             ]
         ]
         [ h1 [] [ text ("Hello  " ++ model.content) ]
-        , input [ type' "text", placeholder "Enter value...", onInput Change ] []
+        , input [ type_ "text", placeholder "Enter value...", onInput Change ] []
         , button [ onClick Reset ] [ text "Reset" ]
         ]
