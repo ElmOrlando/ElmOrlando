@@ -4,7 +4,7 @@ defmodule ElmOrlando.Mixfile do
   def project do
     [app: :elm_orlando,
      version: "0.0.1",
-     elixir: "~> 1.3.2",
+     elixir: "~> 1.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -18,8 +18,8 @@ defmodule ElmOrlando.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {ElmOrlando, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger,
+                    :gettext, :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,7 +36,7 @@ defmodule ElmOrlando.Mixfile do
      {:postgrex, ">= 0.0.0"},
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.11"},
+     {:gettext, "~> 0.12.1"},
      {:cowboy, "~> 1.0"}]
   end
 

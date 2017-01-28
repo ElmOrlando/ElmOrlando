@@ -8,9 +8,9 @@ central location for presentations, demos, resources, etc.
 
 ## Requirements
 
-- Elm 0.17.1
+- Elm 0.18.0
 - Phoenix 1.2
-- Elixir 1.3.2
+- Elixir 1.4
 
 ## Setup Instructions
 
