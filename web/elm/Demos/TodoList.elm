@@ -5,19 +5,17 @@
 
 module TodoList exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Html.Events exposing (on, onInput, onCheck, onClick, keyCode)
-import Json.Decode as Json
+import Html.Events exposing (onInput, onCheck, onClick, keyCode)
 
 
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = model
         , update = update
         , view = view
@@ -52,8 +50,7 @@ type FilterState
 
 model : Model
 model =
-    { todos =
-        []
+    { todos = []
     , todo = { newTodo | identifier = 1 }
     , filter = All
     , nextIdentifier = 2
@@ -138,19 +135,6 @@ isNotCompleted todo =
     not todo.completed
 
 
-handleKeyPress : Model -> Json.Decoder Msg
-handleKeyPress model =
-    Json.map (always (Add)) (Json.customDecoder keyCode is13)
-
-
-is13 : Int -> Result String ()
-is13 code =
-    if code == 13 then
-        Ok ()
-    else
-        Err "not the right key code"
-
-
 filteredTodos : Model -> List Todo
 filteredTodos model =
     let
@@ -175,7 +159,7 @@ filteredTodos model =
 view : Model -> Html Msg
 view model =
     div []
-        [ node "style" [ type' "text/css" ] [ text styles ]
+        [ node "style" [ type_ "text/css" ] [ text styles ]
         , section [ class "todoapp" ]
             [ header [ class "header" ]
                 [ h1 [] [ text "TodoList" ]
@@ -184,7 +168,6 @@ view model =
                     , placeholder "What needs to be done?"
                     , value model.todo.title
                     , autofocus True
-                    , on "keypress" (handleKeyPress model)
                     , onInput UpdateField
                     ]
                     []
@@ -224,7 +207,7 @@ todoView todo =
             [ div [ class "view" ]
                 [ input
                     [ class "toggle"
-                    , type' "checkbox"
+                    , type_ "checkbox"
                     , checked todo.completed
                     , onCheck handleComplete
                     ]
