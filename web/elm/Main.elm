@@ -1,24 +1,19 @@
 module Main exposing (..)
 
-import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Json.Decode as Json exposing ((:=))
+import Json.Decode as Decode
 import Http
-import Navigation
-import String
-import Task
 
 
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    Navigation.program (Navigation.makeParser locationFor)
+    Html.program
         { init = init
         , update = update
-        , urlUpdate = updateRoute
         , view = view
         , subscriptions = subscriptions
         }
@@ -30,7 +25,6 @@ main =
 
 type alias Model =
     { demos : List Demo
-    , route : Maybe Location
     }
 
 
@@ -49,9 +43,14 @@ type Location
     | Presentations
 
 
-init : Maybe Location -> ( Model, Cmd Msg )
-init location =
-    { demos = [], route = routeInit location } ! [ fetchDemos ]
+init : ( Model, Cmd Msg )
+init =
+    ( initialModel, Cmd.none )
+
+
+initialModel : Model
+initialModel =
+    { demos = [] }
 
 
 
@@ -60,53 +59,43 @@ init location =
 
 type Msg
     = NoOp
-    | Fetch
-    | FetchSucceed (List Demo)
-    | FetchFail Http.Error
+    | FetchDemos (Result Http.Error (List Demo))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            model ! []
+            ( model, Cmd.none )
 
-        Fetch ->
-            model ! [ fetchDemos ]
+        FetchDemos (Ok newDemos) ->
+            ( { model | demos = newDemos }, Cmd.none )
 
-        FetchSucceed demoList ->
-            { model | demos = demoList } ! []
-
-        FetchFail error ->
-            case error of
-                Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage model ! []
-
-                _ ->
-                    model ! []
+        FetchDemos (Err _) ->
+            ( model, Cmd.none )
 
 
 fetchDemos : Cmd Msg
 fetchDemos =
-    Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch "/api/demos")
+    Http.send FetchDemos (Http.get "/api/demos" decodeDemoFetch)
 
 
-decodeDemoFetch : Json.Decoder (List Demo)
+decodeDemoFetch : Decode.Decoder (List Demo)
 decodeDemoFetch =
-    Json.at [ "data" ] decodeDemoList
+    Decode.at [ "data" ] decodeDemoList
 
 
-decodeDemoList : Json.Decoder (List Demo)
+decodeDemoList : Decode.Decoder (List Demo)
 decodeDemoList =
-    Json.list decodeDemoData
+    Decode.list decodeDemoData
 
 
-decodeDemoData : Json.Decoder Demo
+decodeDemoData : Decode.Decoder Demo
 decodeDemoData =
-    Json.object3 Demo
-        ("name" := Json.string)
-        ("liveDemoUrl" := Json.string)
-        ("sourceCodeUrl" := Json.string)
+    Decode.map3 Demo
+        (Decode.field "name" Decode.string)
+        (Decode.field "liveDemoUrl" Decode.string)
+        (Decode.field "sourceCodeUrl" Decode.string)
 
 
 
@@ -124,10 +113,7 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ header model
-        , routing model
-        ]
+    div [] [ header model ]
 
 
 header : Model -> Html Msg
@@ -146,27 +132,13 @@ navigationHome =
 
 navigationView : Model -> Html Msg
 navigationView model =
-    let
-        linkListItem linkData =
-            li [ class "nav-list-item" ] [ navigationLink linkData ]
-    in
-        nav []
-            [ ul [ class "nav-list" ]
-                (List.map linkListItem navigationLinks)
+    nav []
+        [ ul [ class "nav-list" ]
+            [ li [] [ text "Demos" ]
+            , li [] [ text "Resources" ]
+            , li [] [ text "Presentations" ]
             ]
-
-
-navigationLink : ( Location, String ) -> Html Msg
-navigationLink ( location, label ) =
-    a [ href <| urlFor location ] [ text label ]
-
-
-navigationLinks : List ( Location, String )
-navigationLinks =
-    [ ( Demos, "Demos" )
-    , ( Resources, "Resources" )
-    , ( Presentations, "Presentations" )
-    ]
+        ]
 
 
 navigationIcons : Html Msg
@@ -194,15 +166,8 @@ demosView : Model -> Html Msg
 demosView model =
     div [ class "demos" ]
         [ h2 [] [ text "Demos" ]
-        , ul [ class "demo-list" ]
-            (List.map demoListItemView model.demos)
+        , ul [ class "demo-list" ] []
         ]
-
-
-demoListItemView : Demo -> Html Msg
-demoListItemView demo =
-    li [ class "demo-list-item" ]
-        [ navigationLink ( DemoShow demo.name, demo.name ) ]
 
 
 demoView : String -> List Demo -> Html msg
@@ -279,93 +244,3 @@ presentationsView =
 notFoundView : Html Msg
 notFoundView =
     div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
-
-
-
--- NAVIGATION
-
-
-routing : Model -> Html Msg
-routing model =
-    case model.route of
-        Just Home ->
-            homeView
-
-        Just Demos ->
-            demosView model
-
-        Just (DemoShow name) ->
-            demoView name model.demos
-
-        Just Resources ->
-            resourcesView
-
-        Just Presentations ->
-            presentationsView
-
-        Nothing ->
-            notFoundView
-
-
-updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )
-updateRoute route model =
-    { model | route = route } ! []
-
-
-routeInit : Maybe Location -> Maybe Location
-routeInit location =
-    location
-
-
-urlFor : Location -> String
-urlFor loc =
-    let
-        url =
-            case loc of
-                Home ->
-                    "/"
-
-                Demos ->
-                    "/demos"
-
-                DemoShow name ->
-                    "/demos/" ++ name
-
-                Resources ->
-                    "/resources"
-
-                Presentations ->
-                    "/presentations"
-    in
-        "#" ++ url
-
-
-locationFor : Navigation.Location -> Maybe Location
-locationFor path =
-    let
-        segments =
-            path.hash
-                |> String.split "/"
-                |> List.filter (\seg -> seg /= "" && seg /= "#")
-    in
-        case segments of
-            [] ->
-                Just Home
-
-            [ "home" ] ->
-                Just Home
-
-            [ "demos" ] ->
-                Just Demos
-
-            [ "demos", name ] ->
-                Just (DemoShow name)
-
-            [ "resources" ] ->
-                Just Resources
-
-            [ "presentations" ] ->
-                Just Presentations
-
-            _ ->
-                Nothing
