@@ -93,11 +93,24 @@
 
 module MouseFollow exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Mouse
 import Keyboard
+
+
+-- MAIN
+
+
+main : Program Never Model Msg
+main =
+    Html.program
+        { init = init
+        , update = update
+        , subscriptions = subscriptions
+        , view = view
+        }
+
 
 
 -- INIT
@@ -188,17 +201,3 @@ view model =
                 ]
             ]
             [ text model.code ]
-
-
-
--- MAIN
-
-
-main : Program Never
-main =
-    App.program
-        { init = init
-        , update = update
-        , subscriptions = subscriptions
-        , view = view
-        }
