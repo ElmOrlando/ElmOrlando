@@ -63,7 +63,7 @@ type alias Presentation =
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, fetchDemos )
+    ( initialModel, Cmd.batch [ fetchDemos, fetchResources ] )
 
 
 initialModel : Model
@@ -77,19 +77,6 @@ initialModel =
 
 
 -- TEMP DATA
-
-
-tempResourcesData : List Resource
-tempResourcesData =
-    [ { name = "An Introduction to Elm", category = "book", url = "http://guide.elm-lang.org" }
-    , { name = "Beginning Elm", category = "book", url = "http://elmprogramming.com" }
-    , { name = "ElmBridge Curriculum", category = "book", url = "https://raorao.gitbooks.io/elmbridge-curriculum/content" }
-    , { name = "Elm for Beginners", category = "course", url = "http://courses.knowthen.com/courses/elm-for-beginners" }
-    , { name = "DailyDrip Elm", category = "course", url = "https://www.dailydrip.com/topics/elm" }
-    , { name = "Elm Slack", category = "community", url = "http://elmlang.herokuapp.com" }
-    , { name = "Elm Twitter", category = "community", url = "https://twitter.com/elmlang" }
-    , { name = "Elm Weekly", category = "community", url = "http://www.elmweekly.nl" }
-    ]
 
 
 tempPresentationsData : List Presentation
@@ -111,6 +98,7 @@ type Msg
     = NoOp
     | UpdateView Page
     | FetchDemos (Result Http.Error (List Demo))
+    | FetchResources (Result Http.Error (List Resource))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -128,6 +116,12 @@ update msg model =
         FetchDemos (Err _) ->
             ( model, Cmd.none )
 
+        FetchResources (Ok newResources) ->
+            ( { model | resources = newResources }, Cmd.none )
+
+        FetchResources (Err _) ->
+            ( model, Cmd.none )
+
 
 
 -- ROUTING
@@ -143,7 +137,7 @@ pageView model =
             demosView model
 
         Resources ->
-            resourcesView
+            resourcesView model
 
         Presentations ->
             presentationsView
@@ -174,6 +168,29 @@ decodeDemoData =
         (Decode.field "name" Decode.string)
         (Decode.field "liveDemoUrl" Decode.string)
         (Decode.field "sourceCodeUrl" Decode.string)
+
+
+fetchResources : Cmd Msg
+fetchResources =
+    Http.send FetchResources (Http.get "/api/resources" decodeResourceFetch)
+
+
+decodeResourceFetch : Decode.Decoder (List Resource)
+decodeResourceFetch =
+    Decode.at [ "data" ] decodeResourceList
+
+
+decodeResourceList : Decode.Decoder (List Resource)
+decodeResourceList =
+    Decode.list decodeResourceData
+
+
+decodeResourceData : Decode.Decoder Resource
+decodeResourceData =
+    Decode.map3 Resource
+        (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
+        (Decode.field "url" Decode.string)
 
 
 
@@ -259,16 +276,16 @@ demoView demo =
         ]
 
 
-resourcesView : Html Msg
-resourcesView =
+resourcesView : Model -> Html Msg
+resourcesView model =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul [] (List.map resourceView (resourceBooks tempResourcesData))
+        , ul [] (List.map resourceView (resourceBooks model.resources))
         , h3 [] [ text "Courses" ]
-        , ul [] (List.map resourceView (resourceCourses tempResourcesData))
+        , ul [] (List.map resourceView (resourceCourses model.resources))
         , h3 [] [ text "Community" ]
-        , ul [] (List.map resourceView (resourceCommunity tempResourcesData))
+        , ul [] (List.map resourceView (resourceCommunity model.resources))
         ]
 
 

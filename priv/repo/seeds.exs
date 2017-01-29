@@ -34,7 +34,6 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MouseFollow", liveDemoUrl: "/dem
 # Resource Data
 
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "An Introduction to Elm", category: "book", url: "http://guide.elm-lang.org"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "An Introduction to Elm", category: "book", url: "http://guide.elm-lang.org"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Beginning Elm", category: "book", url: "http://elmprogramming.com"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "ElmBridge Curriculum", category: "book", url: "https://raorao.gitbooks.io/elmbridge-curriculum/content"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm for Beginners", category: "course", url: "http://courses.knowthen.com/courses/elm-for-beginners"})
