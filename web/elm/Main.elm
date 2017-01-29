@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Json.Decode as Decode
 import Http
 
@@ -24,23 +25,41 @@ main =
 
 
 type alias Model =
-    { demos : List Demo
+    { currentPage : Page
+    , demos : List Demo
+    , resources : List Resource
+    , presentations : List Presentation
     }
+
+
+type Page
+    = Home
+    | Demos
+    | Resources
+    | Presentations
 
 
 type alias Demo =
     { name : String
+    , category : String
     , liveDemoUrl : String
     , sourceCodeUrl : String
     }
 
 
-type Location
-    = Home
-    | Demos
-    | DemoShow String
-    | Resources
-    | Presentations
+type alias Resource =
+    { name : String
+    , category : String
+    , url : String
+    }
+
+
+type alias Presentation =
+    { name : String
+    , category : String
+    , author : String
+    , url : String
+    }
 
 
 init : ( Model, Cmd Msg )
@@ -50,7 +69,28 @@ init =
 
 initialModel : Model
 initialModel =
-    { demos = [] }
+    { currentPage = Home
+    , demos = []
+    , resources = []
+    , presentations = []
+    }
+
+
+
+-- TEMP DATA
+
+
+tempResourcesData : List Resource
+tempResourcesData =
+    [ { name = "An Introduction to Elm", category = "book", url = "http://guide.elm-lang.org" }
+    , { name = "Beginning Elm", category = "book", url = "http://elmprogramming.com" }
+    , { name = "ElmBridge Curriculum", category = "book", url = "https://raorao.gitbooks.io/elmbridge-curriculum/content" }
+    , { name = "Elm for Beginners", category = "course", url = "http://courses.knowthen.com/courses/elm-for-beginners" }
+    , { name = "DailyDrip Elm", category = "course", url = "https://www.dailydrip.com/topics/elm" }
+    , { name = "Elm Slack", category = "community", url = "http://elmlang.herokuapp.com" }
+    , { name = "Elm Twitter", category = "community", url = "https://twitter.com/elmlang" }
+    , { name = "Elm Weekly", category = "community", url = "http://www.elmweekly.nl" }
+    ]
 
 
 
@@ -59,6 +99,7 @@ initialModel =
 
 type Msg
     = NoOp
+    | UpdateView Page
     | FetchDemos (Result Http.Error (List Demo))
 
 
@@ -68,11 +109,40 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
+        UpdateView page ->
+            case page of
+                _ ->
+                    ( { model | currentPage = page }, Cmd.none )
+
         FetchDemos (Ok newDemos) ->
             ( { model | demos = newDemos }, Cmd.none )
 
         FetchDemos (Err _) ->
             ( model, Cmd.none )
+
+
+
+-- ROUTING
+
+
+pageView : Model -> Html Msg
+pageView model =
+    case model.currentPage of
+        Home ->
+            homeView
+
+        Demos ->
+            demosView model
+
+        Resources ->
+            resourcesView
+
+        Presentations ->
+            presentationsView
+
+
+
+-- API
 
 
 fetchDemos : Cmd Msg
@@ -92,8 +162,9 @@ decodeDemoList =
 
 decodeDemoData : Decode.Decoder Demo
 decodeDemoData =
-    Decode.map3 Demo
+    Decode.map4 Demo
         (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
         (Decode.field "liveDemoUrl" Decode.string)
         (Decode.field "sourceCodeUrl" Decode.string)
 
@@ -113,48 +184,50 @@ subscriptions model =
 
 view : Model -> Html Msg
 view model =
-    div [] [ header model ]
+    div []
+        [ header model
+        , pageView model
+        ]
 
 
 header : Model -> Html Msg
 header model =
     Html.header [ class "header" ]
-        [ navigationHome
-        , navigationIcons
-        , navigationView model
+        [ home
+        , externalLinksList
+        , internalLinksList model
         ]
 
 
-navigationHome : Html Msg
-navigationHome =
-    a [ href "#/" ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+home : Html Msg
+home =
+    a [ href "#home", onClick <| UpdateView Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
-navigationView : Model -> Html Msg
-navigationView model =
-    nav []
-        [ ul [ class "nav-list" ]
-            [ li [] [ text "Demos" ]
-            , li [] [ text "Resources" ]
-            , li [] [ text "Presentations" ]
-            ]
-        ]
+externalLinksList : Html Msg
+externalLinksList =
+    nav [] [ ul [ class "nav nav-pills" ] externalLinks ]
 
 
-navigationIcons : Html Msg
-navigationIcons =
-    nav []
-        [ ul [ class "nav nav-pills" ]
-            [ navigationIconItem "https://www.meetup.com/ElmOrlando" "/images/meetup.png"
-            , navigationIconItem "https://github.com/ElmOrlando" "/images/github.png"
-            , navigationIconItem "https://twitter.com/ElmOrlandoGroup" "/images/twitter.png"
-            ]
-        ]
+externalLinks : List (Html Msg)
+externalLinks =
+    [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+    , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+    , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
+    ]
 
 
-navigationIconItem : String -> String -> Html Msg
-navigationIconItem url imgSrc =
-    li [] [ a [ href url ] [ img [ src imgSrc ] [] ] ]
+internalLinksList : Model -> Html Msg
+internalLinksList model =
+    nav [] [ ul [ class "nav-list" ] internalLinks ]
+
+
+internalLinks : List (Html Msg)
+internalLinks =
+    [ li [] [ a [ href "#demos", onClick <| UpdateView Demos ] [ text "Demos" ] ]
+    , li [] [ a [ href "#resources", onClick <| UpdateView Resources ] [ text "Resources" ] ]
+    , li [] [ a [ href "#presentations", onClick <| UpdateView Presentations ] [ text "Presentations" ] ]
+    ]
 
 
 homeView : Html Msg
@@ -166,29 +239,18 @@ demosView : Model -> Html Msg
 demosView model =
     div [ class "demos" ]
         [ h2 [] [ text "Demos" ]
-        , ul [ class "demo-list" ] []
+        , ul [ class "demo-list" ] (List.map demoView model.demos)
         ]
 
 
-demoView : String -> List Demo -> Html msg
-demoView name demos =
-    let
-        currentDemo =
-            List.filter (\d -> d.name == name) demos
-                |> List.head
-    in
-        case currentDemo of
-            Just demo ->
-                div []
-                    [ h3 [] [ text demo.name ]
-                    , ul [ class "demo-list-item" ]
-                        [ li [] [ a [ href demo.liveDemoUrl ] [ text "Live Demo" ] ]
-                        , li [] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
-                        ]
-                    ]
-
-            Nothing ->
-                text "Demo not found!"
+demoView : Demo -> Html Msg
+demoView demo =
+    li [ class "demo-list-item" ]
+        [ p [] [ a [ href demo.name ] [ text demo.name ] ]
+        , p [] [ a [ href demo.category ] [ text demo.category ] ]
+        , p [] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
+        , p [] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
+        ]
 
 
 resourcesView : Html Msg
@@ -196,51 +258,71 @@ resourcesView =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul []
-            [ resourceView "http://guide.elm-lang.org" "An Introduction to Elm"
-            , resourceView "http://elmprogramming.com/" "Beginning Elm"
-            , resourceView "https://raorao.gitbooks.io/elmbridge-curriculum/content" "ElmBridge Curriculum"
-            ]
+        , ul [] (List.map resourceView (resourceBooks tempResourcesData))
         , h3 [] [ text "Courses" ]
-        , ul []
-            [ resourceView "http://courses.knowthen.com/courses/elm-for-beginners" "Elm for Beginners"
-            , resourceView "https://www.dailydrip.com/topics/elm" "DailyDrip Elm"
-            ]
+        , ul [] (List.map resourceView (resourceCourses tempResourcesData))
         , h3 [] [ text "Community" ]
-        , ul []
-            [ resourceView "http://elmlang.herokuapp.com" "Elm Slack"
-            , resourceView "https://twitter.com/elmlang" "Elm Twitter"
-            , resourceView "http://www.elmweekly.nl" "Elm Weekly"
-            ]
-        , h3 [] [ text "Elm and Phoenix" ]
-        , ul []
-            [ resourceView "https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2" "Setting Up Elm with Phoenix"
-            , resourceView "https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499" "Writing a Full Site in Phoenix and Elm"
-            , resourceView "http://www.cultivatehq.com/posts/phoenix-elm-1" "Phoenix with Elm"
-            ]
+        , ul [] (List.map resourceView (resourceCommunity tempResourcesData))
         ]
 
 
-resourceView : String -> String -> Html Msg
-resourceView url title =
-    li [] [ a [ href url ] [ text title ] ]
+resourceView : Resource -> Html Msg
+resourceView resource =
+    li [] [ a [ href resource.url ] [ text resource.name ] ]
+
+
+resourceBooks : List Resource -> List Resource
+resourceBooks resources =
+    List.filter resourceIsBook resources
+
+
+resourceIsBook : Resource -> Bool
+resourceIsBook resource =
+    resource.category == "book"
+
+
+resourceCourses : List Resource -> List Resource
+resourceCourses resources =
+    List.filter resourceIsCourse resources
+
+
+resourceIsCourse : Resource -> Bool
+resourceIsCourse resource =
+    resource.category == "course"
+
+
+resourceCommunity : List Resource -> List Resource
+resourceCommunity resources =
+    List.filter resourceIsCommunity resources
+
+
+resourceIsCommunity : Resource -> Bool
+resourceIsCommunity resource =
+    resource.category == "community"
+
+
+tempPresentationsData : List Presentation
+tempPresentationsData =
+    [ { name = "Getting to Know Elm", category = "September 2016", author = "Bijan Boustani", url = "http://prezi.com/wofdk8e6uuy3" }
+    , { name = "React and Elm", category = "October 2016", author = "David Khourshid", url = "" }
+    , { name = "Solving a Problem with Elm", category = "November 2016", author = "Bijan Boustani", url = "https://prezi.com/f0lpwk_xlj4p" }
+    , { name = "Input and Subscriptions", category = "December 2016", author = "AJ Foster", url = "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf" }
+    , { name = "Functional Concepts", category = "January 2017", author = "Devan Kestel", url = "" }
+    , { name = "Elixir and Elm", category = "January 2017", author = "Bijan Boustani", url = "" }
+    ]
 
 
 presentationsView : Html Msg
 presentationsView =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , h3 [] [ text "September 2016" ]
-        , ul [] [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ] ]
-        , h3 [] [ text "October 2016" ]
-        , ul [] [ li [] [ text "Elm and React" ] ]
-        , h3 [] [ text "November 2016" ]
-        , ul [] [ li [] [ a [ href "https://prezi.com/f0lpwk_xlj4p" ] [ text "Solving a Problem with Elm" ] ] ]
-        , h3 [] [ text "December 2016" ]
-        , ul [] [ li [] [ a [ href "https://cl.ly/0U2n0R3J3A2t/download/input_and_subscriptions.pdf" ] [ text "Input and Subscriptions" ] ] ]
+        , ul [] (List.map presentationView tempPresentationsData)
         ]
 
 
-notFoundView : Html Msg
-notFoundView =
-    div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
+presentationView : Presentation -> Html Msg
+presentationView presentation =
+    li []
+        [ a [ href presentation.url ] [ text presentation.name ]
+        , span [] [ text presentation.author ]
+        ]

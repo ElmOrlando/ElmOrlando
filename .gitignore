@@ -27,3 +27,4 @@ erl_crash.dump
 
 # elm
 /web/elm/elm-stuff/
+/web/static/js/main.js
