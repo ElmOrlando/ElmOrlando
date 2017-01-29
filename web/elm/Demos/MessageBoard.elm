@@ -1,5 +1,5 @@
 {-
-   **Chat Demo**
+   **MessageBoard Demo**
 
     Elm and Phoenix example application using the RemoteData library to poll
     for messages. Messages are persisted to the database via the Message model
