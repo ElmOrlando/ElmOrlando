@@ -23,6 +23,7 @@ defmodule ElmOrlando.Router do
     pipe_through :api
 
     resources "/demos", DemoController, except: [:new, :edit]
+    resources "/resources", ResourceController, except: [:new, :edit]
     resources "/messages", MessageController
   end
 end
