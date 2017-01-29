@@ -57,11 +57,20 @@ form.link, form.button {
   padding-top: 20px;
 }
 
-.demo-list {
-  height: 380px;
-  display: flex;
-  flex-flow: column;
-  flex-wrap: wrap;
+.demo-list-item {
+  margin-top: 2px;
+}
+
+.demo-live-url {
+  margin-left: 5px;
+}
+
+.demo-source-code {
+  margin-left: 5px;
+}
+
+.presentation-author {
+  margin-left: 5px;
 }
 
 #elm-main {

@@ -41,7 +41,6 @@ type Page
 
 type alias Demo =
     { name : String
-    , category : String
     , liveDemoUrl : String
     , sourceCodeUrl : String
     }
@@ -64,7 +63,7 @@ type alias Presentation =
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, Cmd.none )
+    ( initialModel, fetchDemos )
 
 
 initialModel : Model
@@ -93,6 +92,17 @@ tempResourcesData =
     ]
 
 
+tempPresentationsData : List Presentation
+tempPresentationsData =
+    [ { name = "Getting to Know Elm", category = "September 2016", author = "Bijan Boustani", url = "http://prezi.com/wofdk8e6uuy3" }
+    , { name = "React and Elm", category = "October 2016", author = "David Khourshid", url = "" }
+    , { name = "Solving a Problem with Elm", category = "November 2016", author = "Bijan Boustani", url = "https://prezi.com/f0lpwk_xlj4p" }
+    , { name = "Input and Subscriptions", category = "December 2016", author = "AJ Foster", url = "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf" }
+    , { name = "Functional Concepts", category = "January 2017", author = "Devan Kestel", url = "" }
+    , { name = "Elixir and Elm", category = "January 2017", author = "Bijan Boustani", url = "" }
+    ]
+
+
 
 -- UPDATE
 
@@ -110,9 +120,7 @@ update msg model =
             ( model, Cmd.none )
 
         UpdateView page ->
-            case page of
-                _ ->
-                    ( { model | currentPage = page }, Cmd.none )
+            ( { model | currentPage = page }, Cmd.none )
 
         FetchDemos (Ok newDemos) ->
             ( { model | demos = newDemos }, Cmd.none )
@@ -162,9 +170,8 @@ decodeDemoList =
 
 decodeDemoData : Decode.Decoder Demo
 decodeDemoData =
-    Decode.map4 Demo
+    Decode.map3 Demo
         (Decode.field "name" Decode.string)
-        (Decode.field "category" Decode.string)
         (Decode.field "liveDemoUrl" Decode.string)
         (Decode.field "sourceCodeUrl" Decode.string)
 
@@ -237,7 +244,7 @@ homeView =
 
 demosView : Model -> Html Msg
 demosView model =
-    div [ class "demos" ]
+    div []
         [ h2 [] [ text "Demos" ]
         , ul [ class "demo-list" ] (List.map demoView model.demos)
         ]
@@ -246,10 +253,9 @@ demosView model =
 demoView : Demo -> Html Msg
 demoView demo =
     li [ class "demo-list-item" ]
-        [ p [] [ a [ href demo.name ] [ text demo.name ] ]
-        , p [] [ a [ href demo.category ] [ text demo.category ] ]
-        , p [] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
-        , p [] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
+        [ span [] [ text demo.name ]
+        , span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
+        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
         ]
 
 
@@ -301,17 +307,6 @@ resourceIsCommunity resource =
     resource.category == "community"
 
 
-tempPresentationsData : List Presentation
-tempPresentationsData =
-    [ { name = "Getting to Know Elm", category = "September 2016", author = "Bijan Boustani", url = "http://prezi.com/wofdk8e6uuy3" }
-    , { name = "React and Elm", category = "October 2016", author = "David Khourshid", url = "" }
-    , { name = "Solving a Problem with Elm", category = "November 2016", author = "Bijan Boustani", url = "https://prezi.com/f0lpwk_xlj4p" }
-    , { name = "Input and Subscriptions", category = "December 2016", author = "AJ Foster", url = "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf" }
-    , { name = "Functional Concepts", category = "January 2017", author = "Devan Kestel", url = "" }
-    , { name = "Elixir and Elm", category = "January 2017", author = "Bijan Boustani", url = "" }
-    ]
-
-
 presentationsView : Html Msg
 presentationsView =
     div [ class "presentations" ]
@@ -322,7 +317,14 @@ presentationsView =
 
 presentationView : Presentation -> Html Msg
 presentationView presentation =
-    li []
-        [ a [ href presentation.url ] [ text presentation.name ]
-        , span [] [ text presentation.author ]
-        ]
+    let
+        presentationLink =
+            if presentation.url == "" then
+                span [] [ text presentation.name ]
+            else
+                a [ href presentation.url ] [ text presentation.name ]
+    in
+        li []
+            [ p [] [ text presentation.category ]
+            , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
+            ]
