@@ -63,7 +63,7 @@ type alias Presentation =
 
 init : ( Model, Cmd Msg )
 init =
-    ( initialModel, Cmd.batch [ fetchDemos, fetchResources ] )
+    ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
 
 
 initialModel : Model
@@ -76,21 +76,6 @@ initialModel =
 
 
 
--- TEMP DATA
-
-
-tempPresentationsData : List Presentation
-tempPresentationsData =
-    [ { name = "Getting to Know Elm", category = "September 2016", author = "Bijan Boustani", url = "http://prezi.com/wofdk8e6uuy3" }
-    , { name = "React and Elm", category = "October 2016", author = "David Khourshid", url = "" }
-    , { name = "Solving a Problem with Elm", category = "November 2016", author = "Bijan Boustani", url = "https://prezi.com/f0lpwk_xlj4p" }
-    , { name = "Input and Subscriptions", category = "December 2016", author = "AJ Foster", url = "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf" }
-    , { name = "Functional Concepts", category = "January 2017", author = "Devan Kestel", url = "" }
-    , { name = "Elixir and Elm", category = "January 2017", author = "Bijan Boustani", url = "" }
-    ]
-
-
-
 -- UPDATE
 
 
@@ -99,6 +84,7 @@ type Msg
     | UpdateView Page
     | FetchDemos (Result Http.Error (List Demo))
     | FetchResources (Result Http.Error (List Resource))
+    | FetchPresentations (Result Http.Error (List Presentation))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -122,6 +108,12 @@ update msg model =
         FetchResources (Err _) ->
             ( model, Cmd.none )
 
+        FetchPresentations (Ok newPresentations) ->
+            ( { model | presentations = newPresentations }, Cmd.none )
+
+        FetchPresentations (Err _) ->
+            ( model, Cmd.none )
+
 
 
 -- ROUTING
@@ -140,7 +132,7 @@ pageView model =
             resourcesView model
 
         Presentations ->
-            presentationsView
+            presentationsView model
 
 
 
@@ -190,6 +182,30 @@ decodeResourceData =
     Decode.map3 Resource
         (Decode.field "name" Decode.string)
         (Decode.field "category" Decode.string)
+        (Decode.field "url" Decode.string)
+
+
+fetchPresentations : Cmd Msg
+fetchPresentations =
+    Http.send FetchPresentations (Http.get "/api/presentations" decodePresentationFetch)
+
+
+decodePresentationFetch : Decode.Decoder (List Presentation)
+decodePresentationFetch =
+    Decode.at [ "data" ] decodePresentationList
+
+
+decodePresentationList : Decode.Decoder (List Presentation)
+decodePresentationList =
+    Decode.list decodePresentationData
+
+
+decodePresentationData : Decode.Decoder Presentation
+decodePresentationData =
+    Decode.map4 Presentation
+        (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
+        (Decode.field "author" Decode.string)
         (Decode.field "url" Decode.string)
 
 
@@ -324,11 +340,11 @@ resourceIsCommunity resource =
     resource.category == "community"
 
 
-presentationsView : Html Msg
-presentationsView =
+presentationsView : Model -> Html Msg
+presentationsView model =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , ul [] (List.map presentationView tempPresentationsData)
+        , ul [] (List.map presentationView model.presentations)
         ]
 
 

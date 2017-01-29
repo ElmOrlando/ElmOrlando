@@ -24,6 +24,7 @@ defmodule ElmOrlando.Router do
 
     resources "/demos", DemoController, except: [:new, :edit]
     resources "/resources", ResourceController, except: [:new, :edit]
+    resources "/presentations", PresentationController, except: [:new, :edit]
     resources "/messages", MessageController
   end
 end

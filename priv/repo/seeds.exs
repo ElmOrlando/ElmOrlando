@@ -42,6 +42,15 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Slack", category: "commu
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Twitter", category: "community", url: "https://twitter.com/elmlang"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Weekly", category: "community", url: "http://www.elmweekly.nl"})
 
+# Presentation Data
+
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Getting to Know Elm", category: "September 2016", author: "Bijan Boustani", url: "http://prezi.com/wofdk8e6uuy3"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "React and Elm", category: "October 2016", author: "David Khourshid", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Solving a Problem with Elm", category: "November 2016", author: "Bijan Boustani", url: "https://prezi.com/f0lpwk_xlj4p"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions", category: "December 2016", author: "AJ Foster", url: "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Functional Concepts", category: "January 2017", author: "Devan Kestel", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: ""})
+
 # Message Data
 
 ElmOrlando.Repo.insert!(%ElmOrlando.Message{name: "Bijan", message: "Hello, world."})
