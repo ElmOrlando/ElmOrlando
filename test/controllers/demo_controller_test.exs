@@ -2,7 +2,7 @@ defmodule ElmOrlando.DemoControllerTest do
   use ElmOrlando.ConnCase
 
   alias ElmOrlando.Demo
-  @valid_attrs %{liveDemoUrl: "some content", name: "some content", sourceCodeUrl: "some content"}
+  @valid_attrs %{name: "some content", category: "some category", liveDemoUrl: "some content", sourceCodeUrl: "some content"}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -19,6 +19,7 @@ defmodule ElmOrlando.DemoControllerTest do
     conn = get conn, demo_path(conn, :show, demo)
     assert json_response(conn, 200)["data"] == %{"id" => demo.id,
       "name" => demo.name,
+      "category" => demo.category,
       "liveDemoUrl" => demo.liveDemoUrl,
       "sourceCodeUrl" => demo.sourceCodeUrl}
   end

@@ -12,6 +12,7 @@ defmodule ElmOrlando.DemoView do
   def render("demo.json", %{demo: demo}) do
     %{id: demo.id,
       name: demo.name,
+      category: demo.category,
       liveDemoUrl: demo.liveDemoUrl,
       sourceCodeUrl: demo.sourceCodeUrl}
   end

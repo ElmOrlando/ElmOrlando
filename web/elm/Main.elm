@@ -41,6 +41,7 @@ type Page
 
 type alias Demo =
     { name : String
+    , category : String
     , liveDemoUrl : String
     , sourceCodeUrl : String
     }
@@ -156,8 +157,9 @@ decodeDemoList =
 
 decodeDemoData : Decode.Decoder Demo
 decodeDemoData =
-    Decode.map3 Demo
+    Decode.map4 Demo
         (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
         (Decode.field "liveDemoUrl" Decode.string)
         (Decode.field "sourceCodeUrl" Decode.string)
 
@@ -279,17 +281,40 @@ demosView : Model -> Html Msg
 demosView model =
     div []
         [ h2 [] [ text "Demos" ]
-        , ul [ class "demo-list" ] (List.map demoView model.demos)
+        , h3 [] [ text "Live Collaborative Coding" ]
+        , ul [ class "demo-list" ] (List.map demoView (collaborativeDemos model.demos))
+        , h3 [] [ text "Example Demos" ]
+        , ul [ class "demo-list" ] (List.map demoView (exampleDemos model.demos))
         ]
 
 
 demoView : Demo -> Html Msg
 demoView demo =
     li [ class "demo-list-item" ]
-        [ span [] [ text demo.name ]
-        , span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
-        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
+        [ span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text demo.name ] ]
+        , span [] [ text " –" ]
+        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
         ]
+
+
+collaborativeDemos : List Demo -> List Demo
+collaborativeDemos demos =
+    List.filter demoIsCollaborative demos
+
+
+demoIsCollaborative : Demo -> Bool
+demoIsCollaborative demo =
+    demo.category == "live"
+
+
+exampleDemos : List Demo -> List Demo
+exampleDemos demos =
+    List.filter demoIsExample demos
+
+
+demoIsExample : Demo -> Bool
+demoIsExample demo =
+    demo.category == "example"
 
 
 resourcesView : Model -> Html Msg
