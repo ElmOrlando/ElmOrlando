@@ -19,6 +19,7 @@ defmodule ElmOrlando.DemoControllerTest do
     conn = get conn, demo_path(conn, :show, demo)
     assert json_response(conn, 200)["data"] == %{"id" => demo.id,
       "name" => demo.name,
+      "category" => demo.category,
       "liveDemoUrl" => demo.liveDemoUrl,
       "sourceCodeUrl" => demo.sourceCodeUrl}
   end
