@@ -74,9 +74,21 @@
 
 module ListCreator exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Events exposing (onClick)
+
+
+-- MAIN
+
+
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram
+        { model = model
+        , update = update
+        , view = view
+        }
+
 
 
 -- MODEL
@@ -134,16 +146,3 @@ view { list, showList } =
 viewListItem : String -> Html a
 viewListItem string =
     li [] [ text string ]
-
-
-
--- MAIN
-
-
-main : Program Never
-main =
-    App.beginnerProgram
-        { model = model
-        , update = update
-        , view = view
-        }

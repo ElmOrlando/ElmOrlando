@@ -10,20 +10,20 @@
 module Routing exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
+import Http
 import Navigation
-import String exposing (split)
+import UrlParser exposing ((</>), (<?>))
 
 
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    Navigation.program (Navigation.makeParser locFor)
+    Navigation.program UrlChange
         { init = init
         , update = update
-        , urlUpdate = updateRoute
         , view = view
         , subscriptions = subscriptions
         }
@@ -34,39 +34,44 @@ main =
 
 
 type alias Model =
-    { route : Maybe Location
+    { history : List (Maybe Route)
+    , games : List (Maybe Game)
     }
 
 
-type Location
-    = Home
-    | Topics
-    | TopicItem String
-
-
-type alias Topic =
+type alias Game =
     { id : Int
     , title : String
     , slug : String
     }
 
 
-init : Maybe Location -> ( Model, Cmd Msg )
+init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
-    let
-        route =
-            routeInit location
-    in
-        { route = route
-        }
-            ! []
+    ( { history = [ UrlParser.parsePath route location ]
+      , games = []
+      }
+    , Cmd.none
+    )
 
 
-fakeTopics : List Topic
-fakeTopics =
-    [ { id = 1, title = "Elixir", slug = "elixir" }
-    , { id = 2, title = "Elm", slug = "elm" }
-    ]
+
+-- URL PARSING
+
+
+type Route
+    = HomeRoute
+    | GameListRoute (Maybe String)
+    | GameRoute String
+
+
+route : UrlParser.Parser (Route -> a) a
+route =
+    UrlParser.oneOf
+        [ UrlParser.map HomeRoute UrlParser.top
+        , UrlParser.map GameListRoute (UrlParser.s "games" <?> UrlParser.stringParam "search")
+        , UrlParser.map GameRoute (UrlParser.s "games" </> UrlParser.string)
+        ]
 
 
 
@@ -74,14 +79,18 @@ fakeTopics =
 
 
 type Msg
-    = NoOp
+    = NewUrl String
+    | UrlChange Navigation.Location
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
-            model ! []
+        NewUrl url ->
+            ( model, Navigation.newUrl url )
+
+        UrlChange location ->
+            ( { model | history = UrlParser.parsePath route location :: model.history }, Cmd.none )
 
 
 
@@ -89,7 +98,7 @@ update msg model =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions _ =
+subscriptions model =
     Sub.none
 
 
@@ -99,138 +108,51 @@ subscriptions _ =
 
 view : Model -> Html Msg
 view model =
-    let
-        body =
-            case model.route of
-                Just Home ->
-                    homeView
-
-                Just Topics ->
-                    topicsView fakeTopics
-
-                Just (TopicItem slug) ->
-                    viewTopic slug fakeTopics
-
-                Nothing ->
-                    notFoundView
-    in
-        div []
-            [ navigationView model
-            , body
-            ]
+    div []
+        [ h1 [] [ text "Links" ]
+        , ul [] (List.map viewLink exampleLinks)
+        , h1 [] [ text "History" ]
+        , ul [] (List.map viewRoute model.history)
+        ]
 
 
-navigationView : Model -> Html Msg
-navigationView model =
-    let
-        linkListItem linkData =
-            li [] [ navigationLink linkData ]
-    in
-        nav []
-            [ ul []
-                (List.map linkListItem navigationLinks)
-            ]
-
-
-navigationLink : ( Location, String ) -> Html Msg
-navigationLink ( loc, label ) =
-    a [ href <| urlFor loc ] [ text label ]
-
-
-navigationLinks : List ( Location, String )
-navigationLinks =
-    [ ( Home, "Home" )
-    , ( Topics, "Topics" )
+exampleLinks : List String
+exampleLinks =
+    [ "/"
+    , "/games/"
+    , "/games/mario"
+    , "/games/zelda"
+    , "/games/contra"
+    , "/games/?search=mario"
     ]
 
 
-homeView : Html msg
-homeView =
-    text "This is the Home page."
+viewLink : String -> Html Msg
+viewLink url =
+    li [] [ button [ onClick (NewUrl url) ] [ text url ] ]
 
 
-topicsView : List Topic -> Html Msg
-topicsView topics =
-    ul []
-        (List.map topicListItemView topics)
+viewRoute : Maybe Route -> Html msg
+viewRoute maybeRoute =
+    case maybeRoute of
+        Nothing ->
+            li [] [ text "Invalid URL" ]
+
+        Just route ->
+            li [] [ code [] [ text (routeToString route) ] ]
 
 
-topicListItemView : Topic -> Html Msg
-topicListItemView topic =
-    li [] [ navigationLink ( TopicItem topic.slug, topic.title ) ]
+routeToString : Route -> String
+routeToString route =
+    case route of
+        HomeRoute ->
+            "Home"
 
+        GameListRoute Nothing ->
+            "All Games"
 
-viewTopic : String -> List Topic -> Html msg
-viewTopic slug topics =
-    let
-        currentTopic =
-            List.filter (\t -> t.slug == slug) topics
-                |> List.head
-    in
-        case currentTopic of
-            Nothing ->
-                text "Topic not found!"
+        GameListRoute (Just search) ->
+            "Search for " ++ Http.encodeUri search
 
-            Just topic ->
-                text ("This is the " ++ topic.slug ++ " topic")
-
-
-notFoundView : Html msg
-notFoundView =
-    text "Page not found."
-
-
-
--- ROUTING
-
-
-updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )
-updateRoute route model =
-    { model | route = route } ! []
-
-
-routeInit : Maybe Location -> Maybe Location
-routeInit location =
-    location
-
-
-urlFor : Location -> String
-urlFor loc =
-    let
-        url =
-            case loc of
-                Home ->
-                    "/"
-
-                Topics ->
-                    "/topics"
-
-                TopicItem slug ->
-                    "/topics/" ++ slug
-    in
-        "#" ++ url
-
-
-locFor : Navigation.Location -> Maybe Location
-locFor path =
-    let
-        segments =
-            path.hash
-                |> split "/"
-                |> List.filter (\seg -> seg /= "" && seg /= "#")
-    in
-        case segments of
-            -- No segments means we're on the home page
-            [] ->
-                Just Home
-
-            -- "/topics" means we're on the topics page
-            [ "topics" ] ->
-                Just Topics
-
-            [ "topics", slug ] ->
-                Just (TopicItem slug)
-
-            -- Otherwise, return `Nothing` and let our "not found" view take over
-            _ ->
-                Nothing
+        GameRoute slug ->
+            "Show Game " ++ slug

@@ -11,7 +11,6 @@
 
 module ElmojiTranslator exposing (..)
 
-import Html.App as App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick, onInput)
@@ -25,9 +24,9 @@ import String
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    App.beginnerProgram
+    Html.beginnerProgram
         { model = init
         , view = view
         , update = update
@@ -97,7 +96,7 @@ view : Model -> Html Msg
 view model =
     div
         []
-        [ node "style" [ type' "text/css" ] [ text styles ]
+        [ node "style" [ type_ "text/css" ] [ text styles ]
         , node
             "link"
             [ rel "stylesheet"
@@ -118,7 +117,7 @@ view model =
             [ div
                 [ class "input-field" ]
                 [ input
-                    [ type' "text"
+                    [ type_ "text"
                     , class "center"
                     , placeholder "Let's Translate!"
                     , onInput SetCurrentText
@@ -128,7 +127,7 @@ view model =
             , div [ class "switch center" ]
                 [ label []
                     [ text "Translate Text"
-                    , input [ type' "checkbox" ] []
+                    , input [ type_ "checkbox" ] []
                     , span
                         [ class "lever"
                         , onClick ToggleDirection
@@ -239,11 +238,11 @@ rotateEmojis key =
 supportedLetters : List String
 supportedLetters =
     [ -- lowercase letters
-      [97..122]
+      List.range 97 122
       -- uppercase letters
-    , [65..90]
+    , List.range 65 90
       -- numbers
-    , [48..57]
+    , List.range 48 57
     ]
         |> List.concat
         |> List.map Char.fromCode

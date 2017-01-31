@@ -1,24 +1,20 @@
 module Main exposing (..)
 
-import Debug
 import Html exposing (..)
 import Html.Attributes exposing (..)
-import Json.Decode as Json exposing ((:=))
+import Html.Events exposing (onClick)
+import Json.Decode as Decode
 import Http
-import Navigation
-import String
-import Task
 
 
 -- MAIN
 
 
-main : Program Never
+main : Program Never Model Msg
 main =
-    Navigation.program (Navigation.makeParser locationFor)
+    Html.program
         { init = init
         , update = update
-        , urlUpdate = updateRoute
         , view = view
         , subscriptions = subscriptions
         }
@@ -29,9 +25,18 @@ main =
 
 
 type alias Model =
-    { demos : List Demo
-    , route : Maybe Location
+    { currentPage : Page
+    , demos : List Demo
+    , resources : List Resource
+    , presentations : List Presentation
     }
+
+
+type Page
+    = Home
+    | Demos
+    | Resources
+    | Presentations
 
 
 type alias Demo =
@@ -41,17 +46,33 @@ type alias Demo =
     }
 
 
-type Location
-    = Home
-    | Demos
-    | DemoShow String
-    | Resources
-    | Presentations
+type alias Resource =
+    { name : String
+    , category : String
+    , url : String
+    }
 
 
-init : Maybe Location -> ( Model, Cmd Msg )
-init location =
-    { demos = [], route = routeInit location } ! [ fetchDemos ]
+type alias Presentation =
+    { name : String
+    , category : String
+    , author : String
+    , url : String
+    }
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
+
+
+initialModel : Model
+initialModel =
+    { currentPage = Home
+    , demos = []
+    , resources = []
+    , presentations = []
+    }
 
 
 
@@ -60,53 +81,132 @@ init location =
 
 type Msg
     = NoOp
-    | Fetch
-    | FetchSucceed (List Demo)
-    | FetchFail Http.Error
+    | UpdateView Page
+    | FetchDemos (Result Http.Error (List Demo))
+    | FetchResources (Result Http.Error (List Resource))
+    | FetchPresentations (Result Http.Error (List Presentation))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NoOp ->
-            model ! []
+            ( model, Cmd.none )
 
-        Fetch ->
-            model ! [ fetchDemos ]
+        UpdateView page ->
+            ( { model | currentPage = page }, Cmd.none )
 
-        FetchSucceed demoList ->
-            { model | demos = demoList } ! []
+        FetchDemos (Ok newDemos) ->
+            ( { model | demos = newDemos }, Cmd.none )
 
-        FetchFail error ->
-            case error of
-                Http.UnexpectedPayload errorMessage ->
-                    Debug.log errorMessage model ! []
+        FetchDemos (Err _) ->
+            ( model, Cmd.none )
 
-                _ ->
-                    model ! []
+        FetchResources (Ok newResources) ->
+            ( { model | resources = newResources }, Cmd.none )
+
+        FetchResources (Err _) ->
+            ( model, Cmd.none )
+
+        FetchPresentations (Ok newPresentations) ->
+            ( { model | presentations = newPresentations }, Cmd.none )
+
+        FetchPresentations (Err _) ->
+            ( model, Cmd.none )
+
+
+
+-- ROUTING
+
+
+pageView : Model -> Html Msg
+pageView model =
+    case model.currentPage of
+        Home ->
+            homeView
+
+        Demos ->
+            demosView model
+
+        Resources ->
+            resourcesView model
+
+        Presentations ->
+            presentationsView model
+
+
+
+-- API
 
 
 fetchDemos : Cmd Msg
 fetchDemos =
-    Task.perform FetchFail FetchSucceed (Http.get decodeDemoFetch "/api/demos")
+    Http.send FetchDemos (Http.get "/api/demos" decodeDemoFetch)
 
 
-decodeDemoFetch : Json.Decoder (List Demo)
+decodeDemoFetch : Decode.Decoder (List Demo)
 decodeDemoFetch =
-    Json.at [ "data" ] decodeDemoList
+    Decode.at [ "data" ] decodeDemoList
 
 
-decodeDemoList : Json.Decoder (List Demo)
+decodeDemoList : Decode.Decoder (List Demo)
 decodeDemoList =
-    Json.list decodeDemoData
+    Decode.list decodeDemoData
 
 
-decodeDemoData : Json.Decoder Demo
+decodeDemoData : Decode.Decoder Demo
 decodeDemoData =
-    Json.object3 Demo
-        ("name" := Json.string)
-        ("liveDemoUrl" := Json.string)
-        ("sourceCodeUrl" := Json.string)
+    Decode.map3 Demo
+        (Decode.field "name" Decode.string)
+        (Decode.field "liveDemoUrl" Decode.string)
+        (Decode.field "sourceCodeUrl" Decode.string)
+
+
+fetchResources : Cmd Msg
+fetchResources =
+    Http.send FetchResources (Http.get "/api/resources" decodeResourceFetch)
+
+
+decodeResourceFetch : Decode.Decoder (List Resource)
+decodeResourceFetch =
+    Decode.at [ "data" ] decodeResourceList
+
+
+decodeResourceList : Decode.Decoder (List Resource)
+decodeResourceList =
+    Decode.list decodeResourceData
+
+
+decodeResourceData : Decode.Decoder Resource
+decodeResourceData =
+    Decode.map3 Resource
+        (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
+        (Decode.field "url" Decode.string)
+
+
+fetchPresentations : Cmd Msg
+fetchPresentations =
+    Http.send FetchPresentations (Http.get "/api/presentations" decodePresentationFetch)
+
+
+decodePresentationFetch : Decode.Decoder (List Presentation)
+decodePresentationFetch =
+    Decode.at [ "data" ] decodePresentationList
+
+
+decodePresentationList : Decode.Decoder (List Presentation)
+decodePresentationList =
+    Decode.list decodePresentationData
+
+
+decodePresentationData : Decode.Decoder Presentation
+decodePresentationData =
+    Decode.map4 Presentation
+        (Decode.field "name" Decode.string)
+        (Decode.field "category" Decode.string)
+        (Decode.field "author" Decode.string)
+        (Decode.field "url" Decode.string)
 
 
 
@@ -126,63 +226,48 @@ view : Model -> Html Msg
 view model =
     div []
         [ header model
-        , routing model
+        , pageView model
         ]
 
 
 header : Model -> Html Msg
 header model =
     Html.header [ class "header" ]
-        [ navigationHome
-        , navigationIcons
-        , navigationView model
+        [ home
+        , externalLinksList
+        , internalLinksList model
         ]
 
 
-navigationHome : Html Msg
-navigationHome =
-    a [ href "#/" ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+home : Html Msg
+home =
+    a [ href "#home", onClick <| UpdateView Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
-navigationView : Model -> Html Msg
-navigationView model =
-    let
-        linkListItem linkData =
-            li [ class "nav-list-item" ] [ navigationLink linkData ]
-    in
-        nav []
-            [ ul [ class "nav-list" ]
-                (List.map linkListItem navigationLinks)
-            ]
+externalLinksList : Html Msg
+externalLinksList =
+    nav [] [ ul [ class "nav nav-pills" ] externalLinks ]
 
 
-navigationLink : ( Location, String ) -> Html Msg
-navigationLink ( location, label ) =
-    a [ href <| urlFor location ] [ text label ]
-
-
-navigationLinks : List ( Location, String )
-navigationLinks =
-    [ ( Demos, "Demos" )
-    , ( Resources, "Resources" )
-    , ( Presentations, "Presentations" )
+externalLinks : List (Html Msg)
+externalLinks =
+    [ li [] [ a [ href "https://www.meetup.com/ElmOrlando" ] [ img [ src "/images/meetup.png" ] [] ] ]
+    , li [] [ a [ href "https://github.com/ElmOrlando" ] [ img [ src "/images/github.png" ] [] ] ]
+    , li [] [ a [ href "https://twitter.com/ElmOrlandoGroup" ] [ img [ src "/images/twitter.png" ] [] ] ]
     ]
 
 
-navigationIcons : Html Msg
-navigationIcons =
-    nav []
-        [ ul [ class "nav nav-pills" ]
-            [ navigationIconItem "https://www.meetup.com/ElmOrlando" "/images/meetup.png"
-            , navigationIconItem "https://github.com/ElmOrlando" "/images/github.png"
-            , navigationIconItem "https://twitter.com/ElmOrlandoGroup" "/images/twitter.png"
-            ]
-        ]
+internalLinksList : Model -> Html Msg
+internalLinksList model =
+    nav [] [ ul [ class "nav-list" ] internalLinks ]
 
 
-navigationIconItem : String -> String -> Html Msg
-navigationIconItem url imgSrc =
-    li [] [ a [ href url ] [ img [ src imgSrc ] [] ] ]
+internalLinks : List (Html Msg)
+internalLinks =
+    [ li [] [ a [ href "#demos", onClick <| UpdateView Demos ] [ text "Demos" ] ]
+    , li [] [ a [ href "#resources", onClick <| UpdateView Resources ] [ text "Resources" ] ]
+    , li [] [ a [ href "#presentations", onClick <| UpdateView Presentations ] [ text "Presentations" ] ]
+    ]
 
 
 homeView : Html Msg
@@ -192,180 +277,87 @@ homeView =
 
 demosView : Model -> Html Msg
 demosView model =
-    div [ class "demos" ]
+    div []
         [ h2 [] [ text "Demos" ]
-        , ul [ class "demo-list" ]
-            (List.map demoListItemView model.demos)
+        , ul [ class "demo-list" ] (List.map demoView model.demos)
         ]
 
 
-demoListItemView : Demo -> Html Msg
-demoListItemView demo =
+demoView : Demo -> Html Msg
+demoView demo =
     li [ class "demo-list-item" ]
-        [ navigationLink ( DemoShow demo.name, demo.name ) ]
+        [ span [] [ text demo.name ]
+        , span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
+        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
+        ]
 
 
-demoView : String -> List Demo -> Html msg
-demoView name demos =
-    let
-        currentDemo =
-            List.filter (\d -> d.name == name) demos
-                |> List.head
-    in
-        case currentDemo of
-            Just demo ->
-                div []
-                    [ h3 [] [ text demo.name ]
-                    , ul [ class "demo-list-item" ]
-                        [ li [] [ a [ href demo.liveDemoUrl ] [ text "Live Demo" ] ]
-                        , li [] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
-                        ]
-                    ]
-
-            Nothing ->
-                text "Demo not found!"
-
-
-resourcesView : Html Msg
-resourcesView =
+resourcesView : Model -> Html Msg
+resourcesView model =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul []
-            [ resourceView "http://guide.elm-lang.org" "An Introduction to Elm"
-            , resourceView "http://elmprogramming.com/" "Beginning Elm"
-            , resourceView "https://raorao.gitbooks.io/elmbridge-curriculum/content" "ElmBridge Curriculum"
-            ]
+        , ul [] (List.map resourceView (resourceBooks model.resources))
         , h3 [] [ text "Courses" ]
-        , ul []
-            [ resourceView "http://courses.knowthen.com/courses/elm-for-beginners" "Elm for Beginners"
-            , resourceView "https://www.dailydrip.com/topics/elm" "DailyDrip Elm"
-            ]
+        , ul [] (List.map resourceView (resourceCourses model.resources))
         , h3 [] [ text "Community" ]
-        , ul []
-            [ resourceView "http://elmlang.herokuapp.com" "Elm Slack"
-            , resourceView "https://twitter.com/elmlang" "Elm Twitter"
-            , resourceView "http://www.elmweekly.nl" "Elm Weekly"
-            ]
-        , h3 [] [ text "Elm and Phoenix" ]
-        , ul []
-            [ resourceView "https://medium.com/@diamondgfx/setting-up-elm-with-phoenix-be3a9f55bac2" "Setting Up Elm with Phoenix"
-            , resourceView "https://medium.com/@diamondgfx/writing-a-full-site-in-phoenix-and-elm-a100804c9499" "Writing a Full Site in Phoenix and Elm"
-            , resourceView "http://www.cultivatehq.com/posts/phoenix-elm-1" "Phoenix with Elm"
-            ]
+        , ul [] (List.map resourceView (resourceCommunity model.resources))
         ]
 
 
-resourceView : String -> String -> Html Msg
-resourceView url title =
-    li [] [ a [ href url ] [ text title ] ]
+resourceView : Resource -> Html Msg
+resourceView resource =
+    li [] [ a [ href resource.url ] [ text resource.name ] ]
 
 
-presentationsView : Html Msg
-presentationsView =
+resourceBooks : List Resource -> List Resource
+resourceBooks resources =
+    List.filter resourceIsBook resources
+
+
+resourceIsBook : Resource -> Bool
+resourceIsBook resource =
+    resource.category == "book"
+
+
+resourceCourses : List Resource -> List Resource
+resourceCourses resources =
+    List.filter resourceIsCourse resources
+
+
+resourceIsCourse : Resource -> Bool
+resourceIsCourse resource =
+    resource.category == "course"
+
+
+resourceCommunity : List Resource -> List Resource
+resourceCommunity resources =
+    List.filter resourceIsCommunity resources
+
+
+resourceIsCommunity : Resource -> Bool
+resourceIsCommunity resource =
+    resource.category == "community"
+
+
+presentationsView : Model -> Html Msg
+presentationsView model =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , h3 [] [ text "September 2016" ]
-        , ul [] [ li [] [ a [ href "http://prezi.com/wofdk8e6uuy3" ] [ text "Getting to Know Elm" ] ] ]
-        , h3 [] [ text "October 2016" ]
-        , ul [] [ li [] [ text "Elm and React" ] ]
-        , h3 [] [ text "November 2016" ]
-        , ul [] [ li [] [ a [ href "https://prezi.com/f0lpwk_xlj4p" ] [ text "Solving a Problem with Elm" ] ] ]
-        , h3 [] [ text "December 2016" ]
-        , ul [] [ li [] [ a [ href "https://cl.ly/0U2n0R3J3A2t/download/input_and_subscriptions.pdf" ] [ text "Input and Subscriptions" ] ] ]
+        , ul [] (List.map presentationView model.presentations)
         ]
 
 
-notFoundView : Html Msg
-notFoundView =
-    div [] [ p [] [ text "Page not found. Return from whence ye came." ] ]
-
-
-
--- NAVIGATION
-
-
-routing : Model -> Html Msg
-routing model =
-    case model.route of
-        Just Home ->
-            homeView
-
-        Just Demos ->
-            demosView model
-
-        Just (DemoShow name) ->
-            demoView name model.demos
-
-        Just Resources ->
-            resourcesView
-
-        Just Presentations ->
-            presentationsView
-
-        Nothing ->
-            notFoundView
-
-
-updateRoute : Maybe Location -> Model -> ( Model, Cmd Msg )
-updateRoute route model =
-    { model | route = route } ! []
-
-
-routeInit : Maybe Location -> Maybe Location
-routeInit location =
-    location
-
-
-urlFor : Location -> String
-urlFor loc =
+presentationView : Presentation -> Html Msg
+presentationView presentation =
     let
-        url =
-            case loc of
-                Home ->
-                    "/"
-
-                Demos ->
-                    "/demos"
-
-                DemoShow name ->
-                    "/demos/" ++ name
-
-                Resources ->
-                    "/resources"
-
-                Presentations ->
-                    "/presentations"
+        presentationLink =
+            if presentation.url == "" then
+                span [] [ text presentation.name ]
+            else
+                a [ href presentation.url ] [ text presentation.name ]
     in
-        "#" ++ url
-
-
-locationFor : Navigation.Location -> Maybe Location
-locationFor path =
-    let
-        segments =
-            path.hash
-                |> String.split "/"
-                |> List.filter (\seg -> seg /= "" && seg /= "#")
-    in
-        case segments of
-            [] ->
-                Just Home
-
-            [ "home" ] ->
-                Just Home
-
-            [ "demos" ] ->
-                Just Demos
-
-            [ "demos", name ] ->
-                Just (DemoShow name)
-
-            [ "resources" ] ->
-                Just Resources
-
-            [ "presentations" ] ->
-                Just Presentations
-
-            _ ->
-                Nothing
+        li []
+            [ p [] [ text presentation.category ]
+            , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
+            ]
