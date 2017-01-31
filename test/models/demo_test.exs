@@ -3,7 +3,7 @@ defmodule ElmOrlando.DemoTest do
 
   alias ElmOrlando.Demo
 
-  @valid_attrs %{liveDemoUrl: "some content", name: "some content", sourceCodeUrl: "some content"}
+  @valid_attrs %{name: "some content", category: "some category", liveDemoUrl: "some content", sourceCodeUrl: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
