@@ -25,7 +25,6 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Clock", liveDemoUrl: "/demos/Clo
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RandomDice", liveDemoUrl: "/demos/RandomDice.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/RandomDice.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "GifFetch", liveDemoUrl: "/demos/GifFetch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/GifFetch.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ScoreKeeper", liveDemoUrl: "/demos/ScoreKeeper.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ScoreKeeper.elm"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElmojiTranslator", liveDemoUrl: "/demos/ElmojiTranslator.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElmojiTranslator.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "Routing", liveDemoUrl: "/demos/Routing.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/Routing.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MessageBoard", liveDemoUrl: "/demos/MessageBoard.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/MessageBoard.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ListCreator", liveDemoUrl: "/demos/ListCreator.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ListCreator.elm"})
