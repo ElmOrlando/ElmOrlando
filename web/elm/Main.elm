@@ -281,7 +281,7 @@ demosView : Model -> Html Msg
 demosView model =
     div []
         [ h2 [] [ text "Demos" ]
-        , h3 [] [ text "Live Collaborative Coding Demos" ]
+        , h3 [] [ text "Live Collaborative Coding" ]
         , ul [ class "demo-list" ] (List.map demoView (collaborativeDemos model.demos))
         , h3 [] [ text "Example Demos" ]
         , ul [ class "demo-list" ] (List.map demoView (exampleDemos model.demos))
@@ -291,9 +291,9 @@ demosView model =
 demoView : Demo -> Html Msg
 demoView demo =
     li [ class "demo-list-item" ]
-        [ span [] [ text demo.name ]
-        , span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text "Live" ] ]
-        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source" ] ]
+        [ span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text demo.name ] ]
+        , span [] [ text " –" ]
+        , span [ class "demo-source-code" ] [ a [ href demo.sourceCodeUrl ] [ text "Source Code" ] ]
         ]
 
 
