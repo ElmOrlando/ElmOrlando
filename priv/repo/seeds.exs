@@ -30,6 +30,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MessageBoard", category: "exampl
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ListCreator", category: "live", liveDemoUrl: "/demos/ListCreator.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ListCreator.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MouseFollow", category: "live", liveDemoUrl: "/demos/MouseFollow.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/MouseFollow.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElixirAndElm", category: "live", liveDemoUrl: "/demos/ElixirAndElm.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ApiFetch", category: "live", liveDemoUrl: "/demos/ApiFetch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ApiFetch.elm"})
 
 # Resource Data
 
@@ -48,8 +49,9 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Getting to Know Elm", ca
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "React and Elm", category: "October 2016", author: "David Khourshid", url: ""})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Solving a Problem with Elm", category: "November 2016", author: "Bijan Boustani", url: "https://prezi.com/f0lpwk_xlj4p"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions", category: "December 2016", author: "AJ Foster", url: "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Functional Concepts", category: "January 2017", author: "Devan Kestel", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", category: "January 2017", author: "Devan Kestel", url: "https://d17oy1vhnax1f7.cloudfront.net/items/2P2g0U241T3s0i213G3y/level_up_with_fp.pdf"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: ""})
 
 # Message Data
 
