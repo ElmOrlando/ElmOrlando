@@ -59,7 +59,7 @@ initialModel =
 init : ( Model, Cmd Msg )
 init =
     ( initialModel
-    , Http.get "//swapi.co/api/films" decodeFilms
+    , Http.get "https://swapi.co/api/films" decodeFilms
         |> Http.send ReceivedFilms
     )
 
