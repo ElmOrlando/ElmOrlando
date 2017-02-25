@@ -51,7 +51,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Solving a Problem with E
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions", category: "December 2016", author: "AJ Foster", url: "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", category: "January 2017", author: "Devan Kestel", url: "https://d17oy1vhnax1f7.cloudfront.net/items/2P2g0U241T3s0i213G3y/level_up_with_fp.pdf"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: "http://slides.com/robertbethencourt/my-first-slide"})
 
 # Message Data
 
