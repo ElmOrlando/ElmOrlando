@@ -308,7 +308,7 @@ header model =
 
 home : Html Msg
 home =
-    a [ href "#home", onClick <| UpdateView Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+    a [ onClick <| Navigate Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
 externalLinksList : Html Msg
@@ -331,9 +331,9 @@ internalLinksList model =
 
 internalLinks : List (Html Msg)
 internalLinks =
-    [ li [] [ a [ href "#demos", onClick <| UpdateView Demos ] [ text "Demos" ] ]
-    , li [] [ a [ href "#resources", onClick <| UpdateView Resources ] [ text "Resources" ] ]
-    , li [] [ a [ href "#presentations", onClick <| UpdateView Presentations ] [ text "Presentations" ] ]
+    [ li [] [ a [ onClick <| Navigate Demos ] [ text "Demos" ] ]
+    , li [] [ a [ onClick <| Navigate Resources ] [ text "Resources" ] ]
+    , li [] [ a [ onClick <| Navigate Presentations ] [ text "Presentations" ] ]
     ]
 
 
