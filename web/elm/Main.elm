@@ -70,7 +70,7 @@ init location =
         page =
             hashToPage location.hash
     in
-        ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
+        ( initialModel, fetchAll )
 
 
 initialModel : Model
@@ -90,7 +90,6 @@ type Msg
     = NoOp
     | Navigate Page
     | ChangePage Page
-    | UpdateView Page
     | FetchDemos (Result Http.Error (List Demo))
     | FetchResources (Result Http.Error (List Resource))
     | FetchPresentations (Result Http.Error (List Presentation))
@@ -103,15 +102,9 @@ update msg model =
             ( model, Cmd.none )
 
         Navigate page ->
-            ( { model | currentPage = page }
-            , pageToHash page
-                |> Navigation.newUrl
-            )
+            ( { model | currentPage = page }, pageToHash page |> Navigation.newUrl )
 
         ChangePage page ->
-            ( { model | currentPage = page }, Cmd.none )
-
-        UpdateView page ->
             ( { model | currentPage = page }, Cmd.none )
 
         FetchDemos (Ok newDemos) ->
@@ -186,28 +179,35 @@ pageView : Model -> Html Msg
 pageView model =
     case model.currentPage of
         Home ->
-            homeView
+            viewHome
 
         Demos ->
-            demosView model
+            viewDemos model
 
         Resources ->
-            resourcesView model
+            viewResources model
 
         Presentations ->
-            presentationsView model
+            viewPresentations model
 
         _ ->
-            homeView
+            viewHome
 
 
 
 -- API
 
 
+fetchAll : Cmd Msg
+fetchAll =
+    Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ]
+
+
 fetchDemos : Cmd Msg
 fetchDemos =
-    Http.send FetchDemos (Http.get "/api/demos" decodeDemoFetch)
+    decodeDemoFetch
+        |> Http.get "/api/demos"
+        |> Http.send FetchDemos
 
 
 decodeDemoFetch : Decode.Decoder (List Demo)
@@ -231,7 +231,9 @@ decodeDemoData =
 
 fetchResources : Cmd Msg
 fetchResources =
-    Http.send FetchResources (Http.get "/api/resources" decodeResourceFetch)
+    decodeResourceFetch
+        |> Http.get "/api/resources"
+        |> Http.send FetchResources
 
 
 decodeResourceFetch : Decode.Decoder (List Resource)
@@ -254,7 +256,9 @@ decodeResourceData =
 
 fetchPresentations : Cmd Msg
 fetchPresentations =
-    Http.send FetchPresentations (Http.get "/api/presentations" decodePresentationFetch)
+    decodePresentationFetch
+        |> Http.get "/api/presentations"
+        |> Http.send FetchPresentations
 
 
 decodePresentationFetch : Decode.Decoder (List Presentation)
@@ -292,22 +296,22 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ header model
+        [ viewHeader model
         , pageView model
         ]
 
 
-header : Model -> Html Msg
-header model =
+viewHeader : Model -> Html Msg
+viewHeader model =
     Html.header [ class "header" ]
-        [ home
+        [ homeLink
         , externalLinksList
         , internalLinksList model
         ]
 
 
-home : Html Msg
-home =
+homeLink : Html Msg
+homeLink =
     a [ onClick <| Navigate Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
@@ -337,24 +341,24 @@ internalLinks =
     ]
 
 
-homeView : Html Msg
-homeView =
+viewHome : Html Msg
+viewHome =
     div [] []
 
 
-demosView : Model -> Html Msg
-demosView model =
+viewDemos : Model -> Html Msg
+viewDemos model =
     div []
         [ h2 [] [ text "Demos" ]
         , h3 [] [ text "Live Collaborative Coding" ]
-        , ul [ class "demo-list" ] (List.map demoView (collaborativeDemos model.demos))
+        , ul [ class "demo-list" ] (List.map viewDemo (collaborativeDemos model.demos))
         , h3 [] [ text "Example Demos" ]
-        , ul [ class "demo-list" ] (List.map demoView (exampleDemos model.demos))
+        , ul [ class "demo-list" ] (List.map viewDemo (exampleDemos model.demos))
         ]
 
 
-demoView : Demo -> Html Msg
-demoView demo =
+viewDemo : Demo -> Html Msg
+viewDemo demo =
     li [ class "demo-list-item" ]
         [ span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text demo.name ] ]
         , span [] [ text " –" ]
@@ -382,21 +386,21 @@ demoIsExample demo =
     demo.category == "example"
 
 
-resourcesView : Model -> Html Msg
-resourcesView model =
+viewResources : Model -> Html Msg
+viewResources model =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul [] (List.map resourceView (resourceBooks model.resources))
+        , ul [] (List.map viewResource (resourceBooks model.resources))
         , h3 [] [ text "Courses" ]
-        , ul [] (List.map resourceView (resourceCourses model.resources))
+        , ul [] (List.map viewResource (resourceCourses model.resources))
         , h3 [] [ text "Community" ]
-        , ul [] (List.map resourceView (resourceCommunity model.resources))
+        , ul [] (List.map viewResource (resourceCommunity model.resources))
         ]
 
 
-resourceView : Resource -> Html Msg
-resourceView resource =
+viewResource : Resource -> Html Msg
+viewResource resource =
     li [] [ a [ href resource.url ] [ text resource.name ] ]
 
 
@@ -430,16 +434,16 @@ resourceIsCommunity resource =
     resource.category == "community"
 
 
-presentationsView : Model -> Html Msg
-presentationsView model =
+viewPresentations : Model -> Html Msg
+viewPresentations model =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , ul [] (List.map presentationView model.presentations)
+        , ul [] (List.map viewPresentation model.presentations)
         ]
 
 
-presentationView : Presentation -> Html Msg
-presentationView presentation =
+viewPresentation : Presentation -> Html Msg
+viewPresentation presentation =
     let
         presentationLink =
             if presentation.url == "" then
