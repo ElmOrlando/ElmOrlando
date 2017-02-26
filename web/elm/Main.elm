@@ -3,8 +3,9 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Json.Decode as Decode
 import Http
+import Json.Decode as Decode
+import Navigation
 
 
 -- MAIN
@@ -12,7 +13,7 @@ import Http
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program locationToMessage
         { init = init
         , update = update
         , view = view
@@ -21,7 +22,7 @@ main =
 
 
 
--- MODEL
+-- TYPES
 
 
 type alias Model =
@@ -37,6 +38,7 @@ type Page
     | Demos
     | Resources
     | Presentations
+    | NotFound
 
 
 type alias Demo =
@@ -62,14 +64,22 @@ type alias Presentation =
     }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
+
+-- INIT
 
 
-initialModel : Model
-initialModel =
-    { currentPage = Home
+init : Navigation.Location -> ( Model, Cmd Msg )
+init location =
+    ( location
+        |> initPage
+        |> initialModel
+    , fetchAll
+    )
+
+
+initialModel : Page -> Model
+initialModel page =
+    { currentPage = page
     , demos = []
     , resources = []
     , presentations = []
@@ -82,7 +92,8 @@ initialModel =
 
 type Msg
     = NoOp
-    | UpdateView Page
+    | Navigate Page
+    | ChangePage Page
     | FetchDemos (Result Http.Error (List Demo))
     | FetchResources (Result Http.Error (List Resource))
     | FetchPresentations (Result Http.Error (List Presentation))
@@ -94,7 +105,10 @@ update msg model =
         NoOp ->
             ( model, Cmd.none )
 
-        UpdateView page ->
+        Navigate page ->
+            ( { model | currentPage = page }, pageToHash page |> Navigation.newUrl )
+
+        ChangePage page ->
             ( { model | currentPage = page }, Cmd.none )
 
         FetchDemos (Ok newDemos) ->
@@ -120,29 +134,89 @@ update msg model =
 -- ROUTING
 
 
+locationToMessage : Navigation.Location -> Msg
+locationToMessage location =
+    location.hash
+        |> hashToPage
+        |> ChangePage
+
+
+initPage : Navigation.Location -> Page
+initPage location =
+    hashToPage location.hash
+
+
+hashToPage : String -> Page
+hashToPage hash =
+    case hash of
+        "#/" ->
+            Home
+
+        "#/demos" ->
+            Demos
+
+        "#/resources" ->
+            Resources
+
+        "#/presentations" ->
+            Presentations
+
+        _ ->
+            NotFound
+
+
+pageToHash : Page -> String
+pageToHash page =
+    case page of
+        Home ->
+            "#/"
+
+        Demos ->
+            "#/demos"
+
+        Resources ->
+            "#/resources"
+
+        Presentations ->
+            "#/presentations"
+
+        NotFound ->
+            "#/notfound"
+
+
 pageView : Model -> Html Msg
 pageView model =
     case model.currentPage of
         Home ->
-            homeView
+            viewHome
 
         Demos ->
-            demosView model
+            viewDemos model
 
         Resources ->
-            resourcesView model
+            viewResources model
 
         Presentations ->
-            presentationsView model
+            viewPresentations model
+
+        _ ->
+            viewHome
 
 
 
 -- API
 
 
+fetchAll : Cmd Msg
+fetchAll =
+    Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ]
+
+
 fetchDemos : Cmd Msg
 fetchDemos =
-    Http.send FetchDemos (Http.get "/api/demos" decodeDemoFetch)
+    decodeDemoFetch
+        |> Http.get "/api/demos"
+        |> Http.send FetchDemos
 
 
 decodeDemoFetch : Decode.Decoder (List Demo)
@@ -166,7 +240,9 @@ decodeDemoData =
 
 fetchResources : Cmd Msg
 fetchResources =
-    Http.send FetchResources (Http.get "/api/resources" decodeResourceFetch)
+    decodeResourceFetch
+        |> Http.get "/api/resources"
+        |> Http.send FetchResources
 
 
 decodeResourceFetch : Decode.Decoder (List Resource)
@@ -189,7 +265,9 @@ decodeResourceData =
 
 fetchPresentations : Cmd Msg
 fetchPresentations =
-    Http.send FetchPresentations (Http.get "/api/presentations" decodePresentationFetch)
+    decodePresentationFetch
+        |> Http.get "/api/presentations"
+        |> Http.send FetchPresentations
 
 
 decodePresentationFetch : Decode.Decoder (List Presentation)
@@ -216,7 +294,7 @@ decodePresentationData =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     Sub.none
 
 
@@ -227,23 +305,42 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ header model
-        , pageView model
+        [ viewHeader
+        , viewPage model
         ]
 
 
-header : Model -> Html Msg
-header model =
+viewHeader : Html Msg
+viewHeader =
     Html.header [ class "header" ]
-        [ home
+        [ homeLink
         , externalLinksList
-        , internalLinksList model
+        , internalLinksList
         ]
 
 
-home : Html Msg
-home =
-    a [ href "#home", onClick <| UpdateView Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
+viewPage : Model -> Html Msg
+viewPage model =
+    case model.currentPage of
+        Home ->
+            viewHome
+
+        Demos ->
+            viewDemos model
+
+        Resources ->
+            viewResources model
+
+        Presentations ->
+            viewPresentations model
+
+        _ ->
+            viewHome
+
+
+homeLink : Html Msg
+homeLink =
+    a [ onClick <| Navigate Home ] [ h1 [ class "header-text" ] [ text "Elm Orlando" ] ]
 
 
 externalLinksList : Html Msg
@@ -259,37 +356,37 @@ externalLinks =
     ]
 
 
-internalLinksList : Model -> Html Msg
-internalLinksList model =
+internalLinksList : Html Msg
+internalLinksList =
     nav [] [ ul [ class "nav-list" ] internalLinks ]
 
 
 internalLinks : List (Html Msg)
 internalLinks =
-    [ li [] [ a [ href "#demos", onClick <| UpdateView Demos ] [ text "Demos" ] ]
-    , li [] [ a [ href "#resources", onClick <| UpdateView Resources ] [ text "Resources" ] ]
-    , li [] [ a [ href "#presentations", onClick <| UpdateView Presentations ] [ text "Presentations" ] ]
+    [ li [] [ a [ onClick <| Navigate Demos ] [ text "Demos" ] ]
+    , li [] [ a [ onClick <| Navigate Resources ] [ text "Resources" ] ]
+    , li [] [ a [ onClick <| Navigate Presentations ] [ text "Presentations" ] ]
     ]
 
 
-homeView : Html Msg
-homeView =
+viewHome : Html Msg
+viewHome =
     div [] []
 
 
-demosView : Model -> Html Msg
-demosView model =
+viewDemos : Model -> Html Msg
+viewDemos { demos } =
     div []
         [ h2 [] [ text "Demos" ]
         , h3 [] [ text "Live Collaborative Coding" ]
-        , ul [ class "demo-list" ] (List.map demoView (collaborativeDemos model.demos))
+        , ul [ class "demo-list" ] (demos |> collaborativeDemos |> List.map viewDemo)
         , h3 [] [ text "Example Demos" ]
-        , ul [ class "demo-list" ] (List.map demoView (exampleDemos model.demos))
+        , ul [ class "demo-list" ] (demos |> exampleDemos |> List.map viewDemo)
         ]
 
 
-demoView : Demo -> Html Msg
-demoView demo =
+viewDemo : Demo -> Html Msg
+viewDemo demo =
     li [ class "demo-list-item" ]
         [ span [ class "demo-live-url" ] [ a [ href demo.liveDemoUrl ] [ text demo.name ] ]
         , span [] [ text " –" ]
@@ -317,21 +414,21 @@ demoIsExample demo =
     demo.category == "example"
 
 
-resourcesView : Model -> Html Msg
-resourcesView model =
+viewResources : Model -> Html Msg
+viewResources { resources } =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul [] (List.map resourceView (resourceBooks model.resources))
+        , ul [] (resources |> resourceBooks |> List.map viewResource)
         , h3 [] [ text "Courses" ]
-        , ul [] (List.map resourceView (resourceCourses model.resources))
+        , ul [] (resources |> resourceCourses |> List.map viewResource)
         , h3 [] [ text "Community" ]
-        , ul [] (List.map resourceView (resourceCommunity model.resources))
+        , ul [] (resources |> resourceCommunity |> List.map viewResource)
         ]
 
 
-resourceView : Resource -> Html Msg
-resourceView resource =
+viewResource : Resource -> Html Msg
+viewResource resource =
     li [] [ a [ href resource.url ] [ text resource.name ] ]
 
 
@@ -365,22 +462,24 @@ resourceIsCommunity resource =
     resource.category == "community"
 
 
-presentationsView : Model -> Html Msg
-presentationsView model =
+viewPresentations : Model -> Html Msg
+viewPresentations { presentations } =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , ul [] (List.map presentationView model.presentations)
+        , ul [] (presentations |> List.map viewPresentation)
         ]
 
 
-presentationView : Presentation -> Html Msg
-presentationView presentation =
+viewPresentation : Presentation -> Html Msg
+viewPresentation presentation =
     let
         presentationLink =
-            if presentation.url == "" then
-                span [] [ text presentation.name ]
-            else
-                a [ href presentation.url ] [ text presentation.name ]
+            case presentation.url of
+                "" ->
+                    span [] [ text presentation.name ]
+
+                _ ->
+                    a [ href presentation.url ] [ text presentation.name ]
     in
         li []
             [ p [] [ text presentation.category ]
