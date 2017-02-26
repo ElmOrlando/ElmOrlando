@@ -294,7 +294,7 @@ decodePresentationData =
 
 
 subscriptions : Model -> Sub Msg
-subscriptions model =
+subscriptions _ =
     Sub.none
 
 
@@ -305,17 +305,17 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ viewHeader model
+        [ viewHeader
         , viewPage model
         ]
 
 
-viewHeader : Model -> Html Msg
-viewHeader model =
+viewHeader : Html Msg
+viewHeader =
     Html.header [ class "header" ]
         [ homeLink
         , externalLinksList
-        , internalLinksList model
+        , internalLinksList
         ]
 
 
@@ -356,8 +356,8 @@ externalLinks =
     ]
 
 
-internalLinksList : Model -> Html Msg
-internalLinksList model =
+internalLinksList : Html Msg
+internalLinksList =
     nav [] [ ul [ class "nav-list" ] internalLinks ]
 
 
@@ -375,13 +375,13 @@ viewHome =
 
 
 viewDemos : Model -> Html Msg
-viewDemos model =
+viewDemos { demos } =
     div []
         [ h2 [] [ text "Demos" ]
         , h3 [] [ text "Live Collaborative Coding" ]
-        , ul [ class "demo-list" ] (List.map viewDemo (collaborativeDemos model.demos))
+        , ul [ class "demo-list" ] (demos |> collaborativeDemos |> List.map viewDemo)
         , h3 [] [ text "Example Demos" ]
-        , ul [ class "demo-list" ] (List.map viewDemo (exampleDemos model.demos))
+        , ul [ class "demo-list" ] (demos |> exampleDemos |> List.map viewDemo)
         ]
 
 
@@ -415,15 +415,15 @@ demoIsExample demo =
 
 
 viewResources : Model -> Html Msg
-viewResources model =
+viewResources { resources } =
     div [ class "resources" ]
         [ h2 [] [ text "Resources" ]
         , h3 [] [ text "Books" ]
-        , ul [] (List.map viewResource (resourceBooks model.resources))
+        , ul [] (resources |> resourceBooks |> List.map viewResource)
         , h3 [] [ text "Courses" ]
-        , ul [] (List.map viewResource (resourceCourses model.resources))
+        , ul [] (resources |> resourceCourses |> List.map viewResource)
         , h3 [] [ text "Community" ]
-        , ul [] (List.map viewResource (resourceCommunity model.resources))
+        , ul [] (resources |> resourceCommunity |> List.map viewResource)
         ]
 
 
@@ -463,10 +463,10 @@ resourceIsCommunity resource =
 
 
 viewPresentations : Model -> Html Msg
-viewPresentations model =
+viewPresentations { presentations } =
     div [ class "presentations" ]
         [ h2 [] [ text "Presentations" ]
-        , ul [] (List.map viewPresentation model.presentations)
+        , ul [] (presentations |> List.map viewPresentation)
         ]
 
 
@@ -474,10 +474,12 @@ viewPresentation : Presentation -> Html Msg
 viewPresentation presentation =
     let
         presentationLink =
-            if presentation.url == "" then
-                span [] [ text presentation.name ]
-            else
-                a [ href presentation.url ] [ text presentation.name ]
+            case presentation.url of
+                "" ->
+                    span [] [ text presentation.name ]
+
+                _ ->
+                    a [ href presentation.url ] [ text presentation.name ]
     in
         li []
             [ p [] [ text presentation.category ]
