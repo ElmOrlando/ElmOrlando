@@ -22,7 +22,7 @@ main =
 
 
 
--- MODEL
+-- TYPES
 
 
 type alias Model =
@@ -64,18 +64,22 @@ type alias Presentation =
     }
 
 
+
+-- INIT
+
+
 init : Navigation.Location -> ( Model, Cmd Msg )
 init location =
-    let
-        page =
-            hashToPage location.hash
-    in
-        ( initialModel, fetchAll )
+    ( location
+        |> initPage
+        |> initialModel
+    , fetchAll
+    )
 
 
-initialModel : Model
-initialModel =
-    { currentPage = Home
+initialModel : Page -> Model
+initialModel page =
+    { currentPage = page
     , demos = []
     , resources = []
     , presentations = []
@@ -135,6 +139,11 @@ locationToMessage location =
     location.hash
         |> hashToPage
         |> ChangePage
+
+
+initPage : Navigation.Location -> Page
+initPage location =
+    hashToPage location.hash
 
 
 hashToPage : String -> Page
@@ -297,7 +306,7 @@ view : Model -> Html Msg
 view model =
     div []
         [ viewHeader model
-        , pageView model
+        , viewPage model
         ]
 
 
@@ -308,6 +317,25 @@ viewHeader model =
         , externalLinksList
         , internalLinksList model
         ]
+
+
+viewPage : Model -> Html Msg
+viewPage model =
+    case model.currentPage of
+        Home ->
+            viewHome
+
+        Demos ->
+            viewDemos model
+
+        Resources ->
+            viewResources model
+
+        Presentations ->
+            viewPresentations model
+
+        _ ->
+            viewHome
 
 
 homeLink : Html Msg
