@@ -96,7 +96,7 @@ update msg model =
                         | films =
                             films
                                 |> List.sortBy .episode_id
-                                |> Debug.log "films"
+                                |> Debug.log "Film JSON data from API:"
                       }
                     , Cmd.none
                     )
@@ -120,12 +120,19 @@ view { films, selectedFilm } =
             films
                 |> List.filter (.episode_id >> (==) selectedFilm)
                 |> List.head
+
+        warning : String
+        warning =
+            """
+            If the films are not loading properly from the API, you may need to
+            allow your browser to "Load unsafe scripts".
+            """
     in
         div []
             [ viewSelector films selectedFilm
             , film
                 |> Maybe.map viewFilm
-                |> Maybe.withDefault (text "no film")
+                |> Maybe.withDefault (text warning)
             ]
 
 

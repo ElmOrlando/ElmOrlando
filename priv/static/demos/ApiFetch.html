@@ -9067,7 +9067,7 @@ var _user$project$Main$update = F2(
 						{
 							films: A2(
 								_elm_lang$core$Debug$log,
-								'films',
+								'Film JSON data from API:',
 								A2(
 									_elm_lang$core$List$sortBy,
 									function (_) {
@@ -9151,6 +9151,7 @@ var _user$project$Main$view = function (_p3) {
 	var _p4 = _p3;
 	var _p7 = _p4.selectedFilm;
 	var _p6 = _p4.films;
+	var warning = '\n            If the films are not loading properly from the API, you may need to\n            allow your browser to \"Load unsafe scripts\".\n            ';
 	var film = _elm_lang$core$List$head(
 		A2(
 			_elm_lang$core$List$filter,
@@ -9176,7 +9177,7 @@ var _user$project$Main$view = function (_p3) {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$core$Maybe$withDefault,
-					_elm_lang$html$Html$text('no film'),
+					_elm_lang$html$Html$text(warning),
 					A2(_elm_lang$core$Maybe$map, _user$project$Main$viewFilm, film)),
 				_1: {ctor: '[]'}
 			}
