@@ -3,8 +3,9 @@ module Main exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
-import Json.Decode as Decode
 import Http
+import Json.Decode as Decode
+import Navigation
 
 
 -- MAIN
@@ -12,7 +13,7 @@ import Http
 
 main : Program Never Model Msg
 main =
-    Html.program
+    Navigation.program locationToMessage
         { init = init
         , update = update
         , view = view
@@ -37,6 +38,7 @@ type Page
     | Demos
     | Resources
     | Presentations
+    | NotFound
 
 
 type alias Demo =
@@ -62,9 +64,13 @@ type alias Presentation =
     }
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
+init : Navigation.Location -> ( Model, Cmd Msg )
+init location =
+    let
+        page =
+            hashToPage location.hash
+    in
+        ( initialModel, Cmd.batch [ fetchDemos, fetchResources, fetchPresentations ] )
 
 
 initialModel : Model
@@ -82,6 +88,8 @@ initialModel =
 
 type Msg
     = NoOp
+    | Navigate Page
+    | ChangePage Page
     | UpdateView Page
     | FetchDemos (Result Http.Error (List Demo))
     | FetchResources (Result Http.Error (List Resource))
@@ -93,6 +101,15 @@ update msg model =
     case msg of
         NoOp ->
             ( model, Cmd.none )
+
+        Navigate page ->
+            ( { model | currentPage = page }
+            , pageToHash page
+                |> Navigation.newUrl
+            )
+
+        ChangePage page ->
+            ( { model | currentPage = page }, Cmd.none )
 
         UpdateView page ->
             ( { model | currentPage = page }, Cmd.none )
@@ -120,6 +137,51 @@ update msg model =
 -- ROUTING
 
 
+locationToMessage : Navigation.Location -> Msg
+locationToMessage location =
+    location.hash
+        |> hashToPage
+        |> ChangePage
+
+
+hashToPage : String -> Page
+hashToPage hash =
+    case hash of
+        "#/" ->
+            Home
+
+        "#/demos" ->
+            Demos
+
+        "#/resources" ->
+            Resources
+
+        "#/presentations" ->
+            Presentations
+
+        _ ->
+            NotFound
+
+
+pageToHash : Page -> String
+pageToHash page =
+    case page of
+        Home ->
+            "#/"
+
+        Demos ->
+            "#/demos"
+
+        Resources ->
+            "#/resources"
+
+        Presentations ->
+            "#/presentations"
+
+        NotFound ->
+            "#/notfound"
+
+
 pageView : Model -> Html Msg
 pageView model =
     case model.currentPage of
@@ -134,6 +196,9 @@ pageView model =
 
         Presentations ->
             presentationsView model
+
+        _ ->
+            homeView
 
 
 
