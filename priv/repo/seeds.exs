@@ -53,6 +53,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions"
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", category: "January 2017", author: "Devan Kestel", url: "https://d17oy1vhnax1f7.cloudfront.net/items/2P2g0U241T3s0i213G3y/level_up_with_fp.pdf"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: "http://slides.com/robertbethencourt/my-first-slide"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Introducing Ellie", category: "March 2017", author: "Bijan Boustani", url: ""})
 
 # Message Data
 
