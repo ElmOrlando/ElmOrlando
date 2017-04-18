@@ -32,6 +32,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ListCreator", category: "live", 
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MouseFollow", category: "live", liveDemoUrl: "/demos/MouseFollow.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/MouseFollow.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElixirAndElm", category: "live", liveDemoUrl: "/demos/ElixirAndElm.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ApiFetch", category: "live", liveDemoUrl: "/demos/ApiFetch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ApiFetch.elm"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RandomCompliments", category: "live", liveDemoUrl: "https://embed.ellie-app.com/WQRynbyYDVa1/5", sourceCodeUrl: "https://ellie-app.com/WQRynbyYDVa1/5"})
 
 # Resource Data
 
@@ -54,7 +55,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", categ
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: "http://slides.com/robertbethencourt/my-first-slide"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Introducing Ellie", category: "March 2017", author: "Bijan Boustani", url: ""})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Handling Failure in Elm", category: "April 2017", author: "Justin Mimbs", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Handling Failure in Elm", category: "April 2017", author: "Justin Mimbs", url: "https://d2ppvlu71ri8gs.cloudfront.net/items/0I1j3u0j422h2h2X0X3d/handling_failure_in_elm.pdf"})
 
 # Message Data
 
