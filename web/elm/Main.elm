@@ -481,10 +481,10 @@ viewPresentation presentation =
                 _ ->
                     a [ href presentation.url ] [ text presentation.name ]
     in
-    li []
-        [ p [] [ text presentation.category ]
-        , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
-        ]
+        li []
+            [ p [] [ text presentation.category ]
+            , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
+            ]
 
 
 
