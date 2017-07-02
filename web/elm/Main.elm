@@ -363,9 +363,9 @@ internalLinksList =
 
 internalLinks : List (Html Msg)
 internalLinks =
-    [ li [] [ a [ onClick <| Navigate Demos ] [ text "Demos" ] ]
-    , li [] [ a [ onClick <| Navigate Resources ] [ text "Resources" ] ]
-    , li [] [ a [ onClick <| Navigate Presentations ] [ text "Presentations" ] ]
+    [ li [] [ a [ onClick <| Navigate Demos, pointerHoverStyle ] [ text "Demos" ] ]
+    , li [] [ a [ onClick <| Navigate Resources, pointerHoverStyle ] [ text "Resources" ] ]
+    , li [] [ a [ onClick <| Navigate Presentations, pointerHoverStyle ] [ text "Presentations" ] ]
     ]
 
 
@@ -481,7 +481,17 @@ viewPresentation presentation =
                 _ ->
                     a [ href presentation.url ] [ text presentation.name ]
     in
-        li []
-            [ p [] [ text presentation.category ]
-            , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
-            ]
+    li []
+        [ p [] [ text presentation.category ]
+        , p [] [ presentationLink, span [ class "presentation-author" ] [ text presentation.author ] ]
+        ]
+
+
+
+-- STYLES
+
+
+pointerHoverStyle : Attribute msg
+pointerHoverStyle =
+    style
+        [ ( "cursor", "pointer" ) ]
