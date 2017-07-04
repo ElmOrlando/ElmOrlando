@@ -56,6 +56,9 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", categor
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: "http://slides.com/robertbethencourt/my-first-slide"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Introducing Ellie", category: "March 2017", author: "Bijan Boustani", url: ""})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Handling Failure in Elm", category: "April 2017", author: "Justin Mimbs", url: "https://d2ppvlu71ri8gs.cloudfront.net/items/0I1j3u0j422h2h2X0X3d/handling_failure_in_elm.pdf"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part I", category: "May 2017", author: "Everyone", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part II", category: "June 2017", author: "Everyone", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part III", category: "July 2017", author: "Everyone", url: ""})
 
 # Message Data
 
