@@ -3,6 +3,7 @@
 /db
 /deps
 /*.ez
+.DS_Store
 
 # Generated on crash by the VM
 erl_crash.dump
@@ -28,3 +29,4 @@ erl_crash.dump
 # elm
 /web/elm/elm-stuff/
 /web/static/js/main.js
+

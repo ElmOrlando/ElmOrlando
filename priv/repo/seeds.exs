@@ -43,22 +43,23 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm for Beginners", category
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "DailyDrip Elm", category: "course", url: "https://www.dailydrip.com/topics/elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Slack", category: "community", url: "http://elmlang.herokuapp.com"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Twitter", category: "community", url: "https://twitter.com/elmlang"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Resource{name: "Elm Weekly", category: "community", url: "http://www.elmweekly.nl"})
 
 # Presentation Data
 
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Getting to Know Elm", category: "September 2016", author: "Bijan Boustani", url: "http://prezi.com/wofdk8e6uuy3"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "React and Elm", category: "October 2016", author: "David Khourshid", url: ""})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Solving a Problem with Elm", category: "November 2016", author: "Bijan Boustani", url: "https://prezi.com/f0lpwk_xlj4p"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions", category: "December 2016", author: "AJ Foster", url: "https://d17oy1vhnax1f7.cloudfront.net/items/3X3A1q0u372R1g39083G/input_and_subscriptions.pdf"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", category: "January 2017", author: "Devan Kestel", url: "https://d17oy1vhnax1f7.cloudfront.net/items/2P2g0U241T3s0i213G3y/level_up_with_fp.pdf"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Input and Subscriptions", category: "December 2016", author: "AJ Foster", url: "https://cl.ly/0U2n0R3J3A2t"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Level Up with FP", category: "January 2017", author: "Devan Kestel", url: "https://cl.ly/301L3s130H01"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elixir and Elm", category: "January 2017", author: "Bijan Boustani", url: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Elm and Firebase", category: "February 2017", author: "Rob Bethencourt", url: "http://slides.com/robertbethencourt/my-first-slide"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Introducing Ellie", category: "March 2017", author: "Bijan Boustani", url: ""})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Handling Failure in Elm", category: "April 2017", author: "Justin Mimbs", url: "https://d2ppvlu71ri8gs.cloudfront.net/items/0I1j3u0j422h2h2X0X3d/handling_failure_in_elm.pdf"})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part I", category: "May 2017", author: "Everyone", url: ""})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part II", category: "June 2017", author: "Everyone", url: ""})
-ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part III", category: "July 2017", author: "Everyone", url: ""})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Introducing Ellie", category: "March 2017", author: "Bijan Boustani", url: "https://ellie-app.com/new"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Handling Failure in Elm", category: "April 2017", author: "Justin Mimbs", url: "https://cl.ly/170x160V1L1Y"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part I", category: "May 2017", author: "", url: "https://github.com/ElmOrlando/ElmGeolocation"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part II", category: "June 2017", author: "", url: "https://github.com/ElmOrlando/ElmGeolocation"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Creating with Elm – Part III", category: "July 2017", author: "", url: "https://youtu.be/QXrUST6v2yg"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Hack Night", category: "August 2017", author: "", url: "https://youtu.be/dZlEhZgBK3E"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Presentation{name: "Show & Tell", category: "September 2017", author: "", url: "https://youtu.be/mrGmLuwDPOg"})
 
 # Message Data
 
