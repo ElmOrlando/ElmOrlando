@@ -33,6 +33,7 @@ ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "MouseFollow", category: "live", 
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ElixirAndElm", category: "live", liveDemoUrl: "/demos/ElixirAndElm.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ElixirAndElm.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "ApiFetch", category: "live", liveDemoUrl: "/demos/ApiFetch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/ApiFetch.elm"})
 ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "RandomCompliments", category: "live", liveDemoUrl: "https://embed.ellie-app.com/WQRynbyYDVa1/5", sourceCodeUrl: "https://ellie-app.com/WQRynbyYDVa1/5"})
+ElmOrlando.Repo.insert!(%ElmOrlando.Demo{name: "AdventOfCode", category: "live", liveDemoUrl: "/demos/ApiFetch.html", sourceCodeUrl: "https://github.com/ElmOrlando/ElmOrlando/blob/master/web/elm/Demos/AdventOfCode.elm"})
 
 # Resource Data
 
