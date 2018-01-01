@@ -50,6 +50,7 @@ Repo.insert!(%Resource{name: "Beginning Elm", category: "book", url: "http://elm
 Repo.insert!(%Resource{name: "ElmBridge Curriculum", category: "book", url: "https://raorao.gitbooks.io/elmbridge-curriculum/content"})
 Repo.insert!(%Resource{name: "Elm for Beginners", category: "course", url: "http://courses.knowthen.com/courses/elm-for-beginners"})
 Repo.insert!(%Resource{name: "DailyDrip Elm", category: "course", url: "https://www.dailydrip.com/topics/elm"})
+Repo.insert!(%Resource{name: "Start Using Elm to Build Web Applications", category: "course", url: "https://egghead.io/courses/start-using-elm-to-build-web-applications"})
 Repo.insert!(%Resource{name: "Elm Slack", category: "community", url: "http://elmlang.herokuapp.com"})
 Repo.insert!(%Resource{name: "Elm Twitter", category: "community", url: "https://twitter.com/elmlang"})
 
