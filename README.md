@@ -30,3 +30,4 @@ This app is deployed to Heroku at https://elmorlando.herokuapp.com.
 
 Check out the [GitHub Issues](https://github.com/ElmOrlando/ElmOrlando/issues)
 to see what is currently on deck.
+
